@@ -1,0 +1,4 @@
+/* Bisa digunakan untuk membuat custom style tampilan website */
+/* Biasanya dipanggil dalam file halaman.tsx dengan cara : */
+/* import styles from '../sytles/home_module.css' */
+/* Lalu disetiap component diletakkan di classname dengan cara className = {styles.nama} misalnya styles.main / styles.title */
