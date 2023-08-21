@@ -3,7 +3,6 @@ import { ICustomer } from "./customer.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ViewCustomerModal from "./viewCustomerModal";
-import EditCustomer from "./editCustomer";
 
 type Props = {
   list: ICustomer[];
@@ -57,8 +56,8 @@ const customerList = (props: Props) => {
                   <button
                     className="cursor pointer"
                     value="Edit"
-                    // onClick={() => viewDetails(customer)}
-                    onClick={() => onEdit(customer)}
+                    onClick={() => viewDetails(customer)}
+                    // onClick={() => onEdit(customer)}
                   >
                     <FontAwesomeIcon
                       icon={faEdit}

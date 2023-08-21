@@ -22,7 +22,6 @@ const index = () => {
 
   const showAddModal = (data: ICustomer) => {
     setCustomerList([...customerList, data]);
-    // const temp = {}
   };
 
   const deleteCustomer = (data: ICustomer) => {
@@ -103,13 +102,13 @@ const index = () => {
           />
         )}
 
-        {shownModalAdd === PageEnum.edit && (
+        {/* {shownModalAdd === PageEnum.edit && (
           <EditCustomer
             data={dataToEdit}
             onBatalBtnHnd={showListPage}
             onUpdateClickHnd={updateData}
           />
-        )}
+        )} */}
       </section>
     </div>
   );
