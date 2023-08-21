@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Masuk from "./masuk";
-import Coba from "./coba";
+import Masuk from "./src/masuk";
 import NavSideBar from "./component/sidenavbar";
 
 export default function Home() {

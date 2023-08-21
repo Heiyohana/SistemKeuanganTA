@@ -1,7 +1,6 @@
 import Head from "next/head";
 import React from "react";
 import NavSideBar from "../component/sidenavbar";
-import HeadButton from "../component/button";
 
 export default function orderretail() {
   return (
@@ -20,7 +19,6 @@ export default function orderretail() {
             <h1 className="title font-bold text-2xl">Pencatatan Arus Kas</h1>
             <h3 className="text-base">Transaksi</h3>
           </div>
-          <HeadButton /> {/* buttonnya kemunkinan berdiri sendiri2 */}
         </div>
 
         {/* form pencatatan */}

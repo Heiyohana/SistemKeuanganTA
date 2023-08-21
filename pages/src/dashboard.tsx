@@ -1,10 +1,10 @@
 import React from "react";
-import NavSideBar from "./component/sidenavbar";
+import NavSideBar from "../component/sidenavbar";
 import Head from "next/head";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import Linechart from "./component/linechart";
-import Piechart from "./component/piechart";
+import Linechart from "../component/linechart";
+import Piechart from "../component/piechart";
 
 export default function Dashboard() {
   return (
