@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { ICustomer } from "./customer.type";
+import { ICustomer, PageEnum, dummyCustomerList } from "./customer.type";
 
 type Props = {
+  onSubmitClick: (data: ICustomer) => void;
   onBatalBtnHnd: () => void;
-  onSubmitClickHnd: (data: ICustomer) => void;
 };
 const addCustModal = (props: Props) => {
   const [nama, setNama] = useState("");
   const [nohp, setnoHp] = useState("");
   const [alamat, setAlamat] = useState("");
-  const { onBatalBtnHnd, onSubmitClickHnd } = props;
+  const { onBatalBtnHnd, onSubmitClick } = props;
 
   const onNamaChangeHnd = (e: any) => {
     setNama(e.target.value);
@@ -30,16 +30,23 @@ const addCustModal = (props: Props) => {
       nohp: nohp,
       alamat: alamat,
     };
-    onSubmitClickHnd(data);
+    onSubmitClick(data);
     onBatalBtnHnd();
+  };
+
+  const [customerList, setCustomerList] = useState(
+    dummyCustomerList as ICustomer[]
+  );
+
+  const [shownModalAdd, setShownModalAdd] = useState(PageEnum.list);
+  const showAddModal = (data: ICustomer) => {
+    setCustomerList([...customerList, data]);
+    setShownModalAdd(PageEnum.list);
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
       <div className="w-[400px] h-max flex flex-col bg-white rounded-xl">
-        {/* <span className="place-self-end text-2xl font-semibold cursor-pointer">
-          &times;
-        </span> */}
         <div className="p-6">
           <h1 className="font-bold text-lg">Tambah Data</h1>
           <form onSubmit={onSubmitBtnClickHnd}>

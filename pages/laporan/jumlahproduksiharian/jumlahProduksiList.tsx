@@ -15,7 +15,7 @@ const jphList = (props: Props) => {
     <div className="text-sm w-max m-1 mt-3">
       <table className=" text-left border-2 border-blue-500 ">
         <thead className="bg-blue-500 text-white">
-          <tr>
+          <tr className="hover:bg-blue-100 p-2">
             <th className="px-2 py-1 font-medium text-center">No</th>
             <th className="px-5 py-1 font-medium">Tanggal</th>
             <th className="px-5 py-1 font-medium">Materials</th>

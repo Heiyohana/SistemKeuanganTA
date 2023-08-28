@@ -43,7 +43,7 @@ const index = () => {
       <section className="absolute h-full w-4/5 right-0 p-5 bg-neutral-50">
         <div className="flex flex-row justify-between items-center">
           {/* informasi halaman */}
-          <div className="flex flex-col m-1 pb-5">
+          <div className="flex flex-col pb-5">
             <h1 className="title font-bold text-2xl">Data User Akun</h1>
             <h3 className="text-sm">Master Data</h3>
           </div>

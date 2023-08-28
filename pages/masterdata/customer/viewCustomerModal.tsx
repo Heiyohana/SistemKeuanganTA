@@ -40,8 +40,6 @@ const viewCustomerModal = (props: Props) => {
 
   const [showViewModal, setShowViewModal] = useState(false);
 
-  const onCloseModal = () => setShowViewModal(false);
-
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
       <div className="w-[400px] h-max flex flex-col bg-white rounded-xl">

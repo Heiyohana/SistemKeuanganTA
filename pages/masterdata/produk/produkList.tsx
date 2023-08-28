@@ -21,7 +21,7 @@ const produkList = (props: Props) => {
   const onCloseModal = () => setShowViewModal(false);
 
   return (
-    <div>
+    <div className="text-sm">
       <table className="text-left border-2 border-blue-500">
         <thead className="bg-blue-500 items-center text-white">
           <tr className="font-medium">
@@ -37,7 +37,7 @@ const produkList = (props: Props) => {
         <tbody>
           {list.map((produk, index) => {
             return (
-              <tr key={index}>
+              <tr className="hover:bg-blue-100 p-2" key={index}>
                 <td className="px-2 py-1 font-regular text-center">
                   {index + 1}
                 </td>

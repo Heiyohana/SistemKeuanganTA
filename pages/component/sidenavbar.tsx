@@ -2,20 +2,22 @@ import {
   faChevronDown,
   faFileLines,
   faFolder,
-  faMoneyBill,
+  faCalculator,
   faPieChart,
   faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React, { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 
 const NavSideBar = () => {
   const Menus = [
     {
       title: "Dashboard",
       icon: faPieChart,
-      path: "../dashboard/index",
+      path: "../dashboard",
       spacing: true,
       section: "MANAGE",
     },
@@ -32,7 +34,7 @@ const NavSideBar = () => {
     },
     {
       title: "Transaksi",
-      icon: faMoneyBill,
+      icon: faCalculator,
       submenu: true,
       path: "../transaksi/orderretail",
       submenuItems: [
@@ -50,7 +52,7 @@ const NavSideBar = () => {
       submenu: true,
       submenuItems: [
         { title: "Pesanan", path: "../laporan/laporan-pesanan" },
-        // { title: "Arus Kas", path: "../laporan/laporan-pesanan" },
+        { title: "Arus Kas", path: "../laporan/aruskas" },
         {
           title: "Jumlah Produksi Harian",
           path: "../laporan/jumlahproduksiharian",
@@ -60,7 +62,7 @@ const NavSideBar = () => {
     {
       title: "Profile",
       icon: faFolder,
-      path: "../setting",
+      path: "../profile",
       spacing: true,
       section: "ACCOUNT",
     },
@@ -80,6 +82,8 @@ const NavSideBar = () => {
     setSubmenuOpenStatus(updatedSubmenuOpenStatus);
   };
 
+  const router = useRouter();
+
   return (
     <div className="flex h-full w-1/5">
       <div className="bg-blue900 p-2 pt-5 bg-white w-full">
@@ -97,12 +101,19 @@ const NavSideBar = () => {
               <React.Fragment key={index}>
                 {/* Buat kasih section manage dan account */}
                 {menu.spacing && (
-                  <span className="flex text-xs font-bold border-b-2 mt-3 border-neutral-500">
+                  <span className="flex text-xs font-bold border-b-2 mt-3 border-blue-400 text-blue-400">
                     {menu.section}
                   </span>
                 )}
                 {/* Buat menu */}
-                <li className="text-sm flex items-center justify-between gap-x-4 cursor-pointer text-neutral-500 hover:bg-blue-600 hover:text-white p-2">
+                <li
+                  // className="text-base flex-inline"
+                  className={
+                    `${router.pathname == `/${menu.title}` && "active"}`
+                      ? "text-sm flex items-center justify-between gap-x-4 cursor-pointer bg-blue-600 text-white p-3 pl-4 decoration-none hover:bg-white hover:text-neutral-700"
+                      : "text-sm flex items-center justify-between gap-x-4 cursor-pointer text-neutral-500 hover:bg-blue-600 hover:text-white p-3 pl-4 decoration-none"
+                  }
+                >
                   <Link
                     key={index}
                     href={`${menu.path}`}

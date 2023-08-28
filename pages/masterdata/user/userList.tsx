@@ -20,7 +20,7 @@ const userList = (props: Props) => {
 
   const onCloseModal = () => setShowViewModal(false);
   return (
-    <div>
+    <div className="text-sm">
       <table className="text-left border-2 border-blue-500">
         <thead className="bg-blue-500 items-center text-white">
           <tr>

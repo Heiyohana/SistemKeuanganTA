@@ -60,29 +60,9 @@ const index = () => {
       <section className="absolute h-full w-4/5 right-0 p-5 bg-neutral-50">
         <div className="flex flex-row justify-between items-center">
           {/* informasi halaman */}
-          <div className="flex flex-col m-1 pb-5">
+          <div className="flex flex-col pb-5">
             <h1 className="title font-bold text-2xl">Data Customer</h1>
             <h3 className="text-sm">Data Pelanggan yang Sudah Terdaftar</h3>
-          </div>
-
-          {/* 3 Button */}
-          <div className="flex">
-            <input
-              type="button"
-              value="Tambah Data"
-              className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
-              onClick={onAddCustomerHnd}
-            />
-            <input
-              type="button"
-              value="Cari"
-              className="w-[200px] rounded-lg bg-white border-2 text-blue-500 border-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
-            />
-            <input
-              type="button"
-              value="Export Data"
-              className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
-            />
           </div>
         </div>
         {/* Tabel Data Customer */}
@@ -96,7 +76,7 @@ const index = () => {
         {shownModalAdd === PageEnum.add && (
           <AddCustModal
             onBatalBtnHnd={showListPage}
-            onSubmitClickHnd={showAddModal}
+            onSubmitClick={showAddModal}
           />
         )}
 
