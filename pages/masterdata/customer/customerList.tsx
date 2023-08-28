@@ -3,6 +3,7 @@ import { ICustomer } from "./customer.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ViewCustomerModal from "./viewCustomerModal";
+import EditCustomer from "./editCustomer";
 
 type Props = {
   list: ICustomer[];
@@ -71,7 +72,11 @@ const customerList = (props: Props) => {
         </tbody>
       </table>
       {showViewModal && detailsToShow && (
-        <ViewCustomerModal onClose={onCloseModal} data={detailsToShow} />
+        <ViewCustomerModal
+          onBatalBtnHnd={onCloseModal}
+          onUpdateClickHnd={viewDetails}
+          data={detailsToShow}
+        />
       )}
     </div>
   );

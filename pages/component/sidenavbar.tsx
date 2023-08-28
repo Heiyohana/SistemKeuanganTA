@@ -11,12 +11,11 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const NavSideBar = () => {
-  const [submenuOpen, setSubmenuOpen] = useState(false);
   const Menus = [
     {
       title: "Dashboard",
       icon: faPieChart,
-      path: "../dashboard",
+      path: "../dashboard/index",
       spacing: true,
       section: "MANAGE",
     },
@@ -65,8 +64,22 @@ const NavSideBar = () => {
       spacing: true,
       section: "ACCOUNT",
     },
-    { title: "Keluar", icon: faSignOut, path: "../logout" },
+    { title: "Keluar", icon: faSignOut, path: "../masuk" },
   ];
+
+  const [submenuOpenStatus, setSubmenuOpenStatus] = useState(
+    Menus.map(() => false)
+  );
+
+  const handleSubmenuToggle = (index: number) => {
+    // Create a copy of submenuOpenStatus array
+    const updatedSubmenuOpenStatus = [...submenuOpenStatus];
+    // Toggle the status of the submenu for the clicked menu
+    updatedSubmenuOpenStatus[index] = !updatedSubmenuOpenStatus[index];
+    // Update the state with the new array
+    setSubmenuOpenStatus(updatedSubmenuOpenStatus);
+  };
+
   return (
     <div className="flex h-full w-1/5">
       <div className="bg-blue900 p-2 pt-5 bg-white w-full">
@@ -79,56 +92,55 @@ const NavSideBar = () => {
 
         {/* sub menu */}
         <div>
-          {Menus.map((menu, index) => (
-            <>
-              {menu.spacing && (
-                <span
-                  key={index}
-                  className="flex text-xs font-bold border-b-2 mt-3 border-neutral-500"
-                >
-                  {menu.section}
-                </span>
-              )}
-              <li
-                key={index}
-                className="text-sm flex items-center justify-between gap-x-4 cursor-pointer text-neutral-500 hover:bg-blue-600 hover:text-white p-2"
-              >
-                <Link
-                  key={index}
-                  href={`${menu.path}`}
-                  className="text-base flex-inline"
-                >
-                  <FontAwesomeIcon
-                    icon={menu.icon}
-                    className="h-5 w-5 pr-5 font-regular"
-                  />
-                  <span className="font-bold">{menu.title}</span>
-                </Link>
-
-                {/* Set dropdown menu */}
-                {menu.submenu && (
-                  <FontAwesomeIcon
-                    icon={faChevronDown}
-                    className={`${submenuOpen && "rotate-180"}`}
-                    onClick={() => setSubmenuOpen(!submenuOpen)}
-                  />
+          {Menus.map((menu, index) => {
+            return (
+              <React.Fragment key={index}>
+                {/* Buat kasih section manage dan account */}
+                {menu.spacing && (
+                  <span className="flex text-xs font-bold border-b-2 mt-3 border-neutral-500">
+                    {menu.section}
+                  </span>
                 )}
-              </li>
-              {menu.submenu && submenuOpen && (
-                <ul>
-                  {menu.submenuItems.map((submenuItem, index) => (
-                    <Link
-                      href={submenuItem.path}
-                      key={index}
-                      className={`text-neutral-500 text-sm font-semibold flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-blue-200 hover:text-blue-800`}
-                    >
-                      {submenuItem.title}
-                    </Link>
-                  ))}
-                </ul>
-              )}
-            </>
-          ))}
+                {/* Buat menu */}
+                <li className="text-sm flex items-center justify-between gap-x-4 cursor-pointer text-neutral-500 hover:bg-blue-600 hover:text-white p-2">
+                  <Link
+                    key={index}
+                    href={`${menu.path}`}
+                    className="text-base flex-inline"
+                  >
+                    <FontAwesomeIcon
+                      icon={menu.icon}
+                      className="h-5 w-5 pr-5 font-regular"
+                    />
+                    <span className="font-bold">{menu.title}</span>
+                  </Link>
+
+                  {/* Menambahkan icon chevron */}
+                  {menu.submenu && (
+                    <FontAwesomeIcon
+                      icon={faChevronDown}
+                      className={`${submenuOpenStatus[index] && "rotate-180"}`}
+                      onClick={() => handleSubmenuToggle(index)}
+                    />
+                  )}
+                </li>
+
+                {menu.submenu && submenuOpenStatus[index] && (
+                  <ul>
+                    {menu.submenuItems.map((submenuItem, subIndex) => (
+                      <Link
+                        href={submenuItem.path}
+                        key={index}
+                        className={`text-neutral-500 text-sm font-semibold flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-blue-200 hover:text-blue-800`}
+                      >
+                        {submenuItem.title}
+                      </Link>
+                    ))}
+                  </ul>
+                )}
+              </React.Fragment>
+            );
+          })}
           <ul>
             {Menus.map((menu, index) => (
               <></>

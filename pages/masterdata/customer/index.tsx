@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import { ICustomer, PageEnum, dummyCustomerList } from "./customer.type";
 import CustomerList from "./customerList";
 import AddCustModal from "./addCustModal";
-import EditCustomer from "./editCustomer";
-
 const index = () => {
   const [customerList, setCustomerList] = useState(
     dummyCustomerList as ICustomer[]

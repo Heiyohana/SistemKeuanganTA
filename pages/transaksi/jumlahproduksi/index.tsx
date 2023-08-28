@@ -1,19 +1,18 @@
 import Head from "next/head";
 import React from "react";
-import NavSideBar from "../component/sidenavbar";
-import HeadButton from "../component/button";
+import NavSideBar from "../../component/sidenavbar";
 
 export default function orderretail() {
   return (
     // halaman transaksi untuk order / pemesanan
-    <div className="w-screen min-h-max m-0 container">
+    <div className="w-screen h-full m-0 container">
       <Head>
         <title>Pencatatan Jumlah Produksi</title>
       </Head>
       <NavSideBar />
 
       {/* Content */}
-      <div className="absolute h-full w-4/5 right-0 justify-end p-7 bg-neutral-100  text-sm">
+      <div className="absolute h-full w-4/5 right-0 top-0 justify-end p-7 bg-neutral-100 text-sm">
         {/* atas */}
         <div className="flex flex-row justify-between">
           <div className="flex flex-col m-1 pb-3">
@@ -22,7 +21,7 @@ export default function orderretail() {
             </h1>
             <h3 className="text-base">Transaksi</h3>
           </div>
-          <HeadButton /> {/* buttonnya kemunkinan berdiri sendiri2 */}
+          {/* <HeadButton /> buttonnya kemunkinan berdiri sendiri2 */}
         </div>
 
         {/* form pencatatan */}
@@ -56,7 +55,7 @@ export default function orderretail() {
 
           <div className="pb-5 text-sm">
             Keterangan <br />
-            <input
+            <textarea
               className="rounded-md px-3 pt-1 pb-12 mt-1 w-2/3 border border-neutral-400"
               placeholder="Masukan Keterangan bila diperlukan"
             />

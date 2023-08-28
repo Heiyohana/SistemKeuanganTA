@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import NavSideBar from "../component/sidenavbar";
+import NavSideBar from "../../component/sidenavbar";
 
 export default function orderretail() {
   return (
@@ -12,7 +12,7 @@ export default function orderretail() {
       <NavSideBar />
 
       {/* Content */}
-      <div className="absolute h-max w-4/5 right-0 justify-end p-7 bg-neutral-100  text-sm">
+      <div className="absolute h-full w-4/5 top-0 right-0 justify-end p-7 bg-neutral-100  text-sm">
         {/* atas */}
         <div className="flex flex-row justify-between">
           <div className="flex flex-col m-1 pb-3">

@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Masuk from "./src/masuk";
-import NavSideBar from "./component/sidenavbar";
+import Masuk from "./masuk";
 
 export default function Home() {
   return (
@@ -9,9 +8,7 @@ export default function Home() {
       <Head>
         <title>Main Page</title>
       </Head>
-      {/* <Masuk /> */}
-      {/* <Coba /> */}
-      <NavSideBar />
+      <Masuk />
     </div>
   );
 }
