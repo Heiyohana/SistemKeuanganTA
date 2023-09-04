@@ -9,7 +9,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React, { useState } from "react";
-import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
 
 const NavSideBar = () => {
@@ -108,16 +107,12 @@ const NavSideBar = () => {
                 {/* Buat menu */}
                 <li
                   // className="text-base flex-inline"
-                  className={
-                    `${router.pathname == `/${menu.title}` && "active"}`
-                      ? "text-sm flex items-center justify-between gap-x-4 cursor-pointer bg-blue-600 text-white p-3 pl-4 decoration-none hover:bg-white hover:text-neutral-700"
-                      : "text-sm flex items-center justify-between gap-x-4 cursor-pointer text-neutral-500 hover:bg-blue-600 hover:text-white p-3 pl-4 decoration-none"
-                  }
+                  className={`text-sm flex items-center justify-between gap-x-4 cursor-pointer p-3 pl-4 decoration-none hover:bg-blue-600 hover:text-white`}
                 >
                   <Link
                     key={index}
                     href={`${menu.path}`}
-                    className="text-base flex-inline"
+                    className={`text-base flex-inline`}
                   >
                     <FontAwesomeIcon
                       icon={menu.icon}
@@ -141,7 +136,7 @@ const NavSideBar = () => {
                     {menu.submenuItems.map((submenuItem, subIndex) => (
                       <Link
                         href={submenuItem.path}
-                        key={index}
+                        key={subIndex}
                         className={`text-neutral-500 text-sm font-semibold flex items-center gap-x-4 cursor-pointer p-2 px-5 hover:bg-blue-200 hover:text-blue-800`}
                       >
                         {submenuItem.title}
@@ -152,11 +147,6 @@ const NavSideBar = () => {
               </React.Fragment>
             );
           })}
-          <ul>
-            {Menus.map((menu, index) => (
-              <></>
-            ))}
-          </ul>
         </div>
       </div>
     </div>

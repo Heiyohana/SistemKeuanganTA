@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { ICustomer, PageEnum, dummyCustomerList } from "./customer.type";
+import { ICustomer } from "./customer.type";
 
 type Props = {
-  onSubmitClick: (data: ICustomer) => void;
+  onSubmitClickHnd: (data: ICustomer) => void;
   onBatalBtnHnd: () => void;
 };
 const addCustModal = (props: Props) => {
   const [nama, setNama] = useState("");
   const [nohp, setnoHp] = useState("");
   const [alamat, setAlamat] = useState("");
-  const { onBatalBtnHnd, onSubmitClick } = props;
+
+  const { onBatalBtnHnd, onSubmitClickHnd } = props;
 
   const onNamaChangeHnd = (e: any) => {
     setNama(e.target.value);
@@ -30,18 +31,8 @@ const addCustModal = (props: Props) => {
       nohp: nohp,
       alamat: alamat,
     };
-    onSubmitClick(data);
-    onBatalBtnHnd();
-  };
-
-  const [customerList, setCustomerList] = useState(
-    dummyCustomerList as ICustomer[]
-  );
-
-  const [shownModalAdd, setShownModalAdd] = useState(PageEnum.list);
-  const showAddModal = (data: ICustomer) => {
-    setCustomerList([...customerList, data]);
-    setShownModalAdd(PageEnum.list);
+    onSubmitClickHnd(data);
+    onBatalBtnHnd(); //Setelah submit akan otomatis ke close
   };
 
   return (
@@ -50,6 +41,7 @@ const addCustModal = (props: Props) => {
         <div className="p-6">
           <h1 className="font-bold text-lg">Tambah Data</h1>
           <form onSubmit={onSubmitBtnClickHnd}>
+            {/* ... Form inputs ... */}
             <div>
               <div className="pb-2">
                 <label>Nama Customer :</label>

@@ -1,41 +1,34 @@
 import Head from "next/head";
 import React, { useRef, useState } from "react";
 import NavSideBar from "@/pages/component/sidenavbar";
-import JphList from "./jumlahProduksiList";
-import {
-  IProduksiHarian,
-  PageEnum,
-  dummyProduksiHarianList,
-} from "./jumlahProduksi.type";
-import EditJumlahProduksi from "./editJumlahProduksi";
 import { useReactToPrint } from "react-to-print";
 
 const jumlahproduksiharian = () => {
-  const [produksiList, setProduksiList] = useState(
-    dummyProduksiHarianList as IProduksiHarian[]
+  const [laporanPesanan, setlaporanPesanan] = useState(
+    
   );
 
-  const [shownPage, setShownPage] = useState(PageEnum.list);
-  const [dataToEdit, setDataToEdit] = useState(null as null | IProduksiHarian);
+//   const [shownPage, setShownPage] = useState(PageEnum.list);
+//   const [dataToEdit, setDataToEdit] = useState(null as null | IProduksiHarian);
 
-  const showListPage = () => {
-    setShownPage(PageEnum.list);
-  };
+//   const showListPage = () => {
+//     setShownPage(PageEnum.list);
+//   };
 
-  const deleteProduksi = (data: IProduksiHarian) => {
-    //To index from array i,e produksiList
-    //Splice that
-    //Update new record
-    const indexToDelete = produksiList.indexOf(data);
-    const tempList = [...produksiList];
-    tempList.splice(indexToDelete, 1);
-    setProduksiList(tempList);
-  };
+//   const deleteProduksi = (data: IProduksiHarian) => {
+//     //To index from array i,e produksiList
+//     //Splice that
+//     //Update new record
+//     const indexToDelete = produksiList.indexOf(data);
+//     const tempList = [...produksiList];
+//     tempList.splice(indexToDelete, 1);
+//     setProduksiList(tempList);
+//   };
 
-  const editJmlProduksi = (data: IProduksiHarian) => {
-    setShownPage(PageEnum.edit);
-    setDataToEdit(data);
-  };
+//   const editJmlProduksi = (data: IProduksiHarian) => {
+//     setShownPage(PageEnum.edit);
+//     setDataToEdit(data);
+//   };
 
   const [searchType, setSearchType] = useState(
     "filter" || "tanggal" || "materials"
@@ -51,10 +44,10 @@ const jumlahproduksiharian = () => {
     setSearchValue(e.target.value);
   };
 
-  // Mengurutkan data berdasarkan tanggal
-  const sortedProduksiList = produksiList
-    .slice()
-    .sort((a, b) => a.tanggal.localeCompare(b.tanggal));
+//   // Mengurutkan data berdasarkan tanggal
+//   const sortedProduksiList = produksiList
+//     .slice()
+//     .sort((a, b) => a.tanggal.localeCompare(b.tanggal));
 
   // Untuk mengatur export PDF
   const componentPDF = useRef(null);
@@ -136,7 +129,7 @@ const jumlahproduksiharian = () => {
             alignItems: "center",
           }}
         >
-          <JphList
+          {/* <JphList
             list={sortedProduksiList.filter(
               (jmlproduksi) =>
                 jmlproduksi.materials
@@ -147,12 +140,12 @@ const jumlahproduksiharian = () => {
             showActions={showActions}
             onDeleteClickHnd={deleteProduksi}
             onEdit={editJmlProduksi}
-          />
+          /> */}
         </div>
 
-        {shownPage === PageEnum.edit && (
+        {/* {shownPage === PageEnum.edit && (
           <EditJumlahProduksi onKembaliBtnHnd={showListPage} />
-        )}
+        )} */}
       </div>
     </div>
   );

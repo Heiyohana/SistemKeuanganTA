@@ -51,7 +51,7 @@ const Masuk: React.FC = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex flex-row m-0 justify-center items-center bg-neutral-200">
+    <div className="w-screen h-screen flex flex-row m-0 justify-center items-center bg-neutral-100">
       <Head>
         <title>Halaman Masuk</title>
       </Head>

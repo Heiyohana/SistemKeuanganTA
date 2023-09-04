@@ -1,8 +1,22 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavSideBar from "../../component/sidenavbar";
 
-export default function orderretail() {
+const trans_aruskas = () => {
+
+  const [tanggalOtomatis, setTanggalOtomatis] = useState("");
+  useEffect(() => {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split("T")[0];
+    setTanggalOtomatis(formattedDate);
+  }, []);
+
+  const [kategori, setKategori] = useState("");
+  const [nama, setNama] = useState("");
+  const [keterangan, setKeterangan] = useState("");
+  const [nominal, setNominal] = useState("");
+  const [file, setFile] = useState("");
+
   return (
     // halaman transaksi untuk order / pemesanan
     <div className="w-screen min-h-max m-0 container">
@@ -12,7 +26,7 @@ export default function orderretail() {
       <NavSideBar />
 
       {/* Content */}
-      <div className="absolute h-full w-4/5 top-0 right-0 justify-end p-7 bg-neutral-100  text-sm">
+      <div className="absolute h-full w-4/5 top-0 right-0 justify-end p-5 bg-neutral-100  text-sm">
         {/* atas */}
         <div className="flex flex-row justify-between">
           <div className="flex flex-col m-1 pb-3">
@@ -22,78 +36,91 @@ export default function orderretail() {
         </div>
 
         {/* form pencatatan */}
-        <div className="px-4">
-          <div className="pb-5 text-sm w-1/5">
-            Tanggal, Jam
-            <div className="text-neutral-600 bg-neutral-300 rounded-md px-3 py-1 mt-1">
-              tgl otomatis
-            </div>
+        <form className="px-4">
+          <div className="pb-3 text-sm w-1/3 flex flex-col">
+            <span>Tanggal</span>
+            <input
+              type="date"
+              value={tanggalOtomatis}
+              onChange={(e) => setTanggalOtomatis(e.target.value)}
+              className="text-neutral-600 bg-neutral-300 rounded-md px-3 py-1 mt-1"
+              disabled // Agar tidak bisa diubah oleh pengguna
+            />
           </div>
 
-          <div className="pb-5 text-sm w-1/3">
-            Materials <br />
-            <select className="bg-white rounded-md px-2 py-1 mt-1 w-2/3 border border-neutral-400">
-              <option>Paving Bata</option>
-              <option>Paving Bata</option>
-              <option>Paving Bata</option>
-              <option>Paving Bata</option>
-              <option>Paving Bata</option>
-              <option>Paving Bata</option>
+          <div className="pb-3 text-sm w-1/3 flex flex-col">
+            <span>Kategori Keuangan</span>
+            <select
+              className="bg-white rounded-md px-2 py-1 mt-1 border border-neutral-400"
+              value={kategori}
+              onChange={(e) => setKategori(e.target.value)}
+            >
+              <option value="">Pilih Kategori</option>
+              <option value="Pemasukkan">Pemasukkan</option>
+              <option value="Pembelian">Pembelian</option>
+              <option value="Pengeluaran">Pengeluaran</option>
+              <option value="Kas Awal">Kas Awal</option>
             </select>
           </div>
 
-          <div className="pb-5 text-sm w-1/3">
-            Kategori Keuangan <br />
-            <select className="bg-white rounded-md px-2 py-1 mt-1 w-2/3 border border-neutral-400">
-              <option>Pemasukan</option>
-              <option>Pengeluaran</option>
-              <option>Kas Awal</option>
-            </select>
-          </div>
-
-          <div className="pb-5 text-sm w-full">
-            Nama Pelapor Keuangan <br />
+          <div className="pb-3 text-sm w-1/3 flex flex-col">
+            <span>Nama Pelapor Keuangan</span>
             <input
-              className="rounded-md px-3 py-1 mt-1 w-2/3 border border-neutral-400"
-              placeholder="Masukan nama pelapor"
+              type="text"
+              value={nama}
+              onChange={(e) => setNama(e.target.value)}
+              className="rounded-md px-3 py-1 mt-1 border border-neutral-400"
+              placeholder="Masukan Nama Pelapor"
             />
           </div>
 
-          <div className="pb-5 text-sm">
-            Keterangan <br />
+          <div className="pb-3 text-sm w-1/3 flex flex-col">
+            <span>Keterangan</span>
             <input
-              className="rounded-md px-3 py-1 mt-1 w-2/3 border border-neutral-400"
-              placeholder="Masukan Keterangan Kas"
+              type="text"
+              value={keterangan}
+              onChange={(e) => setKeterangan(e.target.value)}
+              className="rounded-md px-3 py-1 mt-1 border border-neutral-400"
+              placeholder="Masukan Keterangan Arus Kas"
             />
           </div>
 
-          <div className="pb-5 text-sm">
-            Nominal <br />
+          <div className="pb-3 text-sm w-1/3 flex flex-col">
+            <span>Nominal</span>
             <input
-              className="rounded-md px-3 py-1 mt-1 w-2/3 border border-neutral-400"
-              placeholder="Masukan nominal"
+              type="number"
+              value={nominal}
+              onChange={(e) => setNominal(e.target.value)}
+              className="rounded-md px-3 py-1 mt-1 border border-neutral-400"
             />
           </div>
 
-          <label className="container">
+          <div className="container">
             <span className="sr-only">Choose File</span>
             <input
               type="file"
-              className="text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-800 hover:file:bg-blue-300 pb-5"
+              value={file}
+              onChange={(e) => setFile(e.target.value)}
+              className="text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-800 hover:file:bg-blue-300 pb-3"
             />
-          </label>
+          </div>
 
           {/* Button */}
-          <div className="text-sm w-2/3 justify-right">
+          <div className="text-sm justify-right">
             <button className="bg-white w-20 h-8 mr-4 rounded-md text-blue-500 border border-blue-500 font-medium">
               Kembali
             </button>
-            <button className="bg-blue-600 w-20 h-8 rounded-md text-white font-semibold">
-              Bayar
+            <button
+              type="submit"
+              className="bg-blue-600 h-8 rounded-md text-white font-semibold px-2 py-1 hover:shadow-md"
+            >
+              Simpan Data
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
-}
+};
+
+export default trans_aruskas;

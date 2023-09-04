@@ -33,7 +33,7 @@ const addProdukModal = (props: Props) => {
     setHargam2(e.target.value);
   };
 
-  const onSubmitBtnClickHnd = (e: React.FormEvent) => {
+  const onSubmitBtnClickHnd = (e: any) => {
     e.preventDefault();
     const data: IProduk = {
       id: new Date().toJSON().toString(),
@@ -44,6 +44,7 @@ const addProdukModal = (props: Props) => {
       hargam2: typeof hargam2 === "number" ? hargam2 : parseFloat(hargam2),
     };
     onSubmitClickHnd(data);
+    onBatalBtnHnd(); //Setelah submit akan otomatis ke close
   };
 
   return (
@@ -53,8 +54,8 @@ const addProdukModal = (props: Props) => {
           <h1 className="font-bold text-lg">Tambah Data</h1>
           <form onSubmit={onSubmitBtnClickHnd}>
             {/* ... Form inputs ... */}
-            <div>
-              <label>Kategori :</label>
+            <div className="pb-2">
+              <label>Kategori Produk :</label>
               <input
                 type="text"
                 value={kategori}
@@ -62,8 +63,8 @@ const addProdukModal = (props: Props) => {
                 className="w-full p-2 border-2 border-gray-300 rounded-md"
               />
             </div>
-            <div>
-              <label>Nama :</label>
+            <div className="pb-2">
+              <label>Nama Produk :</label>
               <input
                 type="text"
                 value={nama}
@@ -83,7 +84,7 @@ const addProdukModal = (props: Props) => {
               />
             </div>
             <div>
-              <label>Jumlah :</label>
+              <label>Jumlah / m2 :</label>
               <input
                 type="text"
                 value={jumlahm2}
@@ -92,7 +93,7 @@ const addProdukModal = (props: Props) => {
               />
             </div>
             <div>
-              <label>Harga :</label>
+              <label>Harga / m2 :</label>
               <input
                 type="text"
                 value={hargam2}
@@ -102,7 +103,7 @@ const addProdukModal = (props: Props) => {
             </div>
 
             {/* Button */}
-            <div className="place-items-end">
+            <div className="place-items-end mt-2">
               <input
                 type="button"
                 value="Batal"

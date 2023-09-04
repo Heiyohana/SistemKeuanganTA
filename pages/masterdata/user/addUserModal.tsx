@@ -36,7 +36,7 @@ const addUserModal = (props: Props) => {
       sandi: sandi,
     };
     onSubmitClickHnd(data);
-    onBatalBtnHnd();
+    onBatalBtnHnd(); //Setelah submit akan otomatis ke close
   };
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
@@ -44,6 +44,7 @@ const addUserModal = (props: Props) => {
         <div className="p-6">
           <h1 className="font-bold text-lg">Tambah Data</h1>
           <form onSubmit={onSubmitBtnClickHnd}>
+            {/* ... Form inputs ... */}
             <div>
               <div className="pb-2">
                 <label>Username :</label>
@@ -58,7 +59,7 @@ const addUserModal = (props: Props) => {
               <div className="pb-2">
                 <label>Email :</label>
                 <input
-                  type="text"
+                  type="email"
                   value={email}
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   placeholder=""

@@ -12,7 +12,7 @@ const viewUserModal = (props: Props) => {
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
       <div className="w-[400px] h-max flex flex-col bg-white rounded-xl">
         <div className="p-6">
-          <h1 className="font-bold text-lg">Details Customer</h1>
+          <h1 className="font-bold text-lg">Details Akun User</h1>
           <form>
             <div>
               <div className="pb-2">
