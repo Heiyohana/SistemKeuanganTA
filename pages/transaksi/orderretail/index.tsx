@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import NavSideBar from "../../component/sidenavbar";
-import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
+import { faAddressBook, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FormPesanan from "./formPesanan";
 import {
@@ -9,9 +9,26 @@ import {
   dummyCustomerList,
 } from "@/pages/masterdata/customer/customer.type";
 import BookCustomer from "./bookCustomer";
-import formPesanan from "./formPesanan";
+import { IProduk, dummyProdukList } from "@/pages/masterdata/produk/produk.type";
+
+// type Props = {
+//   onSubmitClickHnd: (data: ICustomer) => void;
+// }
+
+type Pesanan = {
+  id: string;
+  kategori: string;
+  nama: string;
+  jumlahm2: number;
+  luas: number;
+  ukuran: string;
+  hargam2: number;
+  totalBiaya: number;
+};
 
 const orderretail = () => {
+  // Deklarasi data produk
+  const [produkList, setProdukList] = useState(dummyProdukList as IProduk[]);
   const [tanggalOtomatis, setTanggalOtomatis] = useState("");
   useEffect(() => {
     const currentDate = new Date();
@@ -40,7 +57,6 @@ const orderretail = () => {
   const [customerList, setCustomerList] = useState(
     dummyCustomerList as ICustomer[]
   );
-
   const [isBookCustOpen, setIsBookCustOpen] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState<ICustomer | null>(
     null
@@ -55,6 +71,42 @@ const orderretail = () => {
   const onCustomerSelect = (customer: ICustomer) => {
     setIsBookCustOpen(false);
     setSelectedCustomer(customer);
+  };
+
+  const [isAddFormOpen, setIsAddFormOpen] = useState(false);
+  const onAddModalOpen = () => {
+    setIsAddFormOpen(true); //ketika tombol add pesanan, modal form pesanan akan muncul
+  };
+  const onCloseFormPesanan = () => {
+    setIsAddFormOpen(false); //ketika form pesanan di tutup, modal form pesanan akan tertutup
+  };
+
+  // Kontrol Modal Form Pesanan
+  const [pesanan, setPesanan] = useState<Pesanan[]>([]);
+  // Menangani penambahan pesanan dari FormPesanan
+  // Fungsi tambahPesanan
+  const tambahPesanan = (pesananBaru: IProduk) => {
+    // Cari produk yang sesuai berdasarkan selectedProduk
+    const produkTerpilih = produkList.find(
+      (produk) => produk.id === pesananBaru.id
+    );
+
+    const totalHarga = (pesananBaru.luas * pesananBaru.hargam2);
+
+    // Buat objek Pesanan baru dengan totalBiaya
+    const pesananBaruDenganTotal: Pesanan = {
+      id: pesananBaru.id,
+      kategori: pesananBaru.kategori,
+      nama: pesananBaru.nama,
+      jumlahm2: pesananBaru.jumlahm2,
+      ukuran: pesananBaru.ukuran,
+      luas: pesananBaru.luas,
+      hargam2: pesananBaru.hargam2,
+      totalBiaya: totalHarga,
+    };
+
+    // Tambahkan pesananBaru ke state pesanan
+    setPesanan([...pesanan, pesananBaruDenganTotal]);
   };
 
   return (
@@ -73,20 +125,22 @@ const orderretail = () => {
             <h1 className="title font-bold text-2xl">Order Retail</h1>{" "}
             <h3 className="text-base">Transaksi</h3>
           </div>
-          {/* <HeadButton /> buttonnya kemungkinan berdiri sendiri2 */}
         </div>
 
         {/* Section Input Data */}
         <div className="w-full m-1">
           <div className="flex flex-row items-top justify-left">
             <div className="w-full mr-8">
-              <form className="flex flex-col">
+              <form
+                className="flex flex-col"
+                // onSubmit={onSubmitClickHnd}
+              >
                 {/* Atas */}
                 <div className="flex flex-row">
                   {/* Kiri: Informasi Nota */}
                   <div className="w-1/3 mr-8">
                     <div className="font-bold border-b border-black pr-10 mb-2">
-                      Informasi Pemesan
+                      Informasi Nota
                     </div>
                     <div className="w-full pb-2 text-sm justify-between flex flex-row items-center">
                       <span className="flex">No Nota</span>
@@ -128,7 +182,11 @@ const orderretail = () => {
                       {/* Ketika nilai null atau sudah data customer telah terpilih */}
                       {selectedCustomer ? (
                         <div>
-                          {["Nama Customer", "No Handphone", "Alamat Pengiriman"].map((label) => {
+                          {[
+                            "Nama Customer",
+                            "No Handphone",
+                            "Alamat Pengiriman",
+                          ].map((label) => {
                             return (
                               <div key={label}>
                                 <div className="w-full pb-2 text-sm justify-between flex flex-row items-center">
@@ -153,7 +211,11 @@ const orderretail = () => {
                         </div>
                       ) : (
                         <div>
-                          {["Nama Customer", "No Handphone", "Alamat Pengiriman"].map((label)=>{
+                          {[
+                            "Nama Customer",
+                            "No Handphone",
+                            "Alamat Pengiriman",
+                          ].map((label) => {
                             return (
                               <div key={label}>
                                 <div className="w-full pb-2 text-sm justify-between flex flex-row items-center">
@@ -165,7 +227,7 @@ const orderretail = () => {
                                   />
                                 </div>
                               </div>
-                            )
+                            );
                           })}
                         </div>
                       )}
@@ -191,12 +253,66 @@ const orderretail = () => {
           <div className="w-4/5 mr-3 rounded-lg py-2 bg-blue-100 p-3 font-bold text-blue-900">
             nominal
           </div>
-          <button className="w-1/5 py-2 bg-blue-600 rounded-lg text-white">
-            add pesanan
+          <button
+            className="w-1/5 py-2 bg-blue-600 rounded-lg text-white"
+            onClick={onAddModalOpen}
+          >
+            Tambah Pesanan
           </button>
         </div>
 
         {/* Tabel Hasil input data pesanan */}
+        <div className="mt-3 w-full">
+          <table className="text-left w-full">
+            <thead className="bg-gray-200 items-center text-gray-800 border-gray-400 border-b-2 border-t-2 h-9">
+              <tr className="font-medium py-1">
+                <td className="px-2">No.</td>
+                <td className="px-4">Kategori</td>
+                <td className="px-4">Nama Produk</td>
+                <td className="px-4">Jumlah</td>
+                <td className="px-4">Luas</td>
+                <td className="px-4">Harga Produk</td>
+                <td className="px-4">Total Biaya</td>
+                <td className="px-4">Action</td>
+              </tr>
+            </thead>
+            <tbody className="bg-white text-left h-9">
+              {pesanan.map((item, index) => (
+                <tr className="hover:bg-blue-100 p-2 border-blue-200 border table-auto">
+                  <td className="px-4 py-1 font-regular">{index + 1}</td>
+                  <td className="px-4 py-1 font-regular">{item.kategori}</td>
+                  <td className="px-4 py-1 font-regular">{item.nama}</td>
+                  <td className="px-4 py-1 font-regular">{item.jumlahm2}</td>
+                  <td className="px-4 py-1 font-regular">{item.luas}</td>
+                  <td className="px-4 py-1 font-regular">{item.hargam2}</td>
+                  <td className="px-4 py-1 font-regular">{item.totalBiaya}</td>
+                  <td className="px-4 py-1 font-medium items-center">
+                    <button
+                      className="cursor-pointer"
+                      value="Delete"
+                      // onClick={() => onDeleteClickHnd(customer)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        className="text-md mr-2 text-red-500"
+                      />
+                    </button>
+                    <button
+                      className="cursor pointer"
+                      value="Edit"
+                      // onClick={() => viewDetails(customer)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faEdit}
+                        className="text-md mr-2 text-lime-500"
+                      />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         {/* Catatan Transaksi dan Button */}
         <div className="w-full flex flex-row items-top justify-between mt-2">
@@ -215,7 +331,13 @@ const orderretail = () => {
           </div>
         </div>
       </div>
-      {/* <FormPesanan list={customerList}/> */}
+      {isAddFormOpen && (
+        <FormPesanan
+          list={produkList}
+          onCloseModal={onCloseFormPesanan}
+          tambahPesanan={tambahPesanan}
+        />
+      )}
       {isBookCustOpen && (
         <BookCustomer list={customerList} onCustomerSelect={onCustomerSelect} />
       )}

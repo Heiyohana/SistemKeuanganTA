@@ -49,7 +49,7 @@ const ProdukList: React.FC<ProdukListProps> = (props) => {
       <table className="text-left border-2 border-blue-500">
         <thead className="bg-blue-500 items-center text-white">
           <tr className="font-medium">
-            <td className="px-2 py-1">No</td>
+            <td className="px-2 py-1 text-center">ID</td>
             <td className="px-4 py-1">Kategori</td>
             <td className="px-4 py-1">Nama Produk</td>
             <td className="px-4 py-1 text-center">Ukuran</td>
@@ -67,7 +67,7 @@ const ProdukList: React.FC<ProdukListProps> = (props) => {
                 key={actualIndex}
               >
                 <td className="px-2 py-1 font-regular text-center">
-                  {actualIndex}
+                  {produk.id}
                 </td>
                 <td className="px-4 py-1 font-regular">{produk.kategori}</td>
                 <td className="px-4 py-1 font-regular">{produk.nama}</td>
