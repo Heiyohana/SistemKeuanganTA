@@ -10,10 +10,7 @@ import {
 } from "@/pages/masterdata/customer/customer.type";
 import BookCustomer from "./bookCustomer";
 import { IProduk, dummyProdukList } from "@/pages/masterdata/produk/produk.type";
-
-// type Props = {
-//   onSubmitClickHnd: (data: ICustomer) => void;
-// }
+import FormBayar from "./formBayar";
 
 type Pesanan = {
   id: string;
@@ -91,7 +88,7 @@ const orderretail = () => {
       (produk) => produk.id === pesananBaru.id
     );
 
-    const totalHarga = (pesananBaru.luas * pesananBaru.hargam2);
+    const totalHarga = pesananBaru.luas * pesananBaru.hargam2;
 
     // Buat objek Pesanan baru dengan totalBiaya
     const pesananBaruDenganTotal: Pesanan = {
@@ -108,6 +105,60 @@ const orderretail = () => {
     // Tambahkan pesananBaru ke state pesanan
     setPesanan([...pesanan, pesananBaruDenganTotal]);
   };
+
+  // Mengatur fungsi untuk menghapus pesanan
+  const onDeletePesanan = (index: number) => {
+    const updatedPesanan = [...pesanan];
+    updatedPesanan.splice(index, 1);
+    setPesanan(updatedPesanan);
+  };
+
+  // State Biaya Keseluruhan
+  const [totalBiayaKeseluruhan, setTotalBiayaKeseluruhan] = useState<number>(0);
+
+  // Perhitungan Biaya Keseluruhan
+  const calculateTotalBiaya = () => {
+    let totalBiaya = 0;
+    pesanan.forEach((item) => {
+      totalBiaya += item.totalBiaya;
+    });
+    return totalBiaya;
+  };
+
+  useEffect(() => {
+    const totalBiaya = calculateTotalBiaya();
+    setTotalBiayaKeseluruhan(totalBiaya);
+  }, [pesanan]);
+
+  // Fungsi untuk mereset semua input
+  const resetAllInputs = () => {
+    // Reset state untuk nomor nota
+    generateNoNota(new Date());
+
+    // Reset state tanggal otomatis
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split("T")[0];
+    setTanggalOtomatis(formattedDate);
+
+    // Reset state selectedCustomer menjadi null
+    setSelectedCustomer(null);
+
+    // Reset state pesanan menjadi array kosong
+    setPesanan([]);
+  };
+
+  // Handle Form Bayar
+  const [isFormBayarOpen, setIsFormBayarOpen] = useState(false);
+
+  // Membuka Form Bayar
+  const openFormBayarModal = () => {
+    setIsFormBayarOpen(true);
+  }
+
+  // Menutup Form Bayar
+  const onCloseFormBayarModal = () => {
+    setIsFormBayarOpen(false);
+  }
 
   return (
     // halaman transaksi untuk order / pemesanan
@@ -251,7 +302,7 @@ const orderretail = () => {
         </div>
         <div className="mt-3 flex flex-row items-center justify-between">
           <div className="w-4/5 mr-3 rounded-lg py-2 bg-blue-100 p-3 font-bold text-blue-900">
-            nominal
+            {totalBiayaKeseluruhan.toLocaleString()}
           </div>
           <button
             className="w-1/5 py-2 bg-blue-600 rounded-lg text-white"
@@ -290,7 +341,7 @@ const orderretail = () => {
                     <button
                       className="cursor-pointer"
                       value="Delete"
-                      // onClick={() => onDeleteClickHnd(customer)}
+                      onClick={() => onDeletePesanan(index)}
                     >
                       <FontAwesomeIcon
                         icon={faTrash}
@@ -322,10 +373,16 @@ const orderretail = () => {
             placeholder="Catatan"
           />
           <div className="w-1/5">
-            <button className="bg-red-500 w-20 h-10 mr-4 rounded-lg text-white font-semibold">
+            <button
+              className="bg-red-500 w-20 h-10 mr-4 rounded-lg text-white font-semibold"
+              onClick={resetAllInputs}
+            >
               Reset
             </button>
-            <button className="group bg-blue-600 w-20 h-10 rounded-lg text-white font-semibold">
+            <button
+              className="group bg-blue-600 w-20 h-10 rounded-lg text-white font-semibold"
+              onClick={openFormBayarModal}
+            >
               Bayar
             </button>
           </div>
@@ -340,6 +397,13 @@ const orderretail = () => {
       )}
       {isBookCustOpen && (
         <BookCustomer list={customerList} onCustomerSelect={onCustomerSelect} />
+      )}
+
+      {isFormBayarOpen && (
+        <FormBayar
+          // onCloseModal={onCloseFormBayarModal}
+          subTotal={totalBiayaKeseluruhan}
+        />
       )}
     </div>
   );

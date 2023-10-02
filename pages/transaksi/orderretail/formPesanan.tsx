@@ -197,7 +197,7 @@ const FormPesanan: React.FC<ProdukListProps> = (props) => {
 
         {/* Button */}
         <button
-          className="bg-blue-600 w-20 h-10 rounded-lg text-white font-semibold mt-3"
+          className="bg-blue-600 w-20 h-8 rounded-md text-white font-semibold mt-3"
           onClick={handleSubmit}
         >
           Submit
