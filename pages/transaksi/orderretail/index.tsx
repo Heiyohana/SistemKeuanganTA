@@ -11,6 +11,7 @@ import {
 import BookCustomer from "./bookCustomer";
 import { IProduk, dummyProdukList } from "@/pages/masterdata/produk/produk.type";
 import FormBayar from "./formBayar";
+import Modalwarnbook from "./modalwarnbook";
 
 type Pesanan = {
   id: string;
@@ -405,6 +406,7 @@ const orderretail = () => {
           subTotal={totalBiayaKeseluruhan}
         />
       )}
+      <Modalwarnbook/>
     </div>
   );
 };
