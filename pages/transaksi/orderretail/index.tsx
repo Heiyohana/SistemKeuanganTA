@@ -71,13 +71,23 @@ const orderretail = () => {
     setSelectedCustomer(customer);
   };
 
+  // Form Pesanan handle open / no
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);
-  const onAddModalOpen = () => {
-    setIsAddFormOpen(true); //ketika tombol add pesanan, modal form pesanan akan muncul
+  const [isWarningOpen, setIsWarningOpen] = useState(false);
+  const onTambahPesananClick = () => {
+    if (isCustDataFilled) {
+      setIsAddFormOpen(true); //ketika tombol add pesanan, modal form pesanan akan muncul
+    } else {
+      setIsWarningOpen(true);
+    }
   };
   const onCloseFormPesanan = () => {
     setIsAddFormOpen(false); //ketika form pesanan di tutup, modal form pesanan akan tertutup
   };
+
+  const onWarnClosebyOke = () => {
+    setIsWarningOpen(false);
+  }
 
   // Kontrol Modal Form Pesanan
   const [pesanan, setPesanan] = useState<Pesanan[]>([]);
@@ -160,6 +170,14 @@ const orderretail = () => {
   const onCloseFormBayarModal = () => {
     setIsFormBayarOpen(false);
   }
+
+  // state untuk melacak BookCustomer telah terisi atau belum
+  const [isCustDataFilled, setisCustDataFilled] = useState(false);
+
+  // fungsi untuk menandai bahwa BookCustomer telah terisi
+  const markCustomerDatasAsFilled = () => {
+    setisCustDataFilled(true);
+  };
 
   return (
     // halaman transaksi untuk order / pemesanan
@@ -307,7 +325,7 @@ const orderretail = () => {
           </div>
           <button
             className="w-1/5 py-2 bg-blue-600 rounded-lg text-white"
-            onClick={onAddModalOpen}
+            onClick={onTambahPesananClick}
           >
             Tambah Pesanan
           </button>
@@ -329,39 +347,47 @@ const orderretail = () => {
               </tr>
             </thead>
             <tbody className="bg-white text-left h-9">
-              {pesanan.map((item, index) => (
-                <tr className="hover:bg-blue-100 p-2 border-blue-200 border table-auto">
-                  <td className="px-4 py-1 font-regular">{index + 1}</td>
-                  <td className="px-4 py-1 font-regular">{item.kategori}</td>
-                  <td className="px-4 py-1 font-regular">{item.nama}</td>
-                  <td className="px-4 py-1 font-regular">{item.jumlahm2}</td>
-                  <td className="px-4 py-1 font-regular">{item.luas}</td>
-                  <td className="px-4 py-1 font-regular">{item.hargam2}</td>
-                  <td className="px-4 py-1 font-regular">{item.totalBiaya}</td>
-                  <td className="px-4 py-1 font-medium items-center">
-                    <button
-                      className="cursor-pointer"
-                      value="Delete"
-                      onClick={() => onDeletePesanan(index)}
-                    >
-                      <FontAwesomeIcon
-                        icon={faTrash}
-                        className="text-md mr-2 text-red-500"
-                      />
-                    </button>
-                    <button
-                      className="cursor pointer"
-                      value="Edit"
-                      // onClick={() => viewDetails(customer)}
-                    >
-                      <FontAwesomeIcon
-                        icon={faEdit}
-                        className="text-md mr-2 text-lime-500"
-                      />
-                    </button>
-                  </td>
+              {pesanan.length === 0 ? (
+                <tr>
+                  {/* <td colSpan="8" className="text-center">Customer belum ada memesan.</td> */}
                 </tr>
-              ))}
+              ) : (
+                pesanan.map((item, index) => (
+                  <tr className="hover:bg-blue-100 p-2 border-blue-200 border table-auto">
+                    <td className="px-4 py-1 font-regular">{index + 1}</td>
+                    <td className="px-4 py-1 font-regular">{item.kategori}</td>
+                    <td className="px-4 py-1 font-regular">{item.nama}</td>
+                    <td className="px-4 py-1 font-regular">{item.jumlahm2}</td>
+                    <td className="px-4 py-1 font-regular">{item.luas}</td>
+                    <td className="px-4 py-1 font-regular">{item.hargam2}</td>
+                    <td className="px-4 py-1 font-regular">
+                      {item.totalBiaya}
+                    </td>
+                    <td className="px-4 py-1 font-medium items-center">
+                      <button
+                        className="cursor-pointer"
+                        value="Delete"
+                        onClick={() => onDeletePesanan(index)}
+                      >
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          className="text-md mr-2 text-red-500"
+                        />
+                      </button>
+                      <button
+                        className="cursor pointer"
+                        value="Edit"
+                        // onClick={() => viewDetails(customer)}
+                      >
+                        <FontAwesomeIcon
+                          icon={faEdit}
+                          className="text-md mr-2 text-lime-500"
+                        />
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -397,16 +423,20 @@ const orderretail = () => {
         />
       )}
       {isBookCustOpen && (
-        <BookCustomer list={customerList} onCustomerSelect={onCustomerSelect} />
+        <BookCustomer
+          list={customerList}
+          onCustomerSelect={onCustomerSelect}
+          markCustomerDataAsFilled={markCustomerDatasAsFilled}
+        />
       )}
 
-      {isFormBayarOpen && (
+      {isFormBayarOpen && isCustDataFilled && (
         <FormBayar
           // onCloseModal={onCloseFormBayarModal}
           subTotal={totalBiayaKeseluruhan}
         />
       )}
-      <Modalwarnbook/>
+      {isWarningOpen && <Modalwarnbook onCloseModal={onWarnClosebyOke} />}
     </div>
   );
 };

@@ -3,11 +3,12 @@ import React, { useState } from "react";
 
 type Props = {
   list: ICustomer[];
-  onCustomerSelect: (customer:ICustomer)=> void;
+  onCustomerSelect: (customer: ICustomer) => void;
+  markCustomerDataAsFilled: () => void;
 };
 
 const bookCustomer = (props: Props) => {
-  const { list, onCustomerSelect } = props;
+  const { list, onCustomerSelect, markCustomerDataAsFilled } = props;
   const [searchName, setSearchName] = useState("");
   const [searchNoHp, setSearchNoHP] = useState("");
   const [selectedCustomer, setSelectedCustomer] = useState<ICustomer | null>(
@@ -22,9 +23,10 @@ const bookCustomer = (props: Props) => {
     return nameMatches && noHpMatches;
   });
 
-  const handleCustomerSelect = (customer: ICustomer)=>{
-    onCustomerSelect(customer); //panggil callback untuk mengirim data pelanggan
-  }
+  const handleCustomerSelect = (customer: ICustomer) => {
+    onCustomerSelect(customer); // Panggil callback untuk mengirim data pelanggan
+    markCustomerDataAsFilled(); // Panggil fungsi ini untuk menandai bahwa data pelanggan telah terisi
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
@@ -57,9 +59,6 @@ const bookCustomer = (props: Props) => {
             />
           </div>
         </div>
-        {/* <button className="fixed rounded-md bg-blue-500 text-white hover:shadow-md p-2 text-semibold">
-          Cari
-        </button> */}
 
         <div className="h-[250px] overflow-y-scroll border border-blue-500">
           <table className="w-full rounded-md container text-sm flex flex-col">
