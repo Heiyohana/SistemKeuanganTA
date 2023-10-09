@@ -1,6 +1,7 @@
 import React from "react";
-import NavSideBar from "./component/sidenavbar";
+import NavSideBar from "../component/sidenavbar";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Setting() {
   return (
@@ -62,9 +63,11 @@ export default function Setting() {
                 />
               </label>
               <div className="flex justify-center m-4">
+                <Link href="/profile/edit">
                 <button className="bg-blue-500 rounded-md p-2 w-[80px] text-white">
                   Edit
                 </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import MKonfirmLogout from "./mKonfirmLogout";
 
 const NavSideBar = () => {
   const Menus = [
@@ -49,8 +50,9 @@ const NavSideBar = () => {
       title: "Laporan",
       icon: faFileLines,
       submenu: true,
+      path: "../laporan/laporan-pesanan",
       submenuItems: [
-        { title: "Pesanan", path: "../laporan/laporan-pesanan" },
+        { title: "Pesanan", path: "../laporan/laporanpesanan" },
         { title: "Arus Kas", path: "../laporan/aruskas" },
         {
           title: "Jumlah Produksi Harian",
@@ -65,7 +67,11 @@ const NavSideBar = () => {
       spacing: true,
       section: "ACCOUNT",
     },
-    { title: "Keluar", icon: faSignOut, path: "../masuk" },
+    {
+      title: "Keluar",
+      icon: faSignOut,
+      path: "../component/mKonfirmLogout.tsx",
+    },
   ];
 
   const [submenuOpenStatus, setSubmenuOpenStatus] = useState(
@@ -107,7 +113,11 @@ const NavSideBar = () => {
                 {/* Buat menu */}
                 <li
                   // className="text-base flex-inline"
-                  className={`text-sm flex items-center justify-between gap-x-4 cursor-pointer p-3 pl-4 decoration-none hover:bg-blue-600 hover:text-white`}
+                  className={`text-sm flex items-center justify-between gap-x-4 cursor-pointer p-3 pl-4 decoration-none hover:bg-blue-600 hover:text-white ${
+                    router.pathname === menu.path
+                      ? "bg-blue-600 text-white"
+                      : ""
+                  }`}
                 >
                   <Link
                     key={index}
@@ -148,6 +158,7 @@ const NavSideBar = () => {
             );
           })}
         </div>
+        <MKonfirmLogout />
       </div>
     </div>
   );

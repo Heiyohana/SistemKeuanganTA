@@ -1,154 +1,74 @@
+import React from "react";
 import Head from "next/head";
-import React, { useRef, useState } from "react";
-import NavSideBar from "@/pages/component/sidenavbar";
-import { useReactToPrint } from "react-to-print";
+import NavSideBar from "../../component/sidenavbar";
+import data from "../../../data/laporanpesanan.json";
 
-const jumlahproduksiharian = () => {
-  const [laporanPesanan, setlaporanPesanan] = useState(
-    
-  );
-
-//   const [shownPage, setShownPage] = useState(PageEnum.list);
-//   const [dataToEdit, setDataToEdit] = useState(null as null | IProduksiHarian);
-
-//   const showListPage = () => {
-//     setShownPage(PageEnum.list);
-//   };
-
-//   const deleteProduksi = (data: IProduksiHarian) => {
-//     //To index from array i,e produksiList
-//     //Splice that
-//     //Update new record
-//     const indexToDelete = produksiList.indexOf(data);
-//     const tempList = [...produksiList];
-//     tempList.splice(indexToDelete, 1);
-//     setProduksiList(tempList);
-//   };
-
-//   const editJmlProduksi = (data: IProduksiHarian) => {
-//     setShownPage(PageEnum.edit);
-//     setDataToEdit(data);
-//   };
-
-  const [searchType, setSearchType] = useState(
-    "filter" || "tanggal" || "materials"
-  );
-  // Default search type
-  const [searchValue, setSearchValue] = useState("");
-
-  const handleSearchTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSearchType(e.target.value);
-  };
-
-  const handleSearchValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  };
-
-//   // Mengurutkan data berdasarkan tanggal
-//   const sortedProduksiList = produksiList
-//     .slice()
-//     .sort((a, b) => a.tanggal.localeCompare(b.tanggal));
-
-  // Untuk mengatur export PDF
-  const componentPDF = useRef(null);
-  const generatePDF = useReactToPrint({
-    content: () => componentPDF.current,
-    documentTitle: "Laporan Arus Kas",
-  });
-  // Untuk mengatur kolom aksi hilang saat diekspor
-  const [showActions, setShowActions] = useState(true);
-  const handleExportPDF = () => {
-    setShowActions(false); // Set showActions ke false saat tombol export PDF diklik
-    generatePDF();
-    setTimeout(() => {
-      setShowActions(true);
-    }, 5000);
-  };
-
+export default function LaporanPesanan() {
   return (
-    <div className="w-screen h-max m-0 container">
+    <div className="relative flex h-device-width">
       <Head>
-        <title>Laporan Jumlah Produksi Harian</title>
+        <title>Laporan Penjualan</title>
       </Head>
-      <NavSideBar />
+      <div className="w-screen h-full m-0 flex flex-row relative">
+        {/* kiri side */}
+        <NavSideBar />
 
-      {/* Content */}
-      <div className="absolute h-max w-4/5 top-0 right-0 justify-end p-5 bg-neutral-100">
-        {/* atas */}
-        <div className="block items-center">
-          {/* informasi Halaman */}
-          <div className="flex flex-col pb-3">
-            <h1 className="title font-bold text-2xl">Jumlah Produksi Harian</h1>
-            <h3 className="text-sm">Laporan</h3>
-          </div>
+        {/* Kanan */}
+        <div className=" bg-red-300 flex-grow right-0 justify-end p-6">
+          <h1 className="title font-bold text-2xl">Rekap Pesanan</h1>
+          <h3 className="text-base pb-2">Laporan</h3>
 
-          {/* Button */}
-          <div className="text-sm">
-            <select
-              value={searchType}
-              onChange={handleSearchTypeChange}
-              className="p-2 w-1/4 bg-white rounded-lg mr-3 cursor-pointer"
-            >
-              <option>Filter</option>
-              <option value="tanggal">Kategori</option>
-              <option value="materials">Materials</option>
-            </select>
-
-            {/* Input Cari */}
-            <input
-              type="text"
-              value={searchValue}
-              onChange={handleSearchValueChange}
-              placeholder={`Cari berdasarkan ${searchType}`}
-              className="rounded-lg bg-white p-2 mr-2 mb-1 cursor-pointer w-1/4"
-            />
-
-            {/* Filter Tanggal */}
-            <input
-              type="date"
-              value={searchValue}
-              onChange={handleSearchValueChange}
-              className="p-2 w-[200px] bg-white mr-3 rounded-lg"
-            />
-
-            {/* Button Export Data */}
-            <button
-              onClick={handleExportPDF}
-              className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-1
-              cursor-pointer"
-            >
-              Export to PDF
-            </button>
+          <div>rekapitulasi laporan</div>
+          <div className="text-sm w-fit m-1">
+            <table className=" text-left border-2 border-blue-500 ">
+              <thead className="bg-blue-500 py-2 text-white">
+                <tr>
+                  <th className="px-1 font-medium">No</th>
+                  <th className="px-2 font-medium">Tgl Order</th>
+                  <th className="px-2 font-medium">Nama Customer</th>
+                  <th className="px-2 font-medium">No Handphone</th>
+                  <th className="px-2 font-medium text-center">CS Desk</th>
+                  <th className="px-2 font-medium text-center">Total</th>
+                  <th className="px-2 font-medium">Tgl Bayar</th>
+                  <th className="px-2 font-medium">Tipe Bayar</th>
+                  <th className="px-2 font-medium">Bukti</th>
+                  <th className="px-2 font-medium">Sisa Tag.</th>
+                  <th className="px-2 font-medium">Status</th>
+                  <th className="px-2 font-medium">Aksi</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white text-left">
+                {data.map((data, index) => (
+                  <tr className="hover:bg-blue-100 p-2" key={index}>
+                    <th className="px-2 py-0.5 justify-start font-normal">
+                      {"00" + (index + 1)}
+                    </th>
+                    <th className="px-1 font-normal text-center">
+                      {data.TglOrder}
+                    </th>
+                    <th className="px-2 font-normal">{data.NamaCustomer}</th>
+                    <th className="px-2 font-normal text-center">
+                      {data.NoHandphone}
+                    </th>
+                    <th className="px-2 font-normal">{data.CSDesk}</th>
+                    <th className="px-2 font-normal">{data.Total}</th>
+                    <th className="px-2 font-normal">{data.TglBayar}</th>
+                    <th className="px-2 font-normal text-center">
+                      {data.TipeBayar}
+                    </th>
+                    <th className="px-2 font-normal text-center">
+                      {data.Bukti}
+                    </th>
+                    <th className="px-2 font-normal text-center">
+                      {data.SisaTagihan}
+                    </th>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
-        {/* DataTabel */}
-        <div
-          ref={componentPDF}
-          style={{
-            width: "90%",
-            alignItems: "center",
-          }}
-        >
-          {/* <JphList
-            list={sortedProduksiList.filter(
-              (jmlproduksi) =>
-                jmlproduksi.materials
-                  .toLowerCase()
-                  .includes(searchValue.toLowerCase()) ||
-                jmlproduksi.tanggal.toLowerCase().includes(searchValue)
-            )}
-            showActions={showActions}
-            onDeleteClickHnd={deleteProduksi}
-            onEdit={editJmlProduksi}
-          /> */}
-        </div>
-
-        {/* {shownPage === PageEnum.edit && (
-          <EditJumlahProduksi onKembaliBtnHnd={showListPage} />
-        )} */}
       </div>
     </div>
   );
-};
-
-export default jumlahproduksiharian;
+}

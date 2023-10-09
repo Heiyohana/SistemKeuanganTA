@@ -12,6 +12,7 @@ import BookCustomer from "./bookCustomer";
 import { IProduk, dummyProdukList } from "@/pages/masterdata/produk/produk.type";
 import FormBayar from "./formBayar";
 import Modalwarnbook from "./modalwarnbook";
+// import { useRouter } from "next/router";
 
 type Pesanan = {
   id: string;
@@ -25,6 +26,7 @@ type Pesanan = {
 };
 
 const orderretail = () => {
+  // const router = useRouter();
   // Deklarasi data produk
   const [produkList, setProdukList] = useState(dummyProdukList as IProduk[]);
   const [tanggalOtomatis, setTanggalOtomatis] = useState("");
@@ -178,6 +180,14 @@ const orderretail = () => {
   const markCustomerDatasAsFilled = () => {
     setisCustDataFilled(true);
   };
+
+  const redirectToPembayaranRekap = ()=> {
+    const dataToPass = {
+      customerData: selectedCustomer,
+      // pesananData = pesanan,
+      // pembayaranData = 
+    }
+  }
 
   return (
     // halaman transaksi untuk order / pemesanan
@@ -349,7 +359,9 @@ const orderretail = () => {
             <tbody className="bg-white text-left h-9">
               {pesanan.length === 0 ? (
                 <tr>
-                  {/* <td colSpan="8" className="text-center">Customer belum ada memesan.</td> */}
+                  <td colSpan={8} className="text-center">
+                    Customer belum ada memesan.
+                  </td>
                 </tr>
               ) : (
                 pesanan.map((item, index) => (
