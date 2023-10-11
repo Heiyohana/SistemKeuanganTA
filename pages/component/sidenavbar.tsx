@@ -70,7 +70,6 @@ const NavSideBar = () => {
     {
       title: "Keluar",
       icon: faSignOut,
-      path: "../component/mKonfirmLogout.tsx",
     },
   ];
 
@@ -88,6 +87,14 @@ const NavSideBar = () => {
   };
 
   const router = useRouter();
+
+  const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
+  const onModalLogoutClick = () => {
+    setIsModalLogoutOpen(true);
+  };
+  const onCloseModalLogout = () => {
+    setIsModalLogoutOpen(false);
+  };
 
   return (
     <div className="flex h-full w-1/5">
@@ -111,35 +118,52 @@ const NavSideBar = () => {
                   </span>
                 )}
                 {/* Buat menu */}
-                <li
-                  // className="text-base flex-inline"
-                  className={`text-sm flex items-center justify-between gap-x-4 cursor-pointer p-3 pl-4 decoration-none hover:bg-blue-600 hover:text-white ${
-                    router.pathname === menu.path
-                      ? "bg-blue-600 text-white"
-                      : ""
-                  }`}
-                >
-                  <Link
-                    key={index}
-                    href={`${menu.path}`}
-                    className={`text-base flex-inline`}
+                {menu.title === "Keluar" ? (
+                  <li className="text-sm flex items-center justify-between gap-x-4 cursor-pointer p-3 pl-4 decoration-none hover:bg-blue-600 hover:text-white">
+                    <button
+                      onClick={onModalLogoutClick}
+                      className="text-base flex-inline"
+                    >
+                      <FontAwesomeIcon
+                        icon={menu.icon}
+                        className="h-5 w-5 pr-5 font-regular"
+                      />
+                      <span className="font-bold">{menu.title}</span>
+                    </button>
+                  </li>
+                ) : (
+                  <li
+                    // className="text-base flex-inline"
+                    className={`text-sm flex items-center justify-between gap-x-4 cursor-pointer p-3 pl-4 decoration-none hover:bg-blue-600 hover:text-white ${
+                      router.pathname === menu.path
+                        ? "bg-blue-600 text-white"
+                        : ""
+                    }`}
                   >
-                    <FontAwesomeIcon
-                      icon={menu.icon}
-                      className="h-5 w-5 pr-5 font-regular"
-                    />
-                    <span className="font-bold">{menu.title}</span>
-                  </Link>
+                    <Link
+                      key={index}
+                      href={`${menu.path}`}
+                      className={`text-base flex-inline`}
+                    >
+                      <FontAwesomeIcon
+                        icon={menu.icon}
+                        className="h-5 w-5 pr-5 font-regular"
+                      />
+                      <span className="font-bold">{menu.title}</span>
+                    </Link>
 
-                  {/* Menambahkan icon chevron */}
-                  {menu.submenu && (
-                    <FontAwesomeIcon
-                      icon={faChevronDown}
-                      className={`${submenuOpenStatus[index] && "rotate-180"}`}
-                      onClick={() => handleSubmenuToggle(index)}
-                    />
-                  )}
-                </li>
+                    {/* Menambahkan icon chevron */}
+                    {menu.submenu && (
+                      <FontAwesomeIcon
+                        icon={faChevronDown}
+                        className={`${
+                          submenuOpenStatus[index] && "rotate-180"
+                        }`}
+                        onClick={() => handleSubmenuToggle(index)}
+                      />
+                    )}
+                  </li>
+                )}
 
                 {menu.submenu && submenuOpenStatus[index] && (
                   <ul>
@@ -158,7 +182,9 @@ const NavSideBar = () => {
             );
           })}
         </div>
-        <MKonfirmLogout />
+        {isModalLogoutOpen && (
+          <MKonfirmLogout onCloseModal={onCloseModalLogout} />
+        )}
       </div>
     </div>
   );
