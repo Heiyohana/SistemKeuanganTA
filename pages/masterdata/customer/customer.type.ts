@@ -34,16 +34,28 @@ export const dummyCustomerList: ICustomer[] = [{
 },
 {
     id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
-},
-// {
-//     id: "MC0011", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
-//     },
-//     {
-//         id: "MC0011", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
-//     },
-//     {
-//         id: "MC0011", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
-//     }
+    },
+    {
+        id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
+    },
+    {
+        id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
+    },
+    {
+        id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
+    },
+    {
+        id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
+    },
+    {
+        id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
+    },
+    {
+        id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
+    },
+    {
+        id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
+    }
 ]
 
 export enum PageEnum {

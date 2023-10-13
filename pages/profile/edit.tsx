@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import NavSideBar from "../component/sidenavbar";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
+import fotoProfile from "../../assets/miaprofile.jpg";
 
 const EditProfile = () => {
   const router = useRouter();
@@ -78,13 +80,13 @@ const EditProfile = () => {
                   alt="Foto Profile Anda"
                 />
               ) : (
-                <img
-                  src="/assets/miaprofile"
+                <Image
+                  src={fotoProfile}
                   alt="Foto Profile Anda"
                   className="rounded-full h-[120px] w-[120px] flex items-center justify-center bg-neutral-500"
                 />
               )}
-              <button className="button-style" onClick={handleButtonClick}>
+              <button className="hover:text-blue-500 hover:border-b hover:border-blue-500" onClick={handleButtonClick}>
                 Choose File
               </button>
               <input

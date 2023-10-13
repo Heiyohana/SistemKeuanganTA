@@ -73,22 +73,23 @@ const jumlahproduksiharian = () => {
   };
 
   return (
-    <div className="w-screen h-max m-0 container">
+    <div className="relative flex max-h-max">
       <Head>
         <title>Laporan Jumlah Produksi Harian</title>
       </Head>
       <NavSideBar />
 
       {/* Content */}
-      <div className="absolute h-max w-4/5 top-0 right-0 justify-end p-5 bg-neutral-100">
+      <div className="flex-grow right-0 justify-end p-5 bg-neutral-100 w-max">
         {/* atas */}
-        <div className="block items-center">
+        <div className="flex flex-col justify-between w-full">
           {/* informasi Halaman */}
-          <div className="flex flex-col pb-3">
-            <h1 className="title font-bold text-2xl">Jumlah Produksi Harian</h1>
-            <h3 className="text-sm">Laporan</h3>
+          <div className="flex flex-col m-1 pb-3">
+            <h1 className="title font-bold text-2xl">
+              Jumlah Produksi Harian
+            </h1>
+            <h3 className="text-base">Laporan</h3>
           </div>
-
           {/* Button */}
           <div className="text-sm">
             <select
@@ -97,7 +98,7 @@ const jumlahproduksiharian = () => {
               className="p-2 w-1/4 bg-white rounded-lg mr-3 cursor-pointer"
             >
               <option>Filter</option>
-              <option value="tanggal">Kategori</option>
+              <option value="tanggal">Tanggal</option>
               <option value="materials">Materials</option>
             </select>
 
@@ -121,7 +122,7 @@ const jumlahproduksiharian = () => {
             {/* Button Export Data */}
             <button
               onClick={handleExportPDF}
-              className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-1
+              className="rounded-lg text-white bg-blue-500 px-4 py-2 mb-1
               cursor-pointer"
             >
               Export to PDF

@@ -50,7 +50,7 @@ const NavSideBar = () => {
       title: "Laporan",
       icon: faFileLines,
       submenu: true,
-      path: "../laporan/laporan-pesanan",
+      path: "../laporan/laporanpesanan",
       submenuItems: [
         { title: "Pesanan", path: "../laporan/laporanpesanan" },
         { title: "Arus Kas", path: "../laporan/aruskas" },
@@ -97,7 +97,7 @@ const NavSideBar = () => {
   };
 
   return (
-    <div className="flex h-full w-1/5">
+    <div className="flex h-full w-1/5 left-0">
       <div className="bg-blue900 p-2 pt-5 bg-white w-full">
         <div className="text-md font-bold text-neutral-900">
           Sistem Manajemen Keuangan

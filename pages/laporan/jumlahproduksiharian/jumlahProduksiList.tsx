@@ -29,8 +29,8 @@ const jphList: React.FC<JumlahProduksiProps> = (props) => {
   const endIndex = Math.min(startIndex + itemsPerPage, list.length); // Pastikan endIndex tidak melebihi panjang list
 
   return (
-    <div className="text-sm w-max m-1 mt-2">
-      <table className=" text-left border-2 border-blue-500 ">
+    <div className="text-sm flex flex-col mt-2">
+      <table className="text-left border-2 border-blue-500 ">
         <thead className="bg-blue-500 text-white">
           <tr className="p-2">
             <th className="px-2 py-1 font-medium text-center">No</th>

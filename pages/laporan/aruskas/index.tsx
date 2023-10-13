@@ -51,82 +51,84 @@ const Aruskas = () => {
   };
 
   return (
-    <div className="w-screen h-full m-0 container">
+    <div className="relative flex h-device-width">
       <Head>
         <title>Laporan Arus Kas</title>
       </Head>
-      <NavSideBar />
+      <div className="w-screen h-full m-0 flex flex-row relative">
+        <NavSideBar />
 
-      {/* Content */}
-      <div className="absolute h-full w-4/5 top-0 right-0 justify-end p-5 bg-neutral-100">
-        {/* atas */}
-        <div className="block items-center">
-          {/* informasi Halaman */}
-          <div className="flex flex-col pb-3">
-            <h1 className="title font-bold text-2xl">Arus Kas</h1>
-            <h3 className="text-sm">Laporan</h3>
-          </div>
+        {/* Content */}
+        <div className="flex-grow right-0 justify-end p-5 bg-neutral-100">
+          {/* atas */}
+          <div className="block items-center">
+            {/* informasi Halaman */}
+            <div className="flex flex-col pb-3">
+              <h1 className="title font-bold text-2xl">Arus Kas</h1>
+              <h3 className="text-sm">Laporan</h3>
+            </div>
 
-          {/* Button */}
-          <div className="text-sm">
-            <select
-              value={searchType}
-              onChange={handleSearchTypeChange}
-              className="p-2 w-1/4 bg-white rounded-lg mr-3 cursor-pointer"
-            >
-              <option>Filter</option>
-              <option value="kategori">Kategori</option>
-              <option value="nama">Nama Pelapor</option>
-            </select>
+            {/* Button */}
+            <div className="text-sm">
+              <select
+                value={searchType}
+                onChange={handleSearchTypeChange}
+                className="p-2 w-1/4 bg-white rounded-lg mr-3 cursor-pointer"
+              >
+                <option>Filter</option>
+                <option value="kategori">Kategori</option>
+                <option value="nama">Nama Pelapor</option>
+              </select>
 
-            {/* Input Cari */}
-            <input
-              type="text"
-              value={searchValue}
-              onChange={handleSearchValueChange}
-              placeholder={`Cari berdasarkan ${searchType}`}
-              className="rounded-lg bg-white p-2 mr-2 mb-2 cursor-pointer w-1/4"
-            />
+              {/* Input Cari */}
+              <input
+                type="text"
+                value={searchValue}
+                onChange={handleSearchValueChange}
+                placeholder={`Cari berdasarkan ${searchType}`}
+                className="rounded-lg bg-white p-2 mr-2 mb-2 cursor-pointer w-1/4"
+              />
 
-            {/* Filter Tanggal */}
-            <input
-              type="date"
-              value={searchValue}
-              onChange={handleSearchValueChange}
-              className="p-2 w-[200px] bg-white mr-3 rounded-lg"
-            />
+              {/* Filter Tanggal */}
+              <input
+                type="date"
+                value={searchValue}
+                onChange={handleSearchValueChange}
+                className="p-2 w-[200px] bg-white mr-3 rounded-lg"
+              />
 
-            {/* Button Export Data */}
-            <button
-              onClick={handleExportPDF}
-              className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2
+              {/* Button Export Data */}
+              <button
+                onClick={handleExportPDF}
+                className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2
               cursor-pointer"
+              >
+                Export to PDF
+              </button>
+            </div>
+            {/* DataTable */}
+            <div
+              ref={componentPDF}
+              style={{
+                width: "90%",
+                alignItems: "center",
+              }}
             >
-              Export to PDF
-            </button>
-          </div>
-          {/* DataTable */}
-          <div
-            ref={componentPDF}
-            style={{
-              width: "90%",
-              alignItems: "center",
-            }}
-          >
-            <ArusKasList
-              list={sortedKasList.filter(
-                (kas) =>
-                  kas.kategori
-                    .toLowerCase()
-                    .includes(searchValue.toLowerCase()) ||
-                  kas.namapelapor
-                    .toLowerCase()
-                    .includes(searchValue.toLowerCase()) ||
-                  kas.tanggal.toLowerCase().includes(searchValue)
-              )}
-              showActions={showActions}
-              onDeleteClickHnd={deleteArusKas}
-            />
+              <ArusKasList
+                list={sortedKasList.filter(
+                  (kas) =>
+                    kas.kategori
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase()) ||
+                    kas.namapelapor
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase()) ||
+                    kas.tanggal.toLowerCase().includes(searchValue)
+                )}
+                showActions={showActions}
+                onDeleteClickHnd={deleteArusKas}
+              />
+            </div>
           </div>
         </div>
       </div>

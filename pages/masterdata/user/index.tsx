@@ -54,72 +54,76 @@ const index = () => {
   };
 
   return (
-    <div className="w-screen h-screen m-0 flex container">
+    <div className="relative flex h-screen">
       <Head>
         <title>Master Data Akun User</title>
       </Head>
-      <NavSideBar />
+      <div className="w-screen h-full m-0 flex flex-row relative">
+        <NavSideBar />
 
-      {/* Section Kanan */}
-      <section className="absolute h-full w-4/5 right-0 p-5 bg-neutral-100">
-        <div className="flex flex-row justify-between items-center">
-          {/* informasi halaman */}
-          <div className="flex flex-col pb-5">
-            <h1 className="title font-bold text-2xl">Data User Akun</h1>
-            <h3 className="text-sm">Master Data</h3>
-          </div>
+        {/* Section Kanan */}
+        <div className="flex-grow right-0 justify-end p-5 bg-neutral-100 h-full">
+          <div className="flex flex-row justify-between items-center">
+            {/* informasi halaman */}
+            <div className="flex flex-col pb-5">
+              <h1 className="title font-bold text-2xl">Data User Akun</h1>
+              <h3 className="text-sm">Master Data</h3>
+            </div>
 
-          {/* 3 Button */}
-          <div className="text-sm">
-            <input
-              type="button"
-              value="Tambah Data"
-              className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
-              onClick={onAddUserHnd}
-            />
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Cari"
-              className="w-[200px] rounded-lg bg-white border-2 border-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
-            />
-            <input
-              type="button"
-              value="Export Data"
-              onClick={handleExportPDF}
-              className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
-            />
+            {/* 3 Button */}
+            <div className="text-sm">
+              <input
+                type="button"
+                value="Tambah Data"
+                className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
+                onClick={onAddUserHnd}
+              />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Cari"
+                className="w-[200px] rounded-lg bg-white border-2 border-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
+              />
+              <input
+                type="button"
+                value="Export Data"
+                onClick={handleExportPDF}
+                className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
+              />
+            </div>
           </div>
-        </div>
-        {/* Tabel Data Akun User */}
-        <div
-          ref={componentPDF}
-          style={{
-            display: showActions ? "auto" : "", // Set display sesuai showActions
-            width: "100%",
-            margin: "auto",
-          }}
-        >
-          {shownModalAdd === PageEnum.list && (
-            <UserList
-              list={userList.filter(
-                (user) =>
-                  user.username.toLowerCase().includes(search.toLowerCase()) ||
-                  user.email.toLowerCase().includes(search.toLowerCase())
-              )}
-              showActions={showActions}
-              onDeleteClickHnd={deleteUser}
+          {/* Tabel Data Akun User */}
+          <div
+            ref={componentPDF}
+            style={{
+              display: showActions ? "auto" : "", // Set display sesuai showActions
+              width: "100%",
+              margin: "auto",
+            }}
+          >
+            {shownModalAdd === PageEnum.list && (
+              <UserList
+                list={userList.filter(
+                  (user) =>
+                    user.username
+                      .toLowerCase()
+                      .includes(search.toLowerCase()) ||
+                    user.email.toLowerCase().includes(search.toLowerCase())
+                )}
+                showActions={showActions}
+                onDeleteClickHnd={deleteUser}
+              />
+            )}
+          </div>
+          {shownModalAdd === PageEnum.add && (
+            <AddUserModal
+              onBatalBtnHnd={showListPage}
+              onSubmitClickHnd={showAddModal}
             />
           )}
         </div>
-        {shownModalAdd === PageEnum.add && (
-          <AddUserModal
-            onBatalBtnHnd={showListPage}
-            onSubmitClickHnd={showAddModal}
-          />
-        )}
-      </section>
+      </div>
     </div>
   );
 };

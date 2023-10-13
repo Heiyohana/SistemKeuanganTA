@@ -53,75 +53,77 @@ const index = () => {
   };
 
   return (
-    <div className="w-screen h-screen m-0 flex container">
+    <div className="relative flex h-device-width">
       <Head>
         <title>Master Data Produk</title>
       </Head>
-      <NavSideBar />
+      <div className="w-screen h-full m-0 flex flex-row relative">
+        <NavSideBar />
 
-      {/* Section Kanan */}
-      <section className="absolute h-full w-4/5 right-0 p-5 bg-neutral-100">
-        <div className="flex flex-row justify-between items-center">
-          {/* informasi halaman */}
-          <div className="flex flex-col pb-5">
-            <h1 className="title font-bold text-2xl">Data Produk</h1>
-            <h3 className="text-sm">Master Data</h3>
+        {/* Section Kanan */}
+        <section className="flex-grow right-0 justify-end p-5 bg-neutral-100">
+          <div className="flex flex-row justify-between items-center">
+            {/* informasi halaman */}
+            <div className="flex flex-col pb-5">
+              <h1 className="title font-bold text-2xl">Data Produk</h1>
+              <h3 className="text-sm">Master Data</h3>
+            </div>
+            {/* 3 Button */}
+            <div className="text-sm">
+              <input
+                type="button"
+                value="Tambah Data"
+                className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
+                onClick={onAddProdukHnd}
+              />
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Cari"
+                className="w-[200px] rounded-lg bg-white border-2 text-blue-500 border-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
+              />
+              <input
+                type="button"
+                value="Export Data"
+                onClick={handleExportPDF}
+                className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
+              />
+            </div>
           </div>
-          {/* 3 Button */}
-          <div className="text-sm">
-            <input
-              type="button"
-              value="Tambah Data"
-              className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
-              onClick={onAddProdukHnd}
-            />
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Cari"
-              className="w-[200px] rounded-lg bg-white border-2 text-blue-500 border-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
-            />
-            <input
-              type="button"
-              value="Export Data"
-              onClick={handleExportPDF}
-              className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
-            />
-          </div>
-        </div>
 
-        {/* Tabel Data Produk */}
-        <div
-          ref={componentPDF}
-          style={{
-            width: "90%",
-            alignItems: "center",
-          }}
-        >
-          {shownModalAdd === PageEnum.list && (
-            <ProdukList
-              list={produkList.filter(
-                (produk) =>
-                  produk.kategori
-                    .toLowerCase()
-                    .includes(search.toLowerCase()) ||
-                  produk.nama.toLowerCase().includes(search.toLowerCase()) ||
-                  produk.ukuran.toLowerCase().includes(search)
-              )}
-              showActions={showActions}
-              onDeleteClickHnd={deleteProduk}
+          {/* Tabel Data Produk */}
+          <div
+            ref={componentPDF}
+            style={{
+              width: "90%",
+              alignItems: "center",
+            }}
+          >
+            {shownModalAdd === PageEnum.list && (
+              <ProdukList
+                list={produkList.filter(
+                  (produk) =>
+                    produk.kategori
+                      .toLowerCase()
+                      .includes(search.toLowerCase()) ||
+                    produk.nama.toLowerCase().includes(search.toLowerCase()) ||
+                    produk.ukuran.toLowerCase().includes(search)
+                )}
+                showActions={showActions}
+                onDeleteClickHnd={deleteProduk}
+              />
+            )}
+          </div>
+
+          {shownModalAdd === PageEnum.add && (
+            <AddProdukModal
+              onBatalBtnHnd={showListPage}
+              onSubmitClickHnd={showAddModal}
             />
           )}
-        </div>
-
-        {shownModalAdd === PageEnum.add && (
-          <AddProdukModal
-            onBatalBtnHnd={showListPage}
-            onSubmitClickHnd={showAddModal}
-          />
-        )}
-      </section>
+        </section>
+      </div>
     </div>
   );
 };

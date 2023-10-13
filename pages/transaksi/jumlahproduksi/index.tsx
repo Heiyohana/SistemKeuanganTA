@@ -5,14 +5,14 @@ import NavSideBar from "../../component/sidenavbar";
 export default function orderretail() {
   return (
     // halaman transaksi untuk order / pemesanan
-    <div className="w-screen h-full m-0 container">
+    <div className="relative flex h-screen w-screen">
       <Head>
         <title>Pencatatan Jumlah Produksi</title>
       </Head>
       <NavSideBar />
 
       {/* Content */}
-      <div className="absolute h-full w-4/5 right-0 top-0 justify-end p-5 bg-neutral-100 text-sm">
+      <div className="flex-grow right-0 justify-end p-5 bg-neutral-100">
         {/* atas */}
         <div className="flex flex-row justify-between">
           <div className="flex flex-col m-1 pb-3">
@@ -21,7 +21,6 @@ export default function orderretail() {
             </h1>
             <h3 className="text-base">Transaksi</h3>
           </div>
-          {/* <HeadButton /> buttonnya kemunkinan berdiri sendiri2 */}
         </div>
 
         {/* form pencatatan */}

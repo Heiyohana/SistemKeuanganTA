@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import NavSideBar from "../../component/sidenavbar";
 import data from "../../../data/laporanpesanan.json";
+import MKonfirmLogout from "@/pages/component/mKonfirmLogout";
 
 export default function LaporanPesanan() {
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+
+  const openLogoutModal = ()=> {
+    setIsLogoutModalOpen(true);
+  };
+
+  const closeLogoutModal = () => {
+    setIsLogoutModalOpen(false);
+  };
+
   return (
     <div className="relative flex h-device-width">
       <Head>
@@ -11,7 +22,9 @@ export default function LaporanPesanan() {
       </Head>
       <div className="w-screen h-full m-0 flex flex-row relative">
         {/* kiri side */}
-        <NavSideBar />
+        <NavSideBar 
+          openLogoutModal = {openLogoutModal}
+        />
 
         {/* Kanan */}
         <div className=" bg-red-300 flex-grow right-0 justify-end p-6">
@@ -69,6 +82,9 @@ export default function LaporanPesanan() {
           </div>
         </div>
       </div>
+      {isLogoutModalOpen && (
+        <MKonfirmLogout onCloseModal={closeLogoutModal} />
+      )}
     </div>
   );
 }

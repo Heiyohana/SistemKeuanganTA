@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ICustomer } from "./customer.type";
+import { ICustomer, dummyCustomerList } from "./customer.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,

@@ -19,14 +19,14 @@ const trans_aruskas = () => {
 
   return (
     // halaman transaksi untuk order / pemesanan
-    <div className="w-screen min-h-max m-0 container">
+    <div className="relative flex h-screen">
       <Head>
         <title>Pencatatan Arus Kas</title>
       </Head>
       <NavSideBar />
 
       {/* Content */}
-      <div className="absolute h-full w-4/5 top-0 right-0 justify-end p-5 bg-neutral-100  text-sm">
+      <div className="flex-grow right-0 justify-end p-5 bg-neutral-100">
         {/* atas */}
         <div className="flex flex-row justify-between">
           <div className="flex flex-col m-1 pb-3">
