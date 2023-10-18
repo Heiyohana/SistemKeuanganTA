@@ -1,9 +1,10 @@
-import NavSideBar from "@/pages/component/sidenavbar";
+import NavSideBar from "@/pages/components/sidenavbar";
 import Head from "next/head";
 import React, { useState, useRef } from "react";
 import { IArusKas, dummyArusKasList } from "./arusKas.type";
 import ArusKasList from "./arusKasList";
 import { useReactToPrint } from "react-to-print";
+import Link from "next/link";
 
 const Aruskas = () => {
   const [kasList, setKasList] = useState(dummyArusKasList as IArusKas[]);
@@ -51,7 +52,7 @@ const Aruskas = () => {
   };
 
   return (
-    <div className="relative flex h-device-width">
+    <div className="relative flex h-screen">
       <Head>
         <title>Laporan Arus Kas</title>
       </Head>
@@ -98,13 +99,13 @@ const Aruskas = () => {
               />
 
               {/* Button Export Data */}
-              <button
-                onClick={handleExportPDF}
+              <Link
+                href="../laporan/aruskas/exportData"
                 className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2
               cursor-pointer"
               >
                 Export to PDF
-              </button>
+              </Link>
             </div>
             {/* DataTable */}
             <div

@@ -1,14 +1,15 @@
 import React from "react";
-import NavSideBar from "../component/sidenavbar";
+import NavSideBar from "../components/sidenavbar";
 import Head from "next/head";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import Linechart from "../component/linechart";
-import Piechart from "../component/piechart";
+import Linechart from "../components/linechart";
+import Piechart from "../components/piechart";
+import styles from "./dashboard.module.css";
 
 export default function Dashboard() {
   return (
-    <div className="relative flex h-device-width">
+    <div className="relative flex h-screen">
       <Head>
         <title>Dashboard</title>
       </Head>
@@ -16,21 +17,21 @@ export default function Dashboard() {
       <div className="w-screen h-full m-0 flex flex-row-reverse relative">
         {/* Kanan */}
         <div className="flex-grow right-0 justify-end bg-neutral-100 p-5">
-          <h1 className="title font-bold text-2xl pb-1">Dashboard</h1>
-          <h3 className="text-sm pb-4">Welcome abroad, Hendamia!</h3>
-          <h5 className="font-bold text-sm border-b-2 border-blue-400 text-blue-400">
+          <h1 className={`${styles.h1}`}>Dashboard</h1>
+          <h3 className={`${styles.h3} pb-4`}>Welcome abroad, Miahana!</h3>
+          <h2 className={`${styles.h2} border-b-2 border-blue-400 text-blue-400`}>
             TODAY'S TRANSACTION
-          </h5>
+          </h2>
           {/* card rekap */}
           <div className="flex flex-row pt-4 justify-between">
             {/* Card Kas Awal */}
-            <div className="w-1/6">
+            <div className="w-1/6 group shadow-lg shadow-gray-300 rounded-lg">
               <div className="p-2 bg-white rounded-t-lg">
-                <p className="text-sm">Kas Awal</p>
-                <p className="text-xl font-bold">16.000.000</p>
+                <p className={`${styles.nameCard}`}>Kas Awal</p>
+                <p className={`${styles.nominal}`}>16.000.000</p>
               </div>
               <div className="flex flex-row justify-between items-center px-3 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
-                <a className="text-sm" href="">
+                <a className={`${styles.viewMore}`} href="">
                   View More
                 </a>
                 <FontAwesomeIcon
@@ -41,13 +42,13 @@ export default function Dashboard() {
             </div>
 
             {/* Card Pemasukan */}
-            <div className="w-1/6">
+            <div className="w-1/6 group shadow-lg shadow-gray-300 rounded-lg">
               <div className="p-2 bg-white rounded-t-lg">
-                <p className="text-sm">Pemasukan</p>
-                <p className="text-xl font-bold">16.000.000</p>
+                <p className={`${styles.nameCard}`}>Pemasukan</p>
+                <p className={`${styles.nominal}`}>16.000.000</p>
               </div>
               <div className="flex flex-row justify-between items-center px-2 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
-                <a className="text-sm" href="">
+                <a className={`${styles.viewMore}`} href="">
                   View More
                 </a>
                 <FontAwesomeIcon
@@ -58,13 +59,13 @@ export default function Dashboard() {
             </div>
 
             {/* Card Penjualan */}
-            <div className="w-1/6">
+            <div className="w-1/6 group shadow-lg shadow-gray-300 rounded-lg">
               <div className="p-2 bg-white rounded-t-lg">
-                <p className="text-sm">Penjualan</p>
-                <p className="text-xl font-bold">16.000.000</p>
+                <p className={`${styles.nameCard}`}>Penjualan</p>
+                <p className={`${styles.nominal}`}>16.000.000</p>
               </div>
               <div className="flex flex-row justify-between items-center px-2 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
-                <a className="text-sm" href="">
+                <a className={`${styles.viewMore}`} href="">
                   View More
                 </a>
                 <FontAwesomeIcon
@@ -75,13 +76,13 @@ export default function Dashboard() {
             </div>
 
             {/* Card Pengeluaran */}
-            <div className="w-1/6">
+            <div className="w-1/6 group shadow-lg shadow-gray-300 rounded-lg">
               <div className="p-2 bg-white rounded-t-lg">
-                <p className="text-sm">Pengeluaran</p>
-                <p className="text-xl font-bold">16.000.000</p>
+                <p className={`${styles.nameCard}`}>Pengeluaran</p>
+                <p className={`${styles.nominal}`}>16.000.000</p>
               </div>
               <div className="flex flex-row justify-between items-center px-2 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
-                <a className="text-sm" href="">
+                <a className={`${styles.viewMore}`} href="">
                   View More
                 </a>
                 <FontAwesomeIcon
@@ -92,13 +93,13 @@ export default function Dashboard() {
             </div>
 
             {/* Card Jumlah Customer */}
-            <div className="w-1/6">
+            <div className="w-1/6 group shadow-lg shadow-gray-300 rounded-lg">
               <div className="p-2 bg-white rounded-t-lg">
-                <p className="text-sm">Jumlah Customer</p>
-                <p className="text-xl font-bold">16.000.000</p>
+                <p className={`${styles.nameCard}`}>Jumlah Customer</p>
+                <p className={`${styles.nominal}`}>16.000.000</p>
               </div>
               <div className="flex flex-row justify-between items-center px-2 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
-                <a className="text-sm" href="">
+                <a className={`${styles.viewMore}`} href="">
                   View More
                 </a>
                 <FontAwesomeIcon
@@ -119,7 +120,7 @@ export default function Dashboard() {
             <div className="w-1/3 flex flex-col ml-3">
               <Piechart />
               <div className="mt-2 rounded-lg bg-white shadow-sm h-1/2 p-3">
-                <div className="text-lg font-bold">Jumlah Produk</div>
+                <h2 className={`${styles.h2}`}>Jumlah Produk</h2>
                 <div></div>
               </div>
             </div>

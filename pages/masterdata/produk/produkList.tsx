@@ -12,11 +12,11 @@ import ViewProdukModal from "./viewProdukModal";
 type ProdukListProps = {
   list: IProduk[];
   onDeleteClickHnd: (data: IProduk) => void;
-  showActions: boolean;
+  
 };
 
 const ProdukList: React.FC<ProdukListProps> = (props) => {
-  const { list, onDeleteClickHnd, showActions } = props;
+  const { list, onDeleteClickHnd } = props;
   const [showViewModal, setShowViewModal] = useState(false);
   const [detailsToShow, setDetailsToShow] = useState(null as IProduk | null);
 
@@ -55,7 +55,7 @@ const ProdukList: React.FC<ProdukListProps> = (props) => {
             <td className="px-4 py-1 text-center">Ukuran</td>
             <td className="px-4 py-1">Jumlah / m2</td>
             <td className="px-4 py-1">Harga / m2</td>
-            {showActions && <td className="px-4 py-1">Aksi</td>}
+            <td className="px-4 py-1">Aksi</td>
           </tr>
         </thead>
         <tbody className="bg-white">
@@ -80,7 +80,6 @@ const ProdukList: React.FC<ProdukListProps> = (props) => {
                 <td className="px-4 py-1 font-regular text-center">
                   {produk.hargam2}
                 </td>
-                {showActions && (
                   <td className="px-4 py-1">
                     <button
                       className="cursor-pointer"
@@ -103,7 +102,6 @@ const ProdukList: React.FC<ProdukListProps> = (props) => {
                       />
                     </button>
                   </td>
-                )}
               </tr>
             );
           })}

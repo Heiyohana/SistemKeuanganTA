@@ -1,8 +1,9 @@
 import Head from "next/head";
-import ilustrasidaftar from "../../assets/imgdaftar.png";
+import ilustrasidaftar from "@/assets/elements/imgdaftar.png";
 import React, { useState } from "react";
 import Image from "next/image";
 import router from "next/router";
+import styles from "./daftar.module.css"
 
 interface IDaftar {
   email: string;
@@ -78,23 +79,23 @@ const Daftar: React.FC = () => {
               alt="ilustrasimasuk"
             />
 
-            <h1 className="font-bold text-white text-2xl mb-1">
+            <h1 className={`text-white mb-1 ${styles.h1Left}`}>
               Sistem <br />
               Manajemen Keuangan
             </h1>
-            <p className="font-medium text-white text-lg">
+            <h2 className={`${styles.h2} text-white`}>
               CV Karya Mandiri Sejahtera
-            </p>
+            </h2>
           </div>
         </div>
 
         {/* kanan */}
-        <div className="w-1/2 p-10 bg-white border-blue-500 border-2 rounded-r-lg ">
+        <div className="w-1/2 p-10 bg-white border-blue-500 border-2 rounded-r-lg">
           <div className="flex justify-center mb-1">
-            <h1 className="font-bold text-blue-800 text-2xl">Daftar</h1>
+            <h1 className={`${styles.titleText} text-blue-800`}>Daftar</h1>
           </div>
 
-          <h3 className="text-sm flex justify-center mb-4">
+          <h3 className={`${styles.h3} flex justify-center mb-4`}>
             Lengkapi formulir dibawah ini!
           </h3>
 
@@ -104,7 +105,7 @@ const Daftar: React.FC = () => {
             <div>
               <label
                 htmlFor="emailInput"
-                className="text-sm font-bold text-gray-600 block"
+                className={`${styles.label} text-gray-600 block`}
               >
                 Email
               </label>
@@ -121,7 +122,7 @@ const Daftar: React.FC = () => {
             <div>
               <label
                 htmlFor="usernameInput"
-                className="text-sm font-bold text-gray-600 block"
+                className={`${styles.label} text-gray-600 block`}
               >
                 Username
               </label>
@@ -138,7 +139,7 @@ const Daftar: React.FC = () => {
             <div>
               <label
                 htmlFor="sandiInput"
-                className="text-sm font-bold text-gray-600 block"
+                className={`${styles.label} text-gray-600 block`}
               >
                 Kata Sandi
               </label>
@@ -155,7 +156,7 @@ const Daftar: React.FC = () => {
             <div>
               <label
                 htmlFor="sandiInput"
-                className="text-sm font-bold text-gray-600 block"
+                className={`${styles.label} text-gray-600 block`}
               >
                 Konfirmasi Kata Sandi
               </label>
@@ -172,7 +173,7 @@ const Daftar: React.FC = () => {
             <div className="flex flex-cols justify-center">
               <button
                 type="submit"
-                className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded-md text-sm text-white"
+                className={`w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded-md text-white ${styles.textButtonSubmit}`}
               >
                 Daftar
               </button>
@@ -180,11 +181,11 @@ const Daftar: React.FC = () => {
           </form>
 
           {/* Masukkan link Halaman Masuk */}
-          <p className="flex justify-center text-sm pt-2">
+          <p className={`flex justify-center pt-2 ${styles.p}`}>
             Sudah punya Akun?
             <a
               href="../masuk"
-              className="font-bold hover:font-bold hover:text-blue-500"
+              className={`${styles.linkMasuk} hover:font-bold hover:text-blue-500`}
             >
               &nbsp; Masuk
             </a>

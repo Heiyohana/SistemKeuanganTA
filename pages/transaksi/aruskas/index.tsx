@@ -1,9 +1,8 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import NavSideBar from "../../component/sidenavbar";
+import NavSideBar from "../../components/sidenavbar";
 
 const trans_aruskas = () => {
-
   const [tanggalOtomatis, setTanggalOtomatis] = useState("");
   useEffect(() => {
     const currentDate = new Date();

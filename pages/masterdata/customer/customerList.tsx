@@ -50,10 +50,10 @@ const customerList: React.FC<CustomerListProps> = (props) => {
       <table className="text-left border-2 border-blue-500">
         <thead className="bg-blue-500 items-center text-white">
           <tr className="font-medium py-1">
-            <td className="px-2">No</td>
-            <td className="px-4">Nama Customer</td>
-            <td className="px-4">No Handphone</td>
-            <td className="px-9">Alamat Pengiriman</td>
+            <th className="px-2">ID</th>
+            <th className="px-4">Nama Customer</th>
+            <th className="px-4">No Handphone</th>
+            <th className="px-9">Alamat Pengiriman</th>
             {showActions && <td className="px-4">Aksi</td>}
           </tr>
         </thead>

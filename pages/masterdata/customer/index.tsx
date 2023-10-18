@@ -1,10 +1,10 @@
-import NavSideBar from "@/pages/component/sidenavbar";
+import NavSideBar from "@/pages/components/sidenavbar";
 import Head from "next/head";
 import React, { useRef, useState } from "react";
 import { ICustomer, PageEnum, dummyCustomerList } from "./customer.type";
 import CustomerList from "./customerList";
 import AddCustModal from "./addCustModal";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 const index = () => {
   const [customerList, setCustomerList] = useState(
@@ -57,7 +57,7 @@ const index = () => {
   const [showActions, setShowActions] = useState(true);
 
   return (
-    <div className="relative flex h-device-width">
+    <div className="relative flex h-screen">
       <Head>
         <title>Master Data Customer</title>
       </Head>
@@ -89,12 +89,13 @@ const index = () => {
                 className="w-[200px] rounded-lg bg-white border-2 border-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
                 placeholder="Cari"
               />
-              <input
-                type="button"
-                value="Export Data"
-                // onClick={}
+              <Link
+                href={"../masterdata/customer/exportData"}
+                placeholder="Export Data"
                 className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
-              />
+              >
+                Export Data
+              </Link>
             </div>
           </div>
           {/* Tabel Data Customer */}
@@ -105,7 +106,7 @@ const index = () => {
               width: "100%",
               margin: "auto",
             }}
-          >
+          > 
             {shownModalAdd === PageEnum.list && (
               <CustomerList
                 list={customerList.filter((customer) =>

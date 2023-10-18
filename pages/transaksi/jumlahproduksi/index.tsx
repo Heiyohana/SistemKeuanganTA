@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import NavSideBar from "../../component/sidenavbar";
+import NavSideBar from "../../components/sidenavbar";
 
 export default function orderretail() {
   return (

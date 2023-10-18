@@ -1,10 +1,11 @@
-import NavSideBar from "@/pages/component/sidenavbar";
+import NavSideBar from "@/pages/components/sidenavbar";
 import Head from "next/head";
 import React, { useRef, useState } from "react";
 import { IProduk, PageEnum, dummyProdukList } from "./produk.type";
 import ProdukList from "./produkList";
 import AddProdukModal from "./addProdukModal";
 import { useReactToPrint } from "react-to-print";
+import Link from "next/link";
 
 const index = () => {
   const [produkList, setProdukList] = useState(dummyProdukList as IProduk[]);
@@ -36,21 +37,21 @@ const index = () => {
   // Pencarian Data
   const [search, setSearch] = useState("");
 
-  // Untuk mengatur export PDF
-  const componentPDF = useRef(null);
-  const generatePDF = useReactToPrint({
-    content: () => componentPDF.current,
-    documentTitle: "Data Produk",
-  });
-  // Untuk mengatur kolom aksi hilang saat diekspor
-  const [showActions, setShowActions] = useState(true);
-  const handleExportPDF = () => {
-    setShowActions(false); // Set showActions ke false saat tombol export PDF diklik
-    generatePDF();
-    setTimeout(() => {
-      setShowActions(true);
-    }, 5000);
-  };
+  // // Untuk mengatur export PDF
+  // const componentPDF = useRef(null);
+  // const generatePDF = useReactToPrint({
+  //   content: () => componentPDF.current,
+  //   documentTitle: "Data Produk",
+  // });
+  // // Untuk mengatur kolom aksi hilang saat diekspor
+  // const [showActions, setShowActions] = useState(true);
+  // const handleExportPDF = () => {
+  //   setShowActions(false); // Set showActions ke false saat tombol export PDF diklik
+  //   generatePDF();
+  //   setTimeout(() => {
+  //     setShowActions(true);
+  //   }, 5000);
+  // };
 
   return (
     <div className="relative flex h-device-width">
@@ -83,23 +84,17 @@ const index = () => {
                 placeholder="Cari"
                 className="w-[200px] rounded-lg bg-white border-2 text-blue-500 border-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
               />
-              <input
-                type="button"
-                value="Export Data"
-                onClick={handleExportPDF}
+              <Link
+                href={"../masterdata/produk/exportData"}
                 className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
-              />
+              >
+                Export Data
+              </Link>
             </div>
           </div>
 
           {/* Tabel Data Produk */}
-          <div
-            ref={componentPDF}
-            style={{
-              width: "90%",
-              alignItems: "center",
-            }}
-          >
+          
             {shownModalAdd === PageEnum.list && (
               <ProdukList
                 list={produkList.filter(
@@ -110,11 +105,10 @@ const index = () => {
                     produk.nama.toLowerCase().includes(search.toLowerCase()) ||
                     produk.ukuran.toLowerCase().includes(search)
                 )}
-                showActions={showActions}
                 onDeleteClickHnd={deleteProduk}
               />
             )}
-          </div>
+          
 
           {shownModalAdd === PageEnum.add && (
             <AddProdukModal

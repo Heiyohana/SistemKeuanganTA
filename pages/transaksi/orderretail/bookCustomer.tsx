@@ -91,7 +91,9 @@ const bookCustomer = (props: Props) => {
                       <div className="text-ellipsis">{customer.nohp}</div>
                     </td>
                     <td className="px-6 no-wrap text-ellipsis">
-                      <div className="text-ellipsis overflow-hidden whitespace-normal">{customer.alamat}</div>
+                      <div className="text-ellipsis overflow-hidden whitespace-normal">
+                        {customer.alamat}
+                      </div>
                     </td>
                   </tr>
                 );

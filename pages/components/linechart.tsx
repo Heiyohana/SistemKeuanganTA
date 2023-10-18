@@ -1,4 +1,5 @@
 import { Card, Title, LineChart } from "@tremor/react";
+import styles from "@/pages/dashboard/dashboard.module.css"
 
 const chartdata = [
   { date: "2/6", Pemasukan: 2.04, Pengeluaran: 1.53 },
@@ -38,7 +39,7 @@ const dataFormatter = (number: number) =>
 function linechart() {
   return (
     <Card className="p-3">
-      <div className="text-lg font-bold">Ringkasan Transaksi</div>
+      <h2 className={`${styles.h2}`}>Ringkasan Transaksi</h2>
       <LineChart
         className="mt-3"
         data={chartdata}

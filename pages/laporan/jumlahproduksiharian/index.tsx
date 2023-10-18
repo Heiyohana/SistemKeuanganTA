@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { useRef, useState } from "react";
-import NavSideBar from "@/pages/component/sidenavbar";
+import NavSideBar from "@/pages/components/sidenavbar";
 import JphList from "./jumlahProduksiList";
 import {
   IProduksiHarian,
@@ -85,9 +85,7 @@ const jumlahproduksiharian = () => {
         <div className="flex flex-col justify-between w-full">
           {/* informasi Halaman */}
           <div className="flex flex-col m-1 pb-3">
-            <h1 className="title font-bold text-2xl">
-              Jumlah Produksi Harian
-            </h1>
+            <h1 className="title font-bold text-2xl">Jumlah Produksi Harian</h1>
             <h3 className="text-base">Laporan</h3>
           </div>
           {/* Button */}

@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
 import { useRouter } from "next/router";
-import NavSideBar from "../component/sidenavbar";
+import NavSideBar from "../components/sidenavbar";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import fotoProfile from "../../assets/miaprofile.jpg";
+import fotoProfile from "@/assets/elements/miaprofile.jpg";
 
 const EditProfile = () => {
   const router = useRouter();
@@ -58,17 +58,17 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="w-screen min-h-max">
+    <div className="relative flex h-screen">
       <Head>
         <title>Setting Profile</title>
       </Head>
 
-      <div className="w-screen h-screen m-0 flex flex-row">
+      <div className="w-screen h-full m-0 flex flex-row relative">
         {/* kiri */}
         <NavSideBar />
 
         {/* kanan */}
-        <div className="fixed w-4/5 bg-neutral-100 h-screen right-0 justify-end p-7">
+        <div className="flex-grow right-0 justify-end p-5 bg-neutral-100">
           <h1 className="title font-bold text-2xl">Setting Profile</h1>
           <div className="flex flex-row mt-4 gap-6">
             {/* Change Photo Profile */}
@@ -86,7 +86,10 @@ const EditProfile = () => {
                   className="rounded-full h-[120px] w-[120px] flex items-center justify-center bg-neutral-500"
                 />
               )}
-              <button className="hover:text-blue-500 hover:border-b hover:border-blue-500" onClick={handleButtonClick}>
+              <button
+                className="hover:text-blue-500 hover:border-b hover:border-blue-500"
+                onClick={handleButtonClick}
+              >
                 Choose File
               </button>
               <input
@@ -108,6 +111,7 @@ const EditProfile = () => {
                 <input
                   type="text"
                   name="username"
+                  placeholder="Masukkan username Anda yang baru"
                   value={formData.username}
                   onChange={handleChange}
                   className="bg-white rounded-lg w-full p-2 border border-gray-200 border-rounded-lg "
@@ -118,26 +122,29 @@ const EditProfile = () => {
                 <input
                   type="text"
                   name="email"
+                  placeholder="Masukkan email Anda yang baru"
                   value={formData.email}
                   onChange={handleChange}
                   className="bg-white rounded-lg w-full p-2 border border-gray-200 border-rounded-lg "
                 />
               </label>
               <label>
-                Old Password:
+                Kata Sandi Lama:
                 <input
                   type="password"
                   name="oldPassword"
+                  placeholder="Masukkan password lama Anda"
                   value={formData.oldPassword}
                   onChange={handleChange}
                   className="bg-white rounded-lg w-full p-2 border border-gray-200 border-rounded-lg "
                 />
               </label>
               <label>
-                New Password:
+                Kata Sandi Baru:
                 <input
                   type="password"
                   name="newPassword"
+                  placeholder="Masukkan password baru Anda"
                   value={formData.newPassword}
                   onChange={handleChange}
                   className="bg-white rounded-lg w-full p-2 border border-gray-200 border-rounded-lg "
@@ -147,7 +154,7 @@ const EditProfile = () => {
                 <Link href="/profile">
                   <button
                     type="submit"
-                    className="bg-white border border-gray-500 rounded-md p-2 w-[80px]"
+                    className="bg-white border border-blue-500 rounded-md p-2 w-[80px]"
                   >
                     Back
                   </button>

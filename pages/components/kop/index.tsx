@@ -1,5 +1,5 @@
 import React from 'react';
-import logoImage from "../../assets/miaprofile.jpg";
+import logoImage from "@/assets/elements/miaprofile.jpg";
 import Image from "next/image";
 
 const kop = () => {

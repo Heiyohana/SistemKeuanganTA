@@ -1,7 +1,11 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import NavSideBar from "../../component/sidenavbar";
-import { faAddressBook, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import NavSideBar from "../../components/sidenavbar";
+import {
+  faAddressBook,
+  faEdit,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FormPesanan from "./formPesanan";
 import {
@@ -9,7 +13,10 @@ import {
   dummyCustomerList,
 } from "@/pages/masterdata/customer/customer.type";
 import BookCustomer from "./bookCustomer";
-import { IProduk, dummyProdukList } from "@/pages/masterdata/produk/produk.type";
+import {
+  IProduk,
+  dummyProdukList,
+} from "@/pages/masterdata/produk/produk.type";
 import FormBayar from "./formBayar";
 import Modalwarnbook from "./modalwarnbook";
 // import { useRouter } from "next/router";
@@ -89,7 +96,7 @@ const orderretail = () => {
 
   const onWarnClosebyOke = () => {
     setIsWarningOpen(false);
-  }
+  };
 
   // Kontrol Modal Form Pesanan
   const [pesanan, setPesanan] = useState<Pesanan[]>([]);
@@ -166,12 +173,12 @@ const orderretail = () => {
   // Membuka Form Bayar
   const openFormBayarModal = () => {
     setIsFormBayarOpen(true);
-  }
+  };
 
   // Menutup Form Bayar
   const onCloseFormBayarModal = () => {
     setIsFormBayarOpen(false);
-  }
+  };
 
   // state untuk melacak BookCustomer telah terisi atau belum
   const [isCustDataFilled, setisCustDataFilled] = useState(false);
@@ -181,13 +188,13 @@ const orderretail = () => {
     setisCustDataFilled(true);
   };
 
-  const redirectToPembayaranRekap = ()=> {
+  const redirectToPembayaranRekap = () => {
     const dataToPass = {
       customerData: selectedCustomer,
       // pesananData = pesanan,
-      // pembayaranData = 
-    }
-  }
+      // pembayaranData =
+    };
+  };
 
   return (
     // halaman transaksi untuk order / pemesanan

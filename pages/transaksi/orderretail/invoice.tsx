@@ -1,6 +1,6 @@
-import NavSideBar from '@/pages/component/sidenavbar'
-import Head from 'next/head'
-import React from 'react'
+import NavSideBar from "@/pages/components/sidenavbar";
+import Head from "next/head";
+import React from "react";
 
 const invoicePesanan = () => {
   return (
@@ -141,6 +141,6 @@ const invoicePesanan = () => {
       </div>
     </div>
   );
-}
+};
 
-export default invoicePesanan
+export default invoicePesanan;

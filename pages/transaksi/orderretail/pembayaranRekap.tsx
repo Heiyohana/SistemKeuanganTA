@@ -1,4 +1,4 @@
-import NavSideBar from "@/pages/component/sidenavbar";
+import NavSideBar from "@/pages/components/sidenavbar";
 import Head from "next/head";
 import React from "react";
 

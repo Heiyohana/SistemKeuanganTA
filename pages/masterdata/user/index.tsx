@@ -1,10 +1,11 @@
-import NavSideBar from "@/pages/component/sidenavbar";
+import NavSideBar from "@/pages/components/sidenavbar";
 import Head from "next/head";
 import React, { useRef, useState } from "react";
 import { IUser, PageEnum, dummyUserList } from "./user.type";
 import UserList from "./userList";
 import AddUserModal from "./addUserModal";
 import { useReactToPrint } from "react-to-print";
+import Link from "next/link";
 
 const index = () => {
   const [userList, setUserList] = useState(dummyUserList as IUser[]);
@@ -85,12 +86,13 @@ const index = () => {
                 placeholder="Cari"
                 className="w-[200px] rounded-lg bg-white border-2 border-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
               />
-              <input
-                type="button"
-                value="Export Data"
-                onClick={handleExportPDF}
+              <Link 
+                href={"../masterdata/user/exportData"}
+                // onClick={handleExportPDF}
                 className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer"
-              />
+              >
+                Export Data
+              </Link>
             </div>
           </div>
           {/* Tabel Data Akun User */}
