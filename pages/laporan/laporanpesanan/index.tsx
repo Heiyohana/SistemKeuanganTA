@@ -3,12 +3,12 @@ import Head from "next/head";
 import NavSideBar from "../../components/sidenavbar";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import {ILaporanPesanan} from "./laporanPesanan.type";
+import { faChevronLeft, faChevronRight, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {ILaporanPesanan, dummyLaporanPesanan} from "./laporanPesanan.type";
 
 export default function LaporanPesanan() {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
-  const [data, setData] = useState([]); // Definisikan data sebagai state
+  const [data, setData] = useState<ILaporanPesanan[]>(dummyLaporanPesanan); // Definisikan data sebagai state
 
   const openLogoutModal = () => {
     setIsLogoutModalOpen(true);
@@ -18,14 +18,28 @@ export default function LaporanPesanan() {
     setIsLogoutModalOpen(false);
   };
 
-  const handleDeleteItem = (index: ILaporanPesanan) => {
-    // Buat salinan array data
+  const handleDeleteItem = (index: number) => {
     const newData = [...data];
-    // Hapus item berdasarkan indeks
     newData.splice(index, 1);
-    // Perbarui data dengan data yang telah diubah
-    setData(newData); // Pastikan Anda telah mendefinisikan state data
+    setData(newData);
   };
+
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1); // Inisialisasi currentPage
+  const itemsPerPage = 15;
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const maxVisiblePage = 5;
+  const firstPage = Math.max(1, currentPage - Math.floor(maxVisiblePage / 2));
+  const lastPage = Math.min(totalPages, firstPage + maxVisiblePage - 1);
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage); // Set currentPage sesuai dengan halaman yang dipilih
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, data.length); // Pastikan endIndex tidak melebihi panjang list
+
+  const itemsToShow = data.slice(startIndex, endIndex);
 
   return (
     <div className="relative flex h-screen">
@@ -105,7 +119,7 @@ export default function LaporanPesanan() {
                 </tr>
               </thead>
               <tbody className="bg-white text-left">
-                {data.map((data, index) => (
+                {itemsToShow.map((rowData, index) => (
                   <tr
                     className="hover:bg-blue-100 p-3 border-blue-200 border table-auto"
                     key={index}
@@ -114,37 +128,37 @@ export default function LaporanPesanan() {
                       {"00" + (index + 1)}
                     </td>
                     <td className="px-1 font-normal text-center">
-                      {data.TglOrder}
+                      {rowData.tanggal}
                     </td>
-                    <td className="px-2 font-normal">{data.NamaCustomer}</td>
-                    <td className="px-2 font-normal">{data.NoHandphone}</td>
+                    <td className="px-2 font-normal">{rowData.namaCust}</td>
+                    <td className="px-2 font-normal">{rowData.noHpCust}</td>
                     <td className="px-2 font-normal text-right">
-                      {data.Total}
+                      {rowData.total}
                     </td>
-                    <td className="px-2 font-normal">{data.TglBayar}</td>
+                    <td className="px-2 font-normal">{rowData.tglBayar}</td>
                     <td className="px-2 font-normal text-center">
-                      {data.TipeBayar}
+                      {rowData.tipeBayar}
                     </td>
                     <td className="px-2 font-normal text-center">
                       <Link
-                        href={data.file}
+                        href={rowData.file}
                         className="border-b border-blue-600 text-blue-800 hover:text-blue-800 hover:border-blue-800"
                       >
-                        {data.Bukti}
+                        {rowData.bukti}
                       </Link>
                     </td>
                     <td className="px-2 font-normal text-center">
-                      {data.SisaTagihan}
+                      {rowData.sisaTagihan}
                     </td>
                     <td className="px-2 font-normal text-center">
                       <p
                         className="py-0.5 px-2 rounded-md justify-center items-center text-sm"
                         style={{
                           backgroundColor:
-                            data.Status === "lunas" ? "#C0FF92" : "#FFDDDD",
+                            rowData.status === "lunas" ? "#C0FF92" : "#FFDDDD",
                         }}
                       >
-                        {data.Status}
+                        {rowData.status}
                       </p>
                     </td>
                     <td className="text-center">
@@ -164,6 +178,49 @@ export default function LaporanPesanan() {
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+      {/* Layout Pagination */}
+      <div className="items-center mt-3 flex justify-between">
+        <a className="text-neutral-400">
+          Menampilkan halaman ke {currentPage} dari {totalPages}
+        </a>
+        <div className="flex flex-row">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={
+              currentPage === 1
+                ? "disabled bg-white h-[30px] w-[30px] text-sm"
+                : "active bg-white h-[30px] w-[30px] text-sm hover:bg-blue-500 hover:text-white"
+            }
+          >
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
+          {Array.from({ length: lastPage - firstPage + 1 }, (_, index) => (
+            <button
+              key={firstPage + index}
+              onClick={() => handlePageChange(firstPage + index)}
+              className={
+                firstPage + index === currentPage
+                  ? "active bg-blue-500 text-white w-[30px] h-[30px] text-sm font-bold"
+                  : "bg-white w-[30px] h-[30px] text-sm text-center hover:bg-blue-500 hover:text-white"
+              }
+            >
+              {firstPage + index}
+            </button>
+          ))}
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className={
+              currentPage === totalPages
+                ? "disabled bg-white h-[30px] w-[30px] text-sm"
+                : "active bg-white h-[30px] w-[30px] text-sm hover:bg-blue-500 hover:text-white"
+            }
+          >
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
         </div>
       </div>
     </div>
