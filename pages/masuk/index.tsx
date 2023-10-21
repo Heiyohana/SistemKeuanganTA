@@ -37,6 +37,7 @@ const Masuk: React.FC = () => {
 
     // Simulate Login Validation
     if (
+      // admin
       state.user.username === "Miahana" &&
       state.user.password === "12345678"
     ) {
@@ -44,8 +45,20 @@ const Masuk: React.FC = () => {
       alert("Login Sukses");
 
       // Navigasi to dashboard page
-      router.push("../dashboard");
-    } else {
+      router.push("../admin");
+    } 
+    else if (
+      // staff
+      state.user.username === "heiyohana" &&
+      state.user.password === "yohana12"
+    ){
+      setState({ ...state, isLoginSuccessful: true });
+      alert("Login Sukses");
+
+      // Navigasi to dashboard page
+      router.push("../staff/dashboard");
+    }
+    else {
       setState({ ...state, isLoginSuccessful: false });
       alert("Login Gagal");
     }

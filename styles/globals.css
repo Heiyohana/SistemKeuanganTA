@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    /* body { */
-        /* Cara membuat bg dasar abu-abu */
-        /* @apply bg-gray-100; */
-    /* } */
-}
-
 @font-face {
     font-family: 'Poppins';
     src: url('../assets/Poppins/Poppins-Light.ttf') format('truetype');
@@ -39,3 +32,4 @@
     src: url('../assets/Poppins/Poppins-ExtraBold.ttf') format('truetype');
     font-weight: 800;
 }
+

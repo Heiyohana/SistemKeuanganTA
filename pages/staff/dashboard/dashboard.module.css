@@ -1,0 +1,56 @@
+.h1 {
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.h3 {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.p {
+    font-family: Poppins, sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+/* font-bold text-sm */
+.h2 {
+    font-family: Poppins, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.nameCard {
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.nominal {
+    font-family: Poppins, sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.viewMore {
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    font-style: normal;
+    line-height: normal;
+}

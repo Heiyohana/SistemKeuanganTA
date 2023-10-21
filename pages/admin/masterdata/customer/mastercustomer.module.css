@@ -1,0 +1,71 @@
+.h1 {
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.h3 {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.button {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.thtable {
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.tdtable {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.textPagination {
+    font-family: Poppins, sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.label {
+    font-family: Poppins, sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.titleModal {
+    font-family: Poppins, sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.h1ExportPage {
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    font-style: normal;
+    line-height: normal;
+}

@@ -1,0 +1,120 @@
+.h1 {
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.h3 {
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.section {
+    font-family: Poppins, sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.label {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.total {
+    font-family: Poppins, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.button {
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.thModal {
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.thead {
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.tdtable {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.catatan {
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.title {
+    font-family: Poppins, sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.tombolx {
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.note {
+    font-family: Poppins, sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.button {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.subtotal {
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    font-style: normal;
+    line-height: normal;
+}
+

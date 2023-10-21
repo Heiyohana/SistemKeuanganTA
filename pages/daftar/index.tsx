@@ -3,7 +3,7 @@ import ilustrasidaftar from "@/assets/elements/imgdaftar.png";
 import React, { useState } from "react";
 import Image from "next/image";
 import router from "next/router";
-import styles from "./daftar.module.css"
+import styles from "./daftar.module.css";
 
 interface IDaftar {
   email: string;
@@ -45,10 +45,23 @@ const Daftar: React.FC = () => {
 
     // Simulate Login Validation
     if (
-      state.user.email === "heiyohana@gmail.com" &&
+      // admin
+      state.user.email === "hendamiayohana@gmail.com" &&
       state.user.username === "Miahana" &&
       state.user.sandi === "12345678" &&
       state.user.konfirmsandi === "12345678"
+    ) {
+      setState({ ...state, isLoginSuccessful: true });
+      alert("Login Sukses");
+
+      // Navigasi to dashboard page
+      router.push("../dashboard");
+    } else if (
+      // staff
+      state.user.email === "heiyohana@gmail.com" &&
+      state.user.username === "heiyohana" &&
+      state.user.sandi === "yohana12" &&
+      state.user.konfirmsandi !== "yohana12"
     ) {
       setState({ ...state, isLoginSuccessful: true });
       alert("Login Sukses");

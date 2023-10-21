@@ -1,0 +1,39 @@
+.h1 {
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.h3 {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.label {
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.input {
+    font-family: Poppins, sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.button {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
