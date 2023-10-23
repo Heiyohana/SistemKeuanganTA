@@ -237,7 +237,7 @@ const orderretail = () => {
                         />
                       </div>
                       <div
-                        className={`${styles.label} w-full pb-2 text-sm justify-between flex flex-row items-center`}
+                        className={`${styles.label} w-full pb-2 justify-between flex flex-row items-center`}
                       >
                         <span className="flex">Tanggal</span>
                         <input
@@ -249,7 +249,7 @@ const orderretail = () => {
                         />
                       </div>
                       <div
-                        className={`${styles.label} w-full pb-2 text-sm justify-between flex flex-row items-center`}
+                        className={`${styles.label} w-full pb-2 justify-between flex flex-row items-center`}
                       >
                         <span className="flex">CS Desk</span>
                         <input

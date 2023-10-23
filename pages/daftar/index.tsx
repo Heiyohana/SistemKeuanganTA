@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import router from "next/router";
 import styles from "./daftar.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 interface IDaftar {
   email: string;
@@ -41,7 +43,20 @@ const Daftar: React.FC = () => {
   // Form Handling
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    console.log(state.user);
+    // Reset any previous error messages
+    setState({ ...state, isLoginSuccessful: false });
+
+    // check field form
+    if (!state.user.email && state.user.username && state.user.sandi && state.user.konfirmsandi) {
+      alert("Maaf, email tidak boleh kosong");
+      return;
+    } else if (state.user.email && !state.user.username && state.user.sandi && state.user.konfirmsandi) {
+      alert("Maaf, username tidak boleh kosong");
+      return;
+    } else if (state.user.email && state.user.username && !state.user.sandi && state.user.konfirmsandi){
+      alert("Maaf, sandi tidak boleh kosong");
+      return;
+    }
 
     // Simulate Login Validation
     if (
@@ -55,7 +70,7 @@ const Daftar: React.FC = () => {
       alert("Login Sukses");
 
       // Navigasi to dashboard page
-      router.push("../dashboard");
+      router.push("/admin/dashboard");
     } else if (
       // staff
       state.user.email === "heiyohana@gmail.com" &&
@@ -67,12 +82,23 @@ const Daftar: React.FC = () => {
       alert("Login Sukses");
 
       // Navigasi to dashboard page
-      router.push("../dashboard");
-    } else {
+      router.push("/staff/dashboard");
+    } else if ( state.user.email && state.user.username && state.user.sandi && state.user.konfirmsandi){
+      if (state.user.sandi != state.user.konfirmsandi){
+        alert("Maaf, periksa dan cocokkan kembali sandi Anda");
+        return;
+      } else {
+        alert("Akun Anda telah berhasil dibuat");
+        router.push("/masuk");
+      }
+    }
+    else {
       setState({ ...state, isLoginSuccessful: false });
-      alert("Login Gagal");
+      alert("Maaf, silakan lengkapi isi dari form daftar ini.");
     }
   };
+  const [showPassword, setShowPassword] = useState(false);
+  const [showKonfirmPassword, setShowKonfirmPassword] = useState(false);
 
   return (
     <div className="w-screen h-screen flex flex-row m-0 justify-center items-center bg-neutral-100">
@@ -149,7 +175,7 @@ const Daftar: React.FC = () => {
               />
             </div>
             {/* Field Kata Sandi */}
-            <div>
+            <div className="relative">
               <label
                 htmlFor="sandiInput"
                 className={`${styles.label} text-gray-600 block`}
@@ -157,30 +183,46 @@ const Daftar: React.FC = () => {
                 Kata Sandi
               </label>
               <input
-                type="password"
                 name="sandi"
+                type={showPassword ? "text" : "password"}
                 id="sandiInput"
                 value={state.user.sandi}
                 onChange={handleChange}
                 className="w-full p-2 border border-gray-300 rounded-sm mt-1"
               />
+              {/* Lihat sembunyikan password */}
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute top-8 right-2 text-gray-500"
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+              </button>
             </div>
             {/* Field Kata Sandi */}
             <div>
               <label
-                htmlFor="sandiInput"
+                htmlFor="konfirmsandiInput"
                 className={`${styles.label} text-gray-600 block`}
               >
                 Konfirmasi Kata Sandi
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="konfirmsandi"
                 id="konfirmsandiInput"
                 value={state.user.konfirmsandi}
                 onChange={handleChange}
                 className="w-full p-2 border border-gray-300 rounded-sm mt-1"
               />
+              {/* Lihat sembunyikan password */}
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute top-8 right-2 text-gray-500"
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+              </button>
             </div>
             {/* button */}
             <div className="flex flex-cols justify-center">

@@ -5,6 +5,7 @@ import { IArusKas, dummyArusKasList } from "./arusKas.type";
 import ArusKasList from "./arusKasList";
 import { useReactToPrint } from "react-to-print";
 import Link from "next/link";
+import styles from "./aruskas.module.css";
 
 const Aruskas = () => {
   const [kasList, setKasList] = useState(dummyArusKasList as IArusKas[]);
@@ -56,7 +57,7 @@ const Aruskas = () => {
       <Head>
         <title>Laporan Arus Kas</title>
       </Head>
-      <div className="w-screen h-full m-0 flex flex-row relative">
+      <div className={`w-screen h-full m-0 flex flex-row relative ${styles.body}`}>
         <NavSideBar />
 
         {/* Content */}
@@ -65,16 +66,16 @@ const Aruskas = () => {
           <div className="block items-center">
             {/* informasi Halaman */}
             <div className="flex flex-col pb-3">
-              <h1 className="title font-bold text-2xl">Arus Kas</h1>
-              <h3 className="text-sm">Laporan</h3>
+              <h1 className={`${styles.h1}`}>Arus Kas</h1>
+              <h3 className={`${styles.h3}`}>Laporan</h3>
             </div>
 
             {/* Button */}
-            <div className="text-sm">
+            <div className={`${styles.button}`}>
               <select
                 value={searchType}
                 onChange={handleSearchTypeChange}
-                className="p-2 w-1/4 bg-white rounded-lg mr-3 cursor-pointer"
+                className={`p-2 w-1/4 bg-white rounded-lg mr-3 cursor-pointer ${styles.label}`}
               >
                 <option>Filter</option>
                 <option value="kategori">Kategori</option>
@@ -87,7 +88,7 @@ const Aruskas = () => {
                 value={searchValue}
                 onChange={handleSearchValueChange}
                 placeholder={`Cari berdasarkan ${searchType}`}
-                className="rounded-lg bg-white p-2 mr-2 mb-2 cursor-pointer w-1/4"
+                className={`rounded-lg bg-white p-2 mr-2 mb-2 cursor-pointer w-1/4 ${styles.label}`}
               />
 
               {/* Filter Tanggal */}
@@ -95,14 +96,13 @@ const Aruskas = () => {
                 type="date"
                 value={searchValue}
                 onChange={handleSearchValueChange}
-                className="p-2 w-[200px] bg-white mr-3 rounded-lg"
+                className={`p-2 w-[200px] bg-white mr-3 rounded-lg ${styles.label}`}
               />
 
               {/* Button Export Data */}
               <Link
                 href="../laporan/aruskas/exportData"
-                className="rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2
-              cursor-pointer"
+                className={`rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer ${styles.button}`}
               >
                 Export to PDF
               </Link>

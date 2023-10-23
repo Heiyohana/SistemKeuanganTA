@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Head from "next/head";
 import router from "next/router";
 import styles from "./masuk.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 interface ILogin {
   username: string;
@@ -33,7 +35,19 @@ const Masuk: React.FC = () => {
   // Form Handling
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    console.log(state.user);
+    // Reset any previous error messages
+    setState({ ...state, isLoginSuccessful: false });
+
+    // Check if the username or password empty
+    if (!state.user.username && state.user.password) {
+      alert("Maaf, username tidak boleh kosong");
+      return;
+    } else if (!state.user.password && state.user.username) {
+      alert("Maaf, Password tidak boleh kosong");
+      return;
+    } else if (!state.user.username && state.user.password) {
+      alert("Maaf, silakan lengkapi isi dari form masuk ini.");
+    }
 
     // Simulate Login Validation
     if (
@@ -45,24 +59,26 @@ const Masuk: React.FC = () => {
       alert("Login Sukses");
 
       // Navigasi to dashboard page
-      router.push("../admin");
-    } 
-    else if (
+      router.push("../admin/dashboard");
+    } else if (
       // staff
       state.user.username === "heiyohana" &&
       state.user.password === "yohana12"
-    ){
+    ) {
       setState({ ...state, isLoginSuccessful: true });
       alert("Login Sukses");
 
       // Navigasi to dashboard page
       router.push("../staff/dashboard");
-    }
-    else {
-      setState({ ...state, isLoginSuccessful: false });
-      alert("Login Gagal");
+    } else if (
+      (state.user.username != "Miahana" && state.user.password != "yohana12") ||
+      (state.user.username != "Miahana" && state.user.password != "12345678")
+    ) { 
+      alert("Maaf, Username atau password yang Anda masukkan salah");
     }
   };
+
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="w-screen h-screen flex flex-row m-0 justify-center items-center bg-neutral-100">
@@ -121,7 +137,7 @@ const Masuk: React.FC = () => {
               />
             </div>
             {/* Field  Password*/}
-            <div>
+            <div className="relative">
               <label
                 htmlFor="passwordInput"
                 className={`${styles.label} text-gray-600 block`}
@@ -130,12 +146,20 @@ const Masuk: React.FC = () => {
               </label>
               <input
                 name="password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="passwordInput"
                 value={state.user.password}
                 onChange={handleChange}
                 className="w-full p-2 border border-gray-300 rounded-sm mt-1"
               />
+              {/* Lihat sembunyikan password */}
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute top-8 right-2 text-gray-500"
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye}/>
+              </button>
             </div>
             <div>
               <a

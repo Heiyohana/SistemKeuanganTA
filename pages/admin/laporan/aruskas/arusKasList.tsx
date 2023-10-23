@@ -3,6 +3,7 @@ import { IArusKas } from "./arusKas.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { format } from "date-fns";
+import styles from "./aruskas.module.css";
 
 type ArusKasListProps = {
   list: IArusKas[];
@@ -32,26 +33,26 @@ const ArusKasList: React.FC<ArusKasListProps> = (props) => {
   const itemsToShow = list.slice(startIndex, endIndex);
 
   return (
-    <div className="text-sm w-max m-1 mt-3">
+    <div className="w-max m-1 mt-3">
       <table className=" text-left border-2 border-blue-500 ">
-        <thead className="bg-blue-500 text-white">
+        <thead className={`bg-blue-500 text-white ${styles.thead}`}>
           <tr>
-            <th className="px-2 py-1 font-medium text-center">No</th>
-            <th className="px-4 py-1 font-medium">Tanggal</th>
-            <th className="px-4 py-1 font-medium">Nama Pelapor</th>
-            <th className="px-2 py-1 font-medium">Kategori</th>
-            <th className="px-5 py-1 font-medium">Keterangan</th>
-            <th className="px-2 py-1 font-medium text-center">Qty</th>
-            <th className="px-2 py-1 font-medium text-center">Nominal</th>
-            <th className="px-2 py-1 font-medium text-center">Total</th>
-            <th className="px-2 py-1 font-medium">Bukti</th>
-            {showActions && <th className="px-2 py-1 font-medium">Aksi</th>}
+            <th className="px-2 py-1 text-center">No</th>
+            <th className="px-4 py-1">Tanggal</th>
+            <th className="px-4 py-1">Nama Pelapor</th>
+            <th className="px-2 py-1">Kategori</th>
+            <th className="px-5 py-1">Keterangan</th>
+            <th className="px-2 py-1 text-center">Qty</th>
+            <th className="px-2 py-1 text-center">Nominal</th>
+            <th className="px-2 py-1 text-center">Total</th>
+            <th className="px-2 py-1">Bukti</th>
+            {showActions && <th className="px-2 py-1">Aksi</th>}
           </tr>
         </thead>
         <tbody className="bg-white">
           {list.map((data, index) => (
             <tr
-              className="p-2 hover:bg-blue-200 border-blue-200 border table-auto w-full"
+              className={`p-2 hover:bg-blue-200 border-blue-200 border table-auto w-full ${styles.tdtable}`}
               key={index}
             >
               <td className="text-center px-2 py-1 justify-start font-normal">
@@ -99,7 +100,7 @@ const ArusKasList: React.FC<ArusKasListProps> = (props) => {
       </table>
       {/* Layout Pagination */}
       <div className="items-center mt-3 flex justify-between">
-        <a className="text-neutral-400">
+        <a className={`text-neutral-400 ${styles.teks}`}>
           Menampilkan halaman ke {currentPage} dari {totalPages}
         </a>
         <div className="flex flex-row">
