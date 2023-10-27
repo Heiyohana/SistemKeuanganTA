@@ -18,8 +18,8 @@ const konfirmLogout: React.FC<Props> = (props) => {
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
       <div className="w-[200] flex flex-col bg-neutral-50 p-5 rounded-md relative">
         {/* informasi */}
-        <p className="justify-center items-center text-center mb-3">
-          Apakah Anda ingin keluar / <br /> logout dari sistem ini?
+        <p className="justify-center items-center text-center p-3">
+          Apakah Anda ingin keluar / logout <br /> dari sistem ini?
         </p>
         {/* button */}
         <div className="flex flex-row gap-4 justify-center">

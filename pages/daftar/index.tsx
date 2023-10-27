@@ -200,7 +200,7 @@ const Daftar: React.FC = () => {
               </button>
             </div>
             {/* Field Kata Sandi */}
-            <div>
+            <div className="relative">
               <label
                 htmlFor="konfirmsandiInput"
                 className={`${styles.label} text-gray-600 block`}
@@ -208,7 +208,7 @@ const Daftar: React.FC = () => {
                 Konfirmasi Kata Sandi
               </label>
               <input
-                type={showPassword ? "text" : "password"}
+                type={showKonfirmPassword ? "text" : "password"}
                 name="konfirmsandi"
                 id="konfirmsandiInput"
                 value={state.user.konfirmsandi}
@@ -218,10 +218,12 @@ const Daftar: React.FC = () => {
               {/* Lihat sembunyikan password */}
               <button
                 type="button"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setShowKonfirmPassword(!showKonfirmPassword)}
                 className="absolute top-8 right-2 text-gray-500"
               >
-                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                <FontAwesomeIcon
+                  icon={showKonfirmPassword ? faEyeSlash : faEye}
+                />
               </button>
             </div>
             {/* button */}
