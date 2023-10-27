@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { ILaporanPesanan, dummyLaporanPesanan } from "./laporanPesanan.type";
 import { useRouter } from "next/router";
-import { dummyProdukList } from "../../masterdata/produk/produk.type";
+import ViewBukti from "@/pages/components/viewbukti"
 
 // const orderretail = () => {
 const LaporanPesanan = () => {
@@ -67,12 +67,20 @@ const LaporanPesanan = () => {
     null
   );
 
-  const handleRowClick = (rowData: ILaporanPesanan) => {
-    setSelectedData(rowData);
-    router.push({
-      pathname: "../laporan/laporanpesanan/rekapPesanan",
-      query: { data: JSON.stringify(rowData)}
-    })
+  const handleRowClick = (rowData: ILaporanPesanan, target: string) => {
+    if (target === "row"){
+      setSelectedData(rowData);
+      router.push({
+        pathname: "../laporan/laporanpesanan/rekapPesanan",
+        query: { data: JSON.stringify(rowData)},
+      });
+    }
+  };
+
+  const [ isViewOpen, setIsViewOpen ] = useState(false);
+
+  const handleview = () => {
+    setIsViewOpen(true);
   }
 
   return (
@@ -189,7 +197,7 @@ const LaporanPesanan = () => {
                     className="hover:bg-blue-100 p-3 border-blue-200 border table-auto cursor-pointer"
                     key={index}
                     // ketika diklik akan link to rekappesanan dan data setiap baris akan ditampilkan di halaman rekap pesanan
-                    onClick={() => handleRowClick(rowData)}
+                    onClick={() => handleRowClick(rowData, "row")}
                   >
                     <td className="px-2 py-0.5 justify-start font-normal">
                       {"00" + (index + 1)}
@@ -207,12 +215,12 @@ const LaporanPesanan = () => {
                       {rowData.tipeBayar}
                     </td>
                     <td className="px-2 font-normal text-center">
-                      <Link
-                        href={rowData.file}
-                        className="border-b border-blue-600 text-blue-800 hover:text-blue-800 hover:border-blue-800"
+                      <button
+                        className="border-b border-blue-600 text-blue-600 hover:text-blue-800 hover:border-blue-800"
+                        onClick={handleview}
                       >
                         {rowData.bukti}
-                      </Link>
+                      </button>
                     </td>
                     <td className="px-2 font-normal text-center">
                       {rowData.sisaTagihan}
@@ -232,7 +240,10 @@ const LaporanPesanan = () => {
                       <button
                         className="cursor-pointer"
                         value="Delete"
-                        onClick={() => handleDeleteItem(index)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteItem(index);
+                        }}
                       >
                         <FontAwesomeIcon
                           icon={faTrash}
@@ -290,6 +301,7 @@ const LaporanPesanan = () => {
           </div>
         </div>
       </div>
+      {isViewOpen && <ViewBukti/>}
     </div>
   );
 };

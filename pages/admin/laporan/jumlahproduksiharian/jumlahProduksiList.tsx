@@ -3,6 +3,8 @@ import { IProduksiHarian, PageEnum } from "./jumlahProduksi.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { format } from "date-fns";
+import Link from "next/link";
+import editJumlahProduksi from "./editJumlahProduksi";
 
 type JumlahProduksiProps = {
   list: IProduksiHarian[];
@@ -68,16 +70,16 @@ const jphList: React.FC<JumlahProduksiProps> = (props) => {
                       icon={faTrash}
                     />
                   </button>
-                  <button
+                  <Link
+                    href={"/admin/laporan/jumlahproduksiharian/editJumlahProduksi"}
                     className="cursor-pointer"
-                    value={"Edit"}
-                    onClick={() => onEdit(data)}
+                    // onClick={() => onEdit(data)}
                   >
                     <FontAwesomeIcon
                       className="text-md ml-2 text-lime-400"
                       icon={faEdit}
                     />
-                  </button>
+                  </Link>
                 </td>
               )}
             </tr>
