@@ -69,7 +69,7 @@ const LaporanPesanan = () => {
   );
   
   const [ isViewOpen, setIsViewOpen ] = useState(false);
-  const [selectedViewData, setSelectedViewData] = useState(null);
+  const [selectedViewData, setSelectedViewData] = useState<string | null>(null);
 
   const handleRowClick = (rowData: ILaporanPesanan, target: string) => {
     if (target === "row"){
@@ -128,7 +128,9 @@ const LaporanPesanan = () => {
             </div>
           </div>
 
-          <div className={`w-full bg-blue-100 ${styles.text} flex flex-row p-3 gap-6 justify-center items-center mt-2`}>
+          <div
+            className={`w-full bg-blue-100 ${styles.text} flex flex-row p-3 gap-6 justify-center items-center mt-2`}
+          >
             <div className="w-1/3">
               <div className="justify-between flex flex-row">
                 <p>Pembayaran Cash :</p>
@@ -202,29 +204,24 @@ const LaporanPesanan = () => {
                     <td className="px-2 py-0.5 justify-start">
                       {"00" + (index + 1)}
                     </td>
-                    <td className="px-1 text-center">
-                      {rowData.tanggal}
-                    </td>
+                    <td className="px-1 text-center">{rowData.tanggal}</td>
                     <td className="px-2">{rowData.namaCust}</td>
                     <td className="px-2">{rowData.noHpCust}</td>
-                    <td className="px-2 text-right">
-                      {rowData.total}
-                    </td>
+                    <td className="px-2 text-right">{rowData.total}</td>
                     <td className="px-2">{rowData.tglBayar}</td>
-                    <td className="px-2 text-center">
-                      {rowData.tipeBayar}
-                    </td>
+                    <td className="px-2 text-center">{rowData.tipeBayar}</td>
                     <td className="px-2 text-center">
                       <button
                         className="border-b border-blue-600 text-blue-600 hover:text-blue-800 hover:border-blue-800"
-                        onClick={() => handleRowClick(rowData, "view")}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleRowClick(rowData, "view");
+                        }}
                       >
                         {rowData.bukti}
                       </button>
                     </td>
-                    <td className="px-2 text-center">
-                      {rowData.sisaTagihan}
-                    </td>
+                    <td className="px-2 text-center">{rowData.sisaTagihan}</td>
                     <td className="px-2 text-center">
                       <p
                         className={`py-0.5 px-2 rounded-md justify-center items-center ${
@@ -261,14 +258,14 @@ const LaporanPesanan = () => {
             <a className="text-neutral-400">
               Menampilkan halaman ke {currentPage} dari {totalPages}
             </a>
-            <div className="flex flex-row">
+            <div className={`flex flex-row ${styles.text}`}>
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
                 className={
                   currentPage === 1
-                    ? "disabled bg-white h-[30px] w-[30px] text-sm"
-                    : "active bg-white h-[30px] w-[30px] text-sm hover:bg-blue-500 hover:text-white"
+                    ? "disabled bg-white h-[30px] w-[30px]"
+                    : "active bg-white h-[30px] w-[30px] hover:bg-blue-500 hover:text-white"
                 }
               >
                 <FontAwesomeIcon icon={faChevronLeft} />
@@ -279,8 +276,8 @@ const LaporanPesanan = () => {
                   onClick={() => handlePageChange(firstPage + index)}
                   className={
                     firstPage + index === currentPage
-                      ? "active bg-blue-500 text-white w-[30px] h-[30px] text-sm font-bold"
-                      : "bg-white w-[30px] h-[30px] text-sm text-center hover:bg-blue-500 hover:text-white"
+                      ? "active bg-blue-500 text-white w-[30px] h-[30px] font-bold"
+                      : "bg-white w-[30px] h-[30px] text-center hover:bg-blue-500 hover:text-white"
                   }
                 >
                   {firstPage + index}
@@ -301,7 +298,7 @@ const LaporanPesanan = () => {
           </div>
         </div>
       </div>
-      {isViewOpen && <ViewBukti file = {selectedViewData} />}
+      {isViewOpen && <ViewBukti file={selectedViewData} />}
     </div>
   );
 };
