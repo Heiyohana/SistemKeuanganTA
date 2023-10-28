@@ -2,7 +2,7 @@ import React from 'react';
 import { dummyLaporanPesanan } from '@/pages/admin/laporan/laporanpesanan/laporanPesanan.type';
 
 // { noNota, onClose }
-const index = () => {
+const index = ( {file } ) => {
   // const laporanData = dummyLaporanPesanan.find((data) => data.noNota === noNota);
   return (
     // Menampilkan data file yang ada pada laporanPesanan.type.tsx dalam bentuk modal ketika view pada halaman laporan pesanan diklik
@@ -10,7 +10,7 @@ const index = () => {
         <div className='w-[200] flex flex-col bg-neutral-50 p-7 rounded-md items-center justify-center'>
           {/* Image */}
           {/* Menampilkan gambar sesuai dengan file yang ada dalam laporanpesanan.type */}
-          <img src="" alt="" />
+          <img src={file} alt="Bukti" />
         </div>
     </div>
   )

@@ -1,0 +1,47 @@
+.h1 {
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.h3 {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.button {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.thead {
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.tdtable {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.text {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    font-style: normal;
+    line-height: normal;
+}

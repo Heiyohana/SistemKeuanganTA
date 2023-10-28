@@ -10,7 +10,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { ILaporanPesanan, dummyLaporanPesanan } from "./laporanPesanan.type";
 import { useRouter } from "next/router";
-import ViewBukti from "@/pages/components/viewbukti"
+import ViewBukti from "@/pages/components/viewbukti";
+import styles from "./laporanpesanan.module.css";
 
 // const orderretail = () => {
 const LaporanPesanan = () => {
@@ -66,6 +67,9 @@ const LaporanPesanan = () => {
   const [selectedData, setSelectedData] = useState<ILaporanPesanan | null>(
     null
   );
+  
+  const [ isViewOpen, setIsViewOpen ] = useState(false);
+  const [selectedViewData, setSelectedViewData] = useState(null);
 
   const handleRowClick = (rowData: ILaporanPesanan, target: string) => {
     if (target === "row"){
@@ -74,14 +78,11 @@ const LaporanPesanan = () => {
         pathname: "../laporan/laporanpesanan/rekapPesanan",
         query: { data: JSON.stringify(rowData)},
       });
+    } else if (target === "view"){
+      setSelectedViewData(rowData.file);
+      setIsViewOpen(true);
     }
   };
-
-  const [ isViewOpen, setIsViewOpen ] = useState(false);
-
-  const handleview = () => {
-    setIsViewOpen(true);
-  }
 
   return (
     <div className="relative flex h-full">
@@ -94,19 +95,19 @@ const LaporanPesanan = () => {
 
         {/* Kanan */}
         <div className="flex-grow right-0 justify-end p-5 bg-neutral-100">
-          <div className="w-full flex flex-row justify-between">
+          <div className="w-full flex flex-row justify-between m-0">
             <div className="flex flex-col">
-              <h1 className="title font-bold text-2xl">Laporan Pesanan</h1>
-              <h3 className="text-base pb-2">Laporan</h3>
+              <h1 className={`${styles.h1}`}>Laporan Pesanan</h1>
+              <h3 className={`${styles.h3}`}>Laporan</h3>
             </div>
-            <div>
+            <div className={`${styles.text}`}>
               {/* Input Cari (hanya bisa mencari data customer / nohp) */}
               <input
                 type="text"
                 placeholder="Cari"
                 value={searchText}
                 onChange={handleSearchTextChange}
-                className="rounded-lg bg-white p-2 mr-2 mb-2 cursor-pointer w-1/4"
+                className="rounded-lg bg-white p-2 mr-3 mb-2 cursor-pointer w-1/3"
               />
 
               {/* Filter Tanggal Order */}
@@ -120,15 +121,14 @@ const LaporanPesanan = () => {
               {/* Button Export Data */}
               <Link
                 href="../laporan/laporanpesanan/exportData"
-                className="rounded-lg text-white bg-blue-500 px-4 py-2 mb-2
-              cursor-pointer"
+                className="rounded-lg text-white bg-blue-500 px-4 py-2 mb-2 cursor-pointer"
               >
                 Export to PDF
               </Link>
             </div>
           </div>
 
-          <div className="w-full bg-blue-100 text-sm flex flex-row p-3 gap-6 justify-center items-center">
+          <div className={`w-full bg-blue-100 ${styles.text} flex flex-row p-3 gap-6 justify-center items-center mt-2`}>
             <div className="w-1/3">
               <div className="justify-between flex flex-row">
                 <p>Pembayaran Cash :</p>
@@ -174,60 +174,60 @@ const LaporanPesanan = () => {
               </div>
             </div>
           </div>
-          <div className="text-sm w-full mt-2">
+          <div className={`${styles.text} w-full mt-2`}>
             <table className="text-left border-2 border-blue-500 w-full">
               <thead className="bg-blue-500 items-center text-white">
-                <tr className="font-medium py-1">
-                  <th className="px-1 font-medium">No</th>
-                  <th className="px-2 font-medium">Tgl Order</th>
-                  <th className="px-2 font-medium">Nama Customer</th>
-                  <th className="px-2 font-medium">No HP</th>
-                  <th className="px-2 font-medium text-center">Total</th>
-                  <th className="px-2 font-medium">Tgl Bayar</th>
-                  <th className="px-2 font-medium">Tipe Bayar</th>
-                  <th className="px-2 font-medium">Bukti</th>
-                  <th className="px-2 font-medium text-center">Sisa Tag.</th>
-                  <th className="px-2 font-medium text-center">Status</th>
-                  <th className="px-2 font-medium">Aksi</th>
+                <tr className={`${styles.thead} py-1`}>
+                  <th className="px-1">No</th>
+                  <th className="px-2">Tgl Order</th>
+                  <th className="px-2">Nama Customer</th>
+                  <th className="px-2">No HP</th>
+                  <th className="px-2 text-center">Total</th>
+                  <th className="px-2">Tgl Bayar</th>
+                  <th className="px-2">Tipe Bayar</th>
+                  <th className="px-2">Bukti</th>
+                  <th className="px-2 text-center">Sisa Tag.</th>
+                  <th className="px-2 text-center">Status</th>
+                  <th className="px-2">Aksi</th>
                 </tr>
               </thead>
               <tbody className="bg-white text-left">
                 {itemsToShow.map((rowData: ILaporanPesanan, index: number) => (
                   <tr
-                    className="hover:bg-blue-100 p-3 border-blue-200 border table-auto cursor-pointer"
+                    className={`hover:bg-blue-100 p-3 border-blue-200 border table-auto cursor-pointer ${styles.tdtable}`}
                     key={index}
                     // ketika diklik akan link to rekappesanan dan data setiap baris akan ditampilkan di halaman rekap pesanan
                     onClick={() => handleRowClick(rowData, "row")}
                   >
-                    <td className="px-2 py-0.5 justify-start font-normal">
+                    <td className="px-2 py-0.5 justify-start">
                       {"00" + (index + 1)}
                     </td>
-                    <td className="px-1 font-normal text-center">
+                    <td className="px-1 text-center">
                       {rowData.tanggal}
                     </td>
-                    <td className="px-2 font-normal">{rowData.namaCust}</td>
-                    <td className="px-2 font-normal">{rowData.noHpCust}</td>
-                    <td className="px-2 font-normal text-right">
+                    <td className="px-2">{rowData.namaCust}</td>
+                    <td className="px-2">{rowData.noHpCust}</td>
+                    <td className="px-2 text-right">
                       {rowData.total}
                     </td>
-                    <td className="px-2 font-normal">{rowData.tglBayar}</td>
-                    <td className="px-2 font-normal text-center">
+                    <td className="px-2">{rowData.tglBayar}</td>
+                    <td className="px-2 text-center">
                       {rowData.tipeBayar}
                     </td>
-                    <td className="px-2 font-normal text-center">
+                    <td className="px-2 text-center">
                       <button
                         className="border-b border-blue-600 text-blue-600 hover:text-blue-800 hover:border-blue-800"
-                        onClick={handleview}
+                        onClick={() => handleRowClick(rowData, "view")}
                       >
                         {rowData.bukti}
                       </button>
                     </td>
-                    <td className="px-2 font-normal text-center">
+                    <td className="px-2 text-center">
                       {rowData.sisaTagihan}
                     </td>
-                    <td className="px-2 font-normal text-center">
+                    <td className="px-2 text-center">
                       <p
-                        className={`py-0.5 px-2 rounded-md justify-center items-center text-sm ${
+                        className={`py-0.5 px-2 rounded-md justify-center items-center ${
                           rowData.status === "lunas"
                             ? "bg-lime-200"
                             : "bg-pink-200"
@@ -301,7 +301,7 @@ const LaporanPesanan = () => {
           </div>
         </div>
       </div>
-      {isViewOpen && <ViewBukti/>}
+      {isViewOpen && <ViewBukti file = {selectedViewData} />}
     </div>
   );
 };
