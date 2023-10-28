@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react'
 import { ILaporanPesanan } from './laporanPesanan.type';
+import styles from "./laporanpesanan.module.css";
 
 const invoice = () => {
     const router = useRouter();
@@ -21,42 +22,42 @@ const invoice = () => {
       <Kop />
 
       <div className="px-10 py-4 ">
-        <h1 className="text-center">INVOICE PESANAN</h1>
+        <h1 className={`text-center ${styles.h1ExportPage}`}>INVOICE PESANAN</h1>
 
-        <div className="font-bold border-b border-black pr-10 mb-2 w-1/3">
+        <div className={`${styles.section} border-b border-black pr-10 mb-2 w-1/3`}>
           Informasi Pesanan
         </div>
         <div className="flex flex-row w-full gap-8">
           {/* section kiri: informasi nota */}
           <div className="w-1/3">
-            <div className="w-full text-sm justify-between flex flex-row items-center">
+            <div className={`w-full justify-between flex flex-row items-center ${styles.label}`}>
               <span className="flex">No Nota</span>
               <p>Indormasi Data</p>
             </div>
-            <div className="w-full text-sm justify-between flex flex-row items-center">
+            <div className={`w-full justify-between flex flex-row items-center ${styles.label}`}>
               <span className="flex">Tanggal</span>
               <p>Indormasi Data</p>
             </div>
-            <div className="w-full text-sm justify-between flex flex-row items-center">
+            <div className={`w-full justify-between flex flex-row items-center ${styles.label}`}>
               <span className="flex">CS Desk</span>
               <p>Indormasi Data</p>
             </div>
-            <div className="w-full text-sm justify-between flex flex-row items-center">
+            <div className={`w-full justify-between flex flex-row items-center ${styles.label}`}>
               <span className="flex">Tanggal Dibayar</span>
               <p>Indormasi Data</p>
             </div>
           </div>
           {/* kanan section: Informasi Pemesan */}
           <div className="w-1/3">
-            <div className="w-full text-sm justify-between flex flex-row items-center">
+            <div className={`w-full justify-between flex flex-row items-center ${styles.label}`}>
               <span className="flex">Nama Customer :</span>
               <p>Indormasi Data</p>
             </div>
-            <div className="w-full text-sm justify-between flex flex-row items-center">
+            <div className={`w-full justify-between flex flex-row items-center ${styles.label}`}>
               <span className="flex">No HP :</span>
               <p>Indormasi Data</p>
             </div>
-            <div className="w-full text-sm justify-between flex flex-row items-center">
+            <div className={`w-full justify-between flex flex-row items-center ${styles.label}`}>
               <span className="flex">Alamat Pengiriman :</span>
               <p>Indormasi Data</p>
             </div>
@@ -69,7 +70,7 @@ const invoice = () => {
 
         <table className="w-full border border-gray-300 mb-2">
           <thead className="bg-gray-200 items-center text-gray-800 border-gray-400 border-b-2 border-t-2 h-9">
-            <tr className="font-regular py-1">
+            <tr className={`py-1 ${styles.thead}`}>
               <th className="px-2">No.</th>
               <th className="px-4">Kategori</th>
               <th className="px-4">Nama Produk</th>
@@ -81,7 +82,7 @@ const invoice = () => {
           </thead>
           <tbody>
             {/* data berdasarkan rekap pesanan yang dipilih dari halaman laporan pesanan */}
-            <tr className="font-regular py-1">
+            <tr className={`py-1 ${styles.tdtable}`}>
               <td className="px-2">1</td>
               <td className="px-4">Materials</td>
               <td className="px-4">Paving Cacing 6 cm</td>
@@ -90,7 +91,7 @@ const invoice = () => {
               <td className="px-4">80.000</td>
               <td className="px-4">10.256.000</td>
             </tr>
-            <tr className="font-regular py-1">
+            <tr className={`py-1 ${styles.tdtable}`}>
               <td className="px-2">2</td>
               <td className="px-4">Layanan</td>
               <td className="px-4">Jasa Pasang</td>
@@ -99,7 +100,7 @@ const invoice = () => {
               <td className="px-4">25.000</td>
               <td className="px-4">3.205.000</td>
             </tr>
-            <tr className="font-regular py-1">
+            <tr className={`py-1 ${styles.tdtable}`}>
               <td className="px-2">3</td>
               <td className="px-4">Layanan</td>
               <td className="px-4">Jasa Pengiriman</td>

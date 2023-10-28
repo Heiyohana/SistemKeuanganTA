@@ -45,3 +45,19 @@
     font-style: normal;
     line-height: normal;
 }
+
+.h1ExportPage {
+    font-family: Poppins, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.section {
+    font-family: Poppins, sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}

@@ -5,6 +5,7 @@ import { faChevronLeft, faChevronRight, faEdit, faTrash } from "@fortawesome/fre
 import { format } from "date-fns";
 import Link from "next/link";
 import editJumlahProduksi from "./editJumlahProduksi";
+import styles from "./jumlahproduksiharian.module.css";
 
 type JumlahProduksiProps = {
   list: IProduksiHarian[];

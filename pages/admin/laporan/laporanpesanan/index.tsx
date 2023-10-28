@@ -84,6 +84,10 @@ const LaporanPesanan = () => {
     }
   };
 
+  const closeViewModal = () => {
+    setIsViewOpen(false);
+  }
+
   return (
     <div className="relative flex h-full">
       <Head>
@@ -298,7 +302,7 @@ const LaporanPesanan = () => {
           </div>
         </div>
       </div>
-      {isViewOpen && <ViewBukti file={selectedViewData} />}
+      {isViewOpen && <ViewBukti file={selectedViewData} onCloseModal={closeViewModal}/>}
     </div>
   );
 };

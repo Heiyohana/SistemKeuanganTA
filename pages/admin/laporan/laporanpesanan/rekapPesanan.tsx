@@ -7,6 +7,7 @@ import { ILaporanPesanan } from "./laporanPesanan.type";
 import Image from "next/image";
 import buktiTF from "@/assets/elements/buktitf.jpg";
 import BayarTagihan from "./bayarTagihan";
+import styles from "./laporanpesanan.module.css";
 
 const RekapPesanan: React.FC = () => {
   const router = useRouter();
@@ -46,14 +47,14 @@ const RekapPesanan: React.FC = () => {
         <div className="flex-grow right-0 justify-end p-5 bg-neutral-100">
           <div className="w-full flex flex-row justify-between pb-5">
             <div className="flex flex-col">
-              <h1 className="title font-bold text-2xl">Rekap Pesanan</h1>
-              <h3 className="text-base">Laporan</h3>
+              <h1 className={`${styles.h1}`}>Rekap Pesanan</h1>
+              <h3 className={`${styles.h3}`}>Laporan</h3>
             </div>
 
             {/* button */}
             <div>
               <button
-                className="px-4 py-2 mr-2 mb-2 cursor-pointer bg-red-500 text-white rounded-md"
+                className={`px-4 py-2 mr-2 mb-2 cursor-pointer bg-red-500 text-white rounded-md ${styles.button}`}
                 onClick={openFormBayarModal}
               >
                 Bayar Tagihan
@@ -62,7 +63,7 @@ const RekapPesanan: React.FC = () => {
               {/* Button Export Data */}
               <Link
                 href={"../laporanpesanan/invoice"}
-                className="rounded-md bg-white border-2 border-blue-500 text-blue-500 px-4 py-2 mb-2 cursor-pointer"
+                className={`${styles.button} rounded-md bg-white border-2 border-blue-500 text-blue-500 px-4 py-2 mb-2 cursor-pointer`}
               >
                 Cetak Invoice
               </Link>
@@ -73,13 +74,17 @@ const RekapPesanan: React.FC = () => {
           <div className="bg-white rounded-md w-full">
             {/* Informasi Pesanan */}
             <div className="w-full p-3">
-              <div className="font-bold border-b border-black pr-10 mb-2 w-1/3">
+              <div
+                className={`${styles.button} border-b border-black pr-10 mb-2 w-1/3`}
+              >
                 Informasi Pesanan
               </div>
               <div className="flex flex-row w-full gap-8">
                 {/* section kiri: informasi nota */}
                 <div className="w-1/3">
-                  <div className="w-full text-sm justify-between flex flex-row items-center">
+                  <div
+                    className={`w-full justify-between flex flex-row items-center ${styles.label}`}
+                  >
                     <span className="flex">No Nota</span>
                     <input
                       type="text"
@@ -88,7 +93,9 @@ const RekapPesanan: React.FC = () => {
                       disabled
                     />
                   </div>
-                  <div className="w-full text-sm justify-between flex flex-row items-center">
+                  <div
+                    className={`w-full justify-between flex flex-row items-center ${styles.label}`}
+                  >
                     <span className="flex">Tanggal</span>
                     <input
                       type="text"
@@ -97,7 +104,9 @@ const RekapPesanan: React.FC = () => {
                       disabled
                     />
                   </div>
-                  <div className="w-full text-sm justify-between flex flex-row items-center">
+                  <div
+                    className={`w-full justify-between flex flex-row items-center ${styles.label}`}
+                  >
                     <span className="flex">CS Desk</span>
                     <input
                       type="text"
@@ -106,7 +115,9 @@ const RekapPesanan: React.FC = () => {
                       disabled
                     />
                   </div>
-                  <div className="w-full text-sm justify-between flex flex-row items-center">
+                  <div
+                    className={`w-full justify-between flex flex-row items-center ${styles.label}`}
+                  >
                     <span className="flex">Tanggal Dibayar</span>
                     <input
                       type="text"
@@ -118,7 +129,9 @@ const RekapPesanan: React.FC = () => {
                 </div>
                 {/* kanan section: Informasi Pemesan */}
                 <div className="w-1/3">
-                  <div className="w-full text-sm justify-between flex flex-row items-center">
+                  <div
+                    className={`w-full justify-between flex flex-row items-center ${styles.label}`}
+                  >
                     <span className="flex">Nama Customer :</span>
                     <input
                       type="text"
@@ -127,7 +140,7 @@ const RekapPesanan: React.FC = () => {
                       disabled
                     />
                   </div>
-                  <div className="w-full text-sm justify-between flex flex-row items-center">
+                  <div className={`w-full justify-between flex flex-row items-center ${styles.label}`}>
                     <span className="flex">No HP :</span>
                     <input
                       type="text"
@@ -136,7 +149,7 @@ const RekapPesanan: React.FC = () => {
                       disabled
                     />
                   </div>
-                  <div className="w-full text-sm justify-between flex flex-row items-center">
+                  <div className={`w-full justify-between flex flex-row items-center ${styles.label}`}>
                     <span className="flex">Alamat Pengiriman :</span>
                     <input
                       type="text"
@@ -148,7 +161,7 @@ const RekapPesanan: React.FC = () => {
                 </div>
               </div>
               {/* Isi Detail Pesanan */}
-              <div className="font-bold border-b border-black pr-10 mb-2 w-1/3">
+              <div className={`${styles.section} border-b border-black pr-10 mb-2 w-1/3`}>
                 Detail Pesanan
               </div>
               <div className="w-full rounded-lg py-2 bg-blue-100 p-3 font-bold text-blue-900 mb-3">

@@ -13,15 +13,15 @@ const exportDataPage: React.FC = () => {
 
       <Kop />
 
-      <h1 className={`text-center ${styles.h1ExportPage}`}>
+      <h1 className={`text-center mt-3 ${styles.h1ExportPage}`}>
         Data Laporan Pesanan
       </h1>
 
       <div className="px-10 pt-2">
         {/* Tabel data arus kas */}
-        <table className="w-full text-left border-2 border-gray-800 text-sm mt-2">
+        <table className="w-full text-left border-2 border-gray-800 mt-2">
           <thead className="items-center text-black">
-            <tr className="font-bold">
+            <tr className={`${styles.thead}`}>
               <th className="px-1 py-2">No</th>
               <th className="px-2 py-2 text-center">Tgl Order</th>
               <th className="px-2 py-2">Nama Customer</th>
@@ -39,30 +39,30 @@ const exportDataPage: React.FC = () => {
             {dummyLaporanPesanan.map((data: ILaporanPesanan, index: number) => {
               return (
                 <tr
-                  className="p-3 border-gray-800 border table-auto"
+                  className={`p-3 border-gray-800 border table-auto ${styles.tdtable}`}
                   key={index}
                 >
-                  <td className="px-1 py-0.5 justify-start font-normal">
+                  <td className="px-1 py-0.5 justify-start">
                     {"00" + (index + 1)}
                   </td>
-                  <td className="px-1 font-normal text-center">
+                  <td className="px-1 text-center">
                     {data.tanggal}
                   </td>
-                  <td className="px-2 font-normal">{data.namaCust}</td>
-                  <td className="px-2 font-normal">{data.noHpCust}</td>
-                  <td className="px-2 font-normal text-right">{data.total}</td>
-                  <td className="px-2 font-normal">{data.tglBayar}</td>
-                  <td className="px-2 font-normal text-center">
+                  <td className="px-2">{data.namaCust}</td>
+                  <td className="px-2">{data.noHpCust}</td>
+                  <td className="px-2 text-right">{data.total}</td>
+                  <td className="px-2">{data.tglBayar}</td>
+                  <td className="px-2 text-center">
                     {data.tipeBayar}
                   </td>
-                  <td className="px-2 font-normal text-center">
+                  <td className="px-2 text-center">
                     {data.csDesk}
                   </td>
-                  <td className="px-2 font-normal text-center">
+                  <td className="px-2 text-center">
                     {data.sisaTagihan}
                   </td>
-                  <td className="px-2 font-normal text-center">
-                    <p className="py-0.5 px-2 rounded-md justify-center items-center text-sm">
+                  <td className="px-2 text-center">
+                    <p className="py-0.5 px-2 rounded-md justify-center items-center">
                       {data.status}
                     </p>
                   </td>
