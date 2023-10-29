@@ -75,7 +75,7 @@ const RekapPesanan: React.FC = () => {
             {/* Informasi Pesanan */}
             <div className="w-full p-3">
               <div
-                className={`${styles.button} border-b border-black pr-10 mb-2 w-1/3`}
+                className={`${styles.section} border-b border-black pr-10 mb-2 w-1/3`}
               >
                 Informasi Pesanan
               </div>
@@ -83,7 +83,7 @@ const RekapPesanan: React.FC = () => {
                 {/* section kiri: informasi nota */}
                 <div className="w-1/3">
                   <div
-                    className={`w-full justify-between flex flex-row items-center ${styles.label}`}
+                    className={`w-full justify-between flex flex-row items-center ${styles.text}`}
                   >
                     <span className="flex">No Nota</span>
                     <input
@@ -94,7 +94,7 @@ const RekapPesanan: React.FC = () => {
                     />
                   </div>
                   <div
-                    className={`w-full justify-between flex flex-row items-center ${styles.label}`}
+                    className={`w-full justify-between flex flex-row items-center ${styles.text}`}
                   >
                     <span className="flex">Tanggal</span>
                     <input
@@ -105,7 +105,7 @@ const RekapPesanan: React.FC = () => {
                     />
                   </div>
                   <div
-                    className={`w-full justify-between flex flex-row items-center ${styles.label}`}
+                    className={`w-full justify-between flex flex-row items-center ${styles.text}`}
                   >
                     <span className="flex">CS Desk</span>
                     <input
@@ -116,7 +116,7 @@ const RekapPesanan: React.FC = () => {
                     />
                   </div>
                   <div
-                    className={`w-full justify-between flex flex-row items-center ${styles.label}`}
+                    className={`w-full justify-between flex flex-row items-center ${styles.text}`}
                   >
                     <span className="flex">Tanggal Dibayar</span>
                     <input
@@ -130,18 +130,20 @@ const RekapPesanan: React.FC = () => {
                 {/* kanan section: Informasi Pemesan */}
                 <div className="w-1/3">
                   <div
-                    className={`w-full justify-between flex flex-row items-center ${styles.label}`}
+                    className={`w-full justify-between flex flex-row items-center ${styles.text}`}
                   >
-                    <span className="flex">Nama Customer :</span>
+                    <span className="flex">Nama Customer</span>
                     <input
                       type="text"
-                      value={selectedData ? selectedData.namaCust : ""}
+                      value={selectedData ? selectedData.namaCust : ": "}
                       className="bg-white py-1"
                       disabled
                     />
                   </div>
-                  <div className={`w-full justify-between flex flex-row items-center ${styles.label}`}>
-                    <span className="flex">No HP :</span>
+                  <div
+                    className={`w-full justify-between flex flex-row items-center ${styles.text}`}
+                  >
+                    <span className="flex">No HP</span>
                     <input
                       type="text"
                       value={selectedData ? selectedData.noHpCust : ""}
@@ -149,8 +151,10 @@ const RekapPesanan: React.FC = () => {
                       disabled
                     />
                   </div>
-                  <div className={`w-full justify-between flex flex-row items-center ${styles.label}`}>
-                    <span className="flex">Alamat Pengiriman :</span>
+                  <div
+                    className={`w-full justify-between flex flex-row items-center ${styles.text}`}
+                  >
+                    <span className="flex">Alamat Pengiriman</span>
                     <input
                       type="text"
                       value={selectedData ? selectedData.alamatCust : ""}
@@ -161,65 +165,75 @@ const RekapPesanan: React.FC = () => {
                 </div>
               </div>
               {/* Isi Detail Pesanan */}
-              <div className={`${styles.section} border-b border-black pr-10 mb-2 w-1/3`}>
+              <div
+                className={`${styles.section} border-b border-black pr-10 mb-2 w-1/3 ${styles.section}`}
+              >
                 Detail Pesanan
               </div>
-              <div className="w-full rounded-lg py-2 bg-blue-100 p-3 font-bold text-blue-900 mb-3">
+              <div
+                className={`w-full rounded-lg py-2 bg-blue-100 p-3 text-blue-900 mb-3 ${styles.total}`}
+              >
                 15.385.000
               </div>
 
               {/* Tabel pesanan */}
               <table className="w-full border border-gray-300 mb-2">
-                <thead className="bg-gray-200 items-center text-gray-800 border-gray-400 border-b-2 border-t-2 h-9">
-                  <tr className="font-regular py-1">
+                <thead
+                  className={`bg-gray-200 text-gray-800 border-gray-400 border-b-2 border-t-2 h-9 ${styles.thead}`}
+                >
+                  <tr className="py-1">
                     <th className="px-2">No.</th>
-                    <th className="px-4">Kategori</th>
-                    <th className="px-4">Nama Produk</th>
+                    <th className="px-5 text-left">Kategori</th>
+                    <th className="px-6 text-left">Nama Produk</th>
                     <th className="px-4">Jumlah</th>
                     <th className="px-4">Luas</th>
-                    <th className="px-4">Harga Produk</th>
-                    <th className="px-4">Total Biaya</th>
+                    <th className="px-8 text-right">Harga Produk</th>
+                    <th className="px-6 text-right">Total Biaya</th>
                   </tr>
                 </thead>
                 <tbody>
                   {/* data berdasarkan rekap pesanan yang dipilih dari halaman laporan pesanan */}
-                  <tr className="font-regular py-1">
-                    <td className="px-2">1</td>
-                    <td className="px-4">Materials</td>
-                    <td className="px-4">Paving Cacing 6 cm</td>
-                    <td className="px-4">5000</td>
-                    <td className="px-4">128</td>
-                    <td className="px-4">80.000</td>
-                    <td className="px-4">10.256.000</td>
+                  <tr className={`py-1 ${styles.tdtable}`}>
+                    <td className="px-4 text-center">1</td>
+                    <td className="px-5">Materials</td>
+                    <td className="px-6">Paving Cacing 6 cm</td>
+                    <td className="px-7 text-center">5000</td>
+                    <td className="px-9 text-center">128</td>
+                    <td className="px-8 text-right">80.000</td>
+                    <td className="px-6 text-right">10.256.000</td>
                   </tr>
-                  <tr className="font-regular py-1">
-                    <td className="px-2">2</td>
-                    <td className="px-4">Layanan</td>
-                    <td className="px-4">Jasa Pasang</td>
-                    <td className="px-4">128</td>
-                    <td className="px-4">128</td>
-                    <td className="px-4">25.000</td>
-                    <td className="px-4">3.205.000</td>
+                  <tr className={`py-1 ${styles.tdtable}`}>
+                    <td className="px-4 text-center">2</td>
+                    <td className="px-5">Layanan</td>
+                    <td className="px-6">Jasa Pasang</td>
+                    <td className="px-7 text-center">128</td>
+                    <td className="px-9 text-center">128</td>
+                    <td className="px-8 text-right">25.000</td>
+                    <td className="px-6 text-right">3.205.000</td>
                   </tr>
-                  <tr className="font-regular py-1">
-                    <td className="px-2">3</td>
-                    <td className="px-4">Layanan</td>
-                    <td className="px-4">Jasa Pengiriman</td>
-                    <td className="px-4">128</td>
-                    <td className="px-4">128</td>
-                    <td className="px-4">15.000</td>
-                    <td className="px-4">1.923.000</td>
+                  <tr className={`py-1 ${styles.tdtable}`}>
+                    <td className="px-4 text-center">3</td>
+                    <td className="px-5">Layanan</td>
+                    <td className="px-6">Jasa Pengiriman</td>
+                    <td className="px-7 text-center">128</td>
+                    <td className="px-9 text-center">128</td>
+                    <td className="px-8 text-right">15.000</td>
+                    <td className="px-6 text-right">1.923.000</td>
                   </tr>
                 </tbody>
               </table>
 
-              <div className="flex flex-row justify-between px-2">
+              <div
+                className={`flex flex-row justify-between px-2 ${styles.text}`}
+              >
                 <div className="flex flex-col w-1/3 gap-1">
                   <div>Catatan Transaksi : Tidak Ada</div>
                   <div>Metode Pembayaran : DP 2</div>
                   <div>Jenis Pembayaran : Transfer</div>
                   <div>
-                    <p className="border-b border-neutral-800">
+                    <p
+                      className={`border-b border-neutral-800 ${styles.section}`}
+                    >
                       Bukti Pembayaran
                     </p>
                     <Image
@@ -229,14 +243,16 @@ const RekapPesanan: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <p className="border-b border-neutral-800">
+                    <p
+                      className={`border-b border-neutral-800 ${styles.section}`}
+                    >
                       Status Transaksi
                     </p>
-                    <div className="flex flex-row gap-4 pt-1">
-                      <div className="py-0.5 px-2 rounded-md justify-center items-center text-sm bg-pink-300">
+                    <div className={`flex flex-row gap-4 pt-1 ${styles.text}`}>
+                      <div className="py-0.5 px-2 rounded-md justify-center items-center bg-pink-300">
                         belum lunas
                       </div>
-                      <div className="py-0.5 px-2 rounded-md justify-center items-center text-sm bg-gray-200">
+                      <div className="py-0.5 px-2 rounded-md justify-center items-center bg-gray-200">
                         lunas
                       </div>
                     </div>

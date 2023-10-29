@@ -258,7 +258,7 @@ const LaporanPesanan = () => {
             </table>
           </div>
           {/* Layout Pagination */}
-          <div className="items-center mt-3 flex justify-between">
+          <div className={`items-center mt-3 flex justify-between ${styles.text}`}>
             <a className="text-neutral-400">
               Menampilkan halaman ke {currentPage} dari {totalPages}
             </a>
@@ -292,8 +292,8 @@ const LaporanPesanan = () => {
                 disabled={currentPage === totalPages}
                 className={
                   currentPage === totalPages
-                    ? "disabled bg-white h-[30px] w-[30px] text-sm"
-                    : "active bg-white h-[30px] w-[30px] text-sm hover:bg-blue-500 hover:text-white"
+                    ? "disabled bg-white h-[30px] w-[30px]"
+                    : "active bg-white h-[30px] w-[30px] hover:bg-blue-500 hover:text-white"
                 }
               >
                 <FontAwesomeIcon icon={faChevronRight} />

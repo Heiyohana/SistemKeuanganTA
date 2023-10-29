@@ -9,6 +9,7 @@ import {
 } from "./jumlahProduksi.type";
 import EditJumlahProduksi from "./editJumlahProduksi";
 import { useReactToPrint } from "react-to-print";
+import styles from "./jumlahproduksiharian.module.css";
 
 const jumlahproduksiharian = () => {
   const [produksiList, setProduksiList] = useState(
@@ -17,10 +18,6 @@ const jumlahproduksiharian = () => {
 
   const [shownPage, setShownPage] = useState(PageEnum.list);
   const [dataToEdit, setDataToEdit] = useState(null as null | IProduksiHarian);
-
-  const showListPage = () => {
-    setShownPage(PageEnum.list);
-  };
 
   const deleteProduksi = (data: IProduksiHarian) => {
     //To index from array i,e produksiList
@@ -85,11 +82,11 @@ const jumlahproduksiharian = () => {
         <div className="flex flex-col justify-between w-full">
           {/* informasi Halaman */}
           <div className="flex flex-col m-1 pb-3">
-            <h1 className="title font-bold text-2xl">Jumlah Produksi Harian</h1>
-            <h3 className="text-base">Laporan</h3>
+            <h1 className={`${styles.h1}`}>Jumlah Produksi Harian</h1>
+            <h3 className={`${styles.h3}`}>Laporan</h3>
           </div>
           {/* Button */}
-          <div className="text-sm">
+          <div className={`${styles.button}`}>
             <select
               value={searchType}
               onChange={handleSearchTypeChange}
@@ -150,7 +147,7 @@ const jumlahproduksiharian = () => {
         </div>
 
         {shownPage === PageEnum.edit && (
-          <EditJumlahProduksi onKembaliBtnHnd={showListPage} />
+          <EditJumlahProduksi />
         )}
       </div>
     </div>
