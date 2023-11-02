@@ -5,7 +5,7 @@ import styles from "./jumlahproduksi.module.css";
 import { dummyProdukList } from "@/pages/admin/masterdata/produk/produk.type";
 import MSuccess from "@/pages/components/mSuccess";
 
-export default function orderretail() {
+export default function trans_jumlahproduksi() {
   const [tanggalOtomatis, setTanggalOtomatis] = useState("");
   useEffect(() => {
     const currentDate = new Date();
@@ -30,7 +30,7 @@ export default function orderretail() {
     setIsModalSuccessOpen(true);
     setTimeout(() => {
       setIsModalSuccessOpen(false);
-    }, 500)
+    }, 1000)
   };
 
   return (
@@ -52,7 +52,7 @@ export default function orderretail() {
         </div>
 
         {/* form pencatatan */}
-        <div className="px-4">
+        <form className="px-4">
           <div className={`pb-3 w-full flex flex-col`}>
             <span className={`${styles.label}`}>Tanggal</span>
             <input
@@ -108,7 +108,7 @@ export default function orderretail() {
               Simpan
             </button>
           </div>
-        </div>
+        </form>
         {isModalSuccessOpen && <MSuccess />}
       </div>
     </div>

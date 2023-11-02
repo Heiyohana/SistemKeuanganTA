@@ -24,7 +24,7 @@ const trans_aruskas = () => {
     setIsModalSuccessOpen(true);
     setTimeout(() => {
       setIsModalSuccessOpen(false);
-    }, 500);
+    }, 5000);
   };
 
   return (

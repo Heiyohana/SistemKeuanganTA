@@ -2,6 +2,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import NavSideBar from "@/pages/components/sidenavbar/staff";
 import styles from "./aruskas.module.css";
+import MSuccess from "@/pages/components/mSuccess";
 
 const trans_aruskas = () => {
   const [tanggalOtomatis, setTanggalOtomatis] = useState("");
@@ -16,6 +17,15 @@ const trans_aruskas = () => {
   const [keterangan, setKeterangan] = useState("");
   const [nominal, setNominal] = useState("");
   const [file, setFile] = useState("");
+
+  // Handle ModalSuccess
+  const [isModalSuccessOpen, setIsModalSuccessOpen] = useState(false);
+  const onModalSuccessClick = () => {
+    setIsModalSuccessOpen(true);
+    setTimeout(() => {
+      setIsModalSuccessOpen(false);
+    }, 5000);
+  };
 
   return (
     // halaman transaksi untuk order / pemesanan
@@ -108,13 +118,14 @@ const trans_aruskas = () => {
           {/* Button */}
           <div className="flex justify-end">
             <button
-              type="submit"
-              className={`bg-blue-600 h-8 rounded-md text-white font-semibold px-2 py-1 hover:shadow-md ${styles.button}`}
+              onClick={onModalSuccessClick}
+              className={`bg-blue-600 h-8 rounded-md text-white px-2 py-1 hover:shadow-md ${styles.button}`}
             >
               Simpan Data
             </button>
           </div>
         </form>
+        {isModalSuccessOpen && <MSuccess />}
       </div>
     </div>
   );

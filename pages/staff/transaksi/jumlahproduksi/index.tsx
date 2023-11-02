@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import NavSideBar from "@/pages/components/sidenavbar/staff";
 import styles from "./jumlahproduksi.module.css";
 import { dummyProdukList } from "@/pages/admin/masterdata/produk/produk.type";
+import MSuccess from "@/pages/components/mSuccess";
 
-export default function orderretail() {
+export default function trans_jumlahproduksi() {
   const [tanggalOtomatis, setTanggalOtomatis] = useState("");
   useEffect(() => {
     const currentDate = new Date();
@@ -13,15 +14,24 @@ export default function orderretail() {
   }, []);
 
   const [selectedProduk, setSelectedProduk] = useState("");
-  
+
   const produkOptions = "Materials"
     ? dummyProdukList.filter((produk) => produk.kategori === "Materials")
     : dummyProdukList;
 
-    const handleProdukChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const newProduk = e.target.value;
-      setSelectedProduk(newProduk);
-    };
+  const handleProdukChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newProduk = e.target.value;
+    setSelectedProduk(newProduk);
+  };
+
+  // Handle ModalSuccess
+  const [isModalSuccessOpen, setIsModalSuccessOpen] = useState(false);
+  const onModalSuccessClick = () => {
+    setIsModalSuccessOpen(true);
+    setTimeout(() => {
+      setIsModalSuccessOpen(false);
+    }, 1000);
+  };
 
   return (
     // halaman transaksi untuk order / pemesanan
@@ -42,7 +52,7 @@ export default function orderretail() {
         </div>
 
         {/* form pencatatan */}
-        <div className="px-4">
+        <form className="px-4">
           <div className={`pb-3 w-full flex flex-col`}>
             <span className={`${styles.label}`}>Tanggal</span>
             <input
@@ -92,12 +102,14 @@ export default function orderretail() {
           {/* Button */}
           <div className="pb-5 w-full justify-end flex">
             <button
+              onClick={onModalSuccessClick}
               className={`bg-blue-600 w-20 h-8 rounded-md text-white ${styles.button}`}
             >
-              Bayar
+              Simpan
             </button>
           </div>
-        </div>
+        </form>
+        {isModalSuccessOpen && <MSuccess />}
       </div>
     </div>
   );

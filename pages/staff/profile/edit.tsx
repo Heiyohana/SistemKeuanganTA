@@ -168,7 +168,7 @@ const EditProfile = () => {
                   onClick={onModalSuccessClick}
                   className={`bg-blue-500 rounded-md p-2 w-[80px] text-white ${styles.button}`}
                 >
-                  Save
+                  Simpan
                 </button>
               </div>
             </form>

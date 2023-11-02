@@ -219,7 +219,7 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
 
         <div className="justify-end flex mt-3">
           <Link
-          href={"../transaksi/orderretail/pembayaranRekap"}
+          href={"../transaksi/pemesanan/pembayaranRekap"}
             className={`bg-blue-600 w-20 h-8 rounded-md text-white ${styles.button} items-center justify-center flex`}
           >
             Lanjut

@@ -253,7 +253,7 @@ const RekapPesanan: React.FC = () => {
               <div className="items-center justify-center flex">
                 {/* Button Export Data */}
                 <Link
-                  href={"../orderretail/invoice"}
+                  href={"../pemesanan/invoice"}
                   className={`${styles.button} rounded-md text-white bg-blue-500 px-4 py-2 mb-2 cursor-pointer`}
                 >
                   Cetak Invoice
