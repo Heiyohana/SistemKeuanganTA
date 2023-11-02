@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./orderretail.module.css";
+import styles from "./pemesanan.module.css";
 import Link from "next/link";
 
 type FormBayarProps = {

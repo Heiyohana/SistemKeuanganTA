@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import buktiTF from "@/assets/elements/buktitf.jpg";
-import styles from "./orderretail.module.css";
+import styles from "./laporanpesanan.module.css";
 
 const RekapPesanan: React.FC = () => {
   return (
@@ -23,6 +23,17 @@ const RekapPesanan: React.FC = () => {
             <div className="flex flex-col">
               <h1 className={`${styles.h1}`}>Rekap Pesanan</h1>
               <h3 className={`${styles.h3}`}>Laporan</h3>
+            </div>
+
+            {/* button */}
+            <div>
+              {/* Button Export Data */}
+              <Link
+                href={"../laporanpesanan/invoice"}
+                className={`${styles.button} rounded-md bg-white border-2 border-blue-500 text-blue-500 px-4 py-2 mb-2 cursor-pointer`}
+              >
+                Cetak Invoice
+              </Link>
             </div>
           </div>
 
@@ -199,6 +210,16 @@ const RekapPesanan: React.FC = () => {
                         alt="Bukti Transfer"
                         className="h-[80px] w-[80px] rounded-md object-cover flex mt-1"
                       />
+                      <Image
+                        src={buktiTF}
+                        alt="Bukti Transfer"
+                        className="h-[80px] w-[80px] rounded-md object-cover flex mt-1"
+                      />
+                      <Image
+                        src={buktiTF}
+                        alt="Bukti Transfer"
+                        className="h-[80px] w-[80px] rounded-md object-cover flex mt-1"
+                      />
                     </div>
                   </div>
                   <div>
@@ -208,56 +229,49 @@ const RekapPesanan: React.FC = () => {
                       Status Transaksi
                     </p>
                     <div className={`flex flex-row gap-4 pt-1 ${styles.text}`}>
-                      <div className="py-0.5 px-2 rounded-md justify-center items-center bg-pink-300">
+                      <div className="py-0.5 px-2 rounded-md justify-center items-center bg-gray-200">
                         belum lunas
                       </div>
-                      <div className="py-0.5 px-2 rounded-md justify-center items-center bg-gray-200">
+                      <div className="py-0.5 px-2 rounded-md justify-center items-center bg-lime-200">
                         lunas
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col w-1/3 gap-1">
+                <div className={`flex flex-col w-1/3 gap-1`}>
                   <div className="flex justify-between">
                     <div>Subtotal</div>
                     <div>15.385.000</div>
                   </div>
+                  <div className="flex justify-between pb-1">
+                    <div>Telah dibayar DP 1</div>
+                    <div>4.615.500</div>
+                  </div>
                   <div className="flex justify-between border-b border-neutral-600 pb-1">
-                    <div>Diskon</div>
-                    <div>-</div>
+                    <div>Telah dibayar DP 2</div>
+                    <div>4.307.800</div>
                   </div>
                   <div className="flex justify-between border-b border-neutral-600 pb-1">
                     <div>
                       <strong>Total</strong>
                     </div>
                     <div>
-                      <strong>15.385.000</strong>
+                      <strong>6.461.700</strong>
                     </div>
                   </div>
                   <div className="flex justify-between border-b border-neutral-600 pb-1">
-                    <div>DP 1 (30%)</div>
-                    <div>4.615.500</div>
+                    <div>Pelunasan</div>
+                    <div>6.461.700</div>
                   </div>
                   <div className="flex justify-between">
                     <div>
                       <strong>Sisa Tagihan</strong>
                     </div>
                     <div>
-                      <strong>10.769.500</strong>
+                      <strong>-</strong>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              {/* button */}
-              <div className="items-center justify-center flex">
-                {/* Button Export Data */}
-                <Link
-                  href={"../orderretail/invoice"}
-                  className={`${styles.button} rounded-md text-white bg-blue-500 px-4 py-2 mb-2 cursor-pointer`}
-                >
-                  Cetak Invoice
-                </Link>
               </div>
             </div>
           </div>

@@ -28,9 +28,9 @@ const NavSideBar = () => {
       title: "Transaksi",
       icon: faCalculator,
       submenu: true,
-      path: "/staff/transaksi/orderretail",
+      path: "/staff/transaksi/pemesanan",
       submenuItems: [
-        { title: "Order Retail", path: "/staff/transaksi/orderretail" },
+        { title: "Pemesanan", path: "/staff/transaksi/pemesanan" },
         { title: "Arus Kas", path: "/staff/transaksi/aruskas" },
         {
           title: "Pencatatan Jumlah Produksi",
@@ -128,11 +128,13 @@ const NavSideBar = () => {
                     </button>
                   </li>
                 ) : menu.title === "Profile" ? (
-                  <li className={`text-sm flex items-center justify-between gap-x-4 cursor-pointer p-2 pl-3 decoration-none hover:bg-blue-600 hover:text-white ${
+                  <li
+                    className={`text-sm flex items-center justify-between gap-x-4 cursor-pointer p-2 pl-3 decoration-none hover:bg-blue-600 hover:text-white ${
                       router.pathname === menu.path
                         ? "bg-blue-600 text-white"
                         : ""
-                    }`}>
+                    }`}
+                  >
                     <Link key={index} href={`${menu.path}`}>
                       <div className="flex flex-row group justify-center items-center">
                         <div className="pr-4 items-center flex">

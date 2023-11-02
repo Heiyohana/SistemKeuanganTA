@@ -30,19 +30,19 @@ const NavSideBar = () => {
       submenu: true,
       path: "/admin/masterdata/customer",
       submenuItems: [
-        { title: "Master Data Customer", path: "/admin/masterdata/customer"},
-        { title: "Master Data Produk", path: "/admin/masterdata/produk"},
-        { title: "Master Data Akun User", path: "/admin/masterdata/user"},
+        { title: "Master Data Customer", path: "/admin/masterdata/customer" },
+        { title: "Master Data Produk", path: "/admin/masterdata/produk" },
+        { title: "Master Data Akun User", path: "/admin/masterdata/user" },
       ],
     },
     {
       title: "Transaksi",
       icon: faCalculator,
       submenu: true,
-      path: "/admin/transaksi/orderretail",
+      path: "/admin/transaksi/pemesanan",
       submenuItems: [
-        { title: "Order Retail", path: "/admin/transaksi/orderretail"},
-        { title: "Arus Kas", path: "/admin/transaksi/aruskas"},
+        { title: "Pemesanan", path: "/admin/transaksi/pemesanan" },
+        { title: "Arus Kas", path: "/admin/transaksi/aruskas" },
         {
           title: "Pencatatan Jumlah Produksi",
           path: "/admin/transaksi/jumlahproduksi",
@@ -55,7 +55,11 @@ const NavSideBar = () => {
       submenu: true,
       path: "/admin/laporan/laporanpesanan",
       submenuItems: [
-        { title: "Pesanan", path: "/admin/laporan/laporanpesanan", pathsub: "/pages/" },
+        {
+          title: "Pesanan",
+          path: "/admin/laporan/laporanpesanan",
+          pathsub: "/pages/",
+        },
         { title: "Arus Kas", path: "/admin/laporan/aruskas" },
         {
           title: "Jumlah Produksi Harian",
@@ -85,11 +89,10 @@ const NavSideBar = () => {
     const updatedSubmenuOpenStatus = [...submenuOpenStatus];
     // Toggle the status of the submenu for the clicked menu
     // updatedSubmenuOpenStatus[index] = !updatedSubmenuOpenStatus[index];
-    const handleClick = setSubmenuOpenStatus(Menus.map(()=> true));
+    const handleClick = setSubmenuOpenStatus(Menus.map(() => true));
     updatedSubmenuOpenStatus[index] = !updatedSubmenuOpenStatus[index];
     // Update the state with the new array
     setSubmenuOpenStatus(updatedSubmenuOpenStatus);
-
   };
 
   const router = useRouter();

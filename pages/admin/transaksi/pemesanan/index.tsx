@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import NavSideBar from "@/pages/components/sidenavbar/staff";
+import NavSideBar from "@/pages/components/sidenavbar/admin";
 import {
   faAddressBook,
   faEdit,
@@ -19,7 +19,7 @@ import {
 } from "@/pages/admin/masterdata/produk/produk.type";
 import FormBayar from "./formBayar";
 import Modalwarnbook from "./modalwarnbook";
-import styles from "./orderretail.module.css";
+import styles from "./pemesanan.module.css";
 
 type Pesanan = {
   id: string;
@@ -193,7 +193,7 @@ const orderretail = () => {
     // halaman transaksi untuk order / pemesanan
     <div className="relative flex h-screen">
       <Head>
-        <title>Transaksi Order Retail</title>
+        <title>Transaksi Pemesanan</title>
       </Head>
       <div className="w-screen h-full m-0 flex flex-row relative">
         {/* sisi kiri */}
@@ -203,7 +203,7 @@ const orderretail = () => {
           {/* atas */}
           <div className="flex flex-row justify-between">
             <div className="flex flex-col pb-5">
-              <h1 className={`${styles.h1}`}>Order Retail</h1>{" "}
+              <h1 className={`${styles.h1}`}>Pemesanan</h1>{" "}
               <h3 className={`${styles.h3}`}>Transaksi</h3>
             </div>
           </div>
@@ -226,7 +226,7 @@ const orderretail = () => {
                         Informasi Nota
                       </div>
                       <div
-                        className={`${styles.label} w-full pb-2 justify-between flex flex-row items-center`}
+                        className={`${styles.text} w-full pb-2 justify-between flex flex-row items-center`}
                       >
                         <span className="flex">No Nota</span>
                         <input
@@ -237,7 +237,7 @@ const orderretail = () => {
                         />
                       </div>
                       <div
-                        className={`${styles.label} w-full pb-2 justify-between flex flex-row items-center`}
+                        className={`${styles.text} w-full pb-2 justify-between flex flex-row items-center`}
                       >
                         <span className="flex">Tanggal</span>
                         <input
@@ -249,12 +249,12 @@ const orderretail = () => {
                         />
                       </div>
                       <div
-                        className={`${styles.label} w-full pb-2 justify-between flex flex-row items-center`}
+                        className={`${styles.text} w-full pb-2 justify-between flex flex-row items-center`}
                       >
                         <span className="flex">CS Desk</span>
                         <input
                           type="text"
-                          value="heiyohana"
+                          value="Miayohana"
                           className="text-neutral-600 w-max bg-neutral-300 rounded-md p-2 py-1 mt-1"
                           disabled
                         />
@@ -281,7 +281,7 @@ const orderretail = () => {
                               return (
                                 <div key={label}>
                                   <div
-                                    className={`${styles.label} w-full pb-2 justify-between flex flex-row items-center`}
+                                    className={`${styles.text} w-full pb-2 justify-between flex flex-row items-center`}
                                   >
                                     <span className="flex mr-4">{label}</span>
                                     <input
@@ -312,7 +312,7 @@ const orderretail = () => {
                               return (
                                 <div key={label}>
                                   <div
-                                    className={`${styles.label} w-full pb-2 justify-between flex flex-row items-center`}
+                                    className={`${styles.text} w-full pb-2 justify-between flex flex-row items-center`}
                                   >
                                     <span className="flex mr-4">{label}</span>
                                     <input

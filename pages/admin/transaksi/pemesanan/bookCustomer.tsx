@@ -1,6 +1,6 @@
 import { ICustomer } from "@/pages/admin/masterdata/customer/customer.type";
 import React, { useState } from "react";
-import styles from "./orderretail.module.css";
+import styles from "./pemesanan.module.css";
 
 type Props = {
   list: ICustomer[];
@@ -17,9 +17,11 @@ const bookCustomer = (props: Props) => {
   );
 
   const filteredCustomers = list.filter((customer) => {
-    const nameMatches = customer.nama.toLowerCase().includes(searchName.toLowerCase());
+    const nameMatches = customer.nama
+      .toLowerCase()
+      .includes(searchName.toLowerCase());
     const noHpMatches = customer.nohp.includes(searchNoHp);
-    return searchName === "" || nameMatches || searchNoHp === "" || noHpMatches;
+    return nameMatches && noHpMatches;
   });
 
   const handleCustomerSelect = (customer: ICustomer) => {

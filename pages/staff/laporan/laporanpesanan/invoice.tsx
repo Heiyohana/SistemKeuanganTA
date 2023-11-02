@@ -1,9 +1,18 @@
-import Kop from "@/pages/components/kop";
-import Head from "next/head";
-import React from "react";
-import styles from "./orderretail.module.css";
+import Kop from '@/pages/components/kop';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import React from 'react'
+import { ILaporanPesanan } from './laporanPesanan.type';
+import styles from "./laporanpesanan.module.css";
 
 const invoice = () => {
+    const router = useRouter();
+    const { data } = router.query;
+
+    let selectedData: ILaporanPesanan | null = null;
+    if (data) {
+      selectedData = JSON.parse(data as string);
+    }
   return (
     <div className="w-full bg-white m-0">
       <Head>
@@ -132,7 +141,7 @@ const invoice = () => {
               <strong>Catatan Transaksi :</strong> Tidak Ada
             </div>
             <div>
-              <strong>Metode Pembayaran :</strong> DP 1
+              <strong>Metode Pembayaran :</strong> DP 2
             </div>
             <div>
               <strong>Jenis Pembayaran :</strong> Transfer
@@ -143,9 +152,13 @@ const invoice = () => {
               <div>Subtotal</div>
               <div>15.385.000</div>
             </div>
-            <div className="flex justify-between border-b border-neutral-600 pb-1">
+            <div className="flex justify-between pb-1">
               <div>Telah dibayar DP 1</div>
               <div>4.615.500</div>
+            </div>
+            <div className="flex justify-between border-b border-neutral-600 pb-1">
+              <div>Telah dibayar DP 2</div>
+              <div>4.307.800</div>
             </div>
             <div className="flex justify-between border-b border-neutral-600 pb-1">
               <div>
@@ -155,12 +168,16 @@ const invoice = () => {
                 <strong>6.461.700</strong>
               </div>
             </div>
+            <div className="flex justify-between border-b border-neutral-600 pb-1">
+              <div>Pelunasan</div>
+              <div>6.461.700</div>
+            </div>
             <div className="flex justify-between">
               <div>
                 <strong>Sisa Tagihan</strong>
               </div>
               <div>
-                <strong>10.769.500</strong>
+                <strong>-</strong>
               </div>
             </div>
           </div>
@@ -179,6 +196,6 @@ const invoice = () => {
       </div>
     </div>
   );
-};
+}
 
 export default invoice;

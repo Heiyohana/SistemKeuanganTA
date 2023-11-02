@@ -1,6 +1,6 @@
 import { IProduk } from "@/pages/admin/masterdata/produk/produk.type";
 import React, { useState } from "react";
-import styles from "./orderretail.module.css";
+import styles from "./pemesanan.module.css";
 
 type ProdukListProps = {
   list: IProduk[];

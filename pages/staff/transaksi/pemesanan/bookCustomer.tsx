@@ -1,6 +1,6 @@
 import { ICustomer } from "@/pages/admin/masterdata/customer/customer.type";
 import React, { useState } from "react";
-import styles from "./orderretail.module.css";
+import styles from "./pemesanan.module.css";
 
 type Props = {
   list: ICustomer[];
