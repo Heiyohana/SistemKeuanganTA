@@ -47,10 +47,6 @@ const Aruskas = () => {
   });
   // Untuk mengatur kolom aksi hilang saat diekspor
   const [showActions, setShowActions] = useState(true);
-  const handleExportPDF = () => {
-    setShowActions(false); // Set showActions ke false saat tombol export PDF diklik
-    generatePDF();
-  };
 
   return (
     <div className="relative flex h-screen">
@@ -108,13 +104,7 @@ const Aruskas = () => {
               </Link>
             </div>
             {/* DataTable */}
-            <div
-              ref={componentPDF}
-              style={{
-                width: "90%",
-                alignItems: "center",
-              }}
-            >
+            <div>
               <ArusKasList
                 list={sortedKasList.filter(
                   (kas) =>

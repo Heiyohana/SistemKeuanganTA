@@ -4,26 +4,12 @@ import styles from "./jumlahproduksiharian.module.css";
 import Link from "next/link";
 
 const editJumlahProduksi = () => {
-  //Membuat Tanggal Live
-  const [currentDate, setCurrentDate] = useState(new Date());
   const [materials, setMaterials] = useState("Paving Bata");
   const [jumlahProduksi, setJumlahProduksi] = useState("");
   const [keterangan, setKeterangan] = useState("");
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  const LiveDate = currentDate.toLocaleString();
-
-
   return (
-    <div className="relative flex max-h-max">
+    <div className="relative flex h-screen">
       <NavSideBar />
 
       <div className="flex-grow right-0 justify-end p-5 bg-neutral-100 w-max">
@@ -33,19 +19,12 @@ const editJumlahProduksi = () => {
             <h1 className={`${styles.h1}`}>Pencatatan Jumlah Produksi</h1>
             <h3 className={`${styles.h3}`}>Transaksi</h3>
           </div>
-          {/* <HeadButton /> buttonnya kemunkinan berdiri sendiri2 */}
         </div>
 
         {/* form pencatatan */}
         <div className="px-4">
-          <div className={`pb-5 w-1/5 ${styles.text}`}>
-            <div className="text-neutral-600 bg-neutral-300 rounded-md px-3 py-1 mt-1">
-              {LiveDate}
-            </div>
-          </div>
-
           <div className="pb-5 w-1/3">
-            Materials <br />
+            <span className={`${styles.label}`}>Materials</span> <br />
             <select
               value={materials}
               onChange={(e) => setMaterials(e.target.value)}
@@ -60,8 +39,8 @@ const editJumlahProduksi = () => {
             </select>
           </div>
 
-          <div className="pb-5 text-sm w-full">
-            Jumlah Produksi <br />
+          <div className="pb-5 w-full">
+            <span className={`${styles.label}`}>Jumlah Produksi</span> <br />
             <input
               value={jumlahProduksi}
               onChange={(e) => setJumlahProduksi(e.target.value)}
@@ -70,8 +49,8 @@ const editJumlahProduksi = () => {
             />
           </div>
 
-          <div className="pb-5 text-sm">
-            Keterangan <br />
+          <div className="pb-5">
+            <span className={`${styles.label}`}>Keterangan</span> <br />
             <textarea
               value={keterangan}
               onChange={(e) => setKeterangan(e.target.value)}
@@ -81,10 +60,10 @@ const editJumlahProduksi = () => {
           </div>
 
           {/* Button */}
-          <div className="pb-5 text-sm w-2/3 justify-right">
+          <div className="pb-5 w-2/3 justify-right">
             <Link
               href={"/admin/laporan/jumlahproduksiharian"}
-              className="bg-white w-20 h-8 mr-4 rounded-md text-blue-500 border border-blue-500 font-medium"
+              className="bg-white w-[20] h-[8] mr-4 rounded-md text-blue-500 border border-blue-500 font-medium"
             >
               Kembali
             </Link>

@@ -38,25 +38,25 @@ const invoice = () => {
               className={`w-full justify-between flex flex-row items-center ${styles.text}`}
             >
               <span className="flex">No Nota</span>
-              <p>Informasi Data</p>
+              <p>KMS/06/23/2</p>
             </div>
             <div
               className={`w-full justify-between flex flex-row items-center ${styles.text}`}
             >
               <span className="flex">Tanggal</span>
-              <p>Informasi Data</p>
+              <p>1/6/2023</p>
             </div>
             <div
               className={`w-full justify-between flex flex-row items-center ${styles.text}`}
             >
               <span className="flex">CS Desk</span>
-              <p>Informasi Data</p>
+              <p>Miahana</p>
             </div>
             <div
               className={`w-full justify-between flex flex-row items-center ${styles.text}`}
             >
               <span className="flex">Tanggal Dibayar</span>
-              <p>Informasi Data</p>
+              <p>10/06/23</p>
             </div>
           </div>
           {/* kanan section: Informasi Pemesan */}
@@ -65,19 +65,19 @@ const invoice = () => {
               className={`w-full justify-between flex flex-row items-center ${styles.text}`}
             >
               <span className="flex">Nama Customer</span>
-              <p>Informasi Data</p>
+              <p>Astuti Putri</p>
             </div>
             <div
               className={`w-full justify-between flex flex-row items-center ${styles.text}`}
             >
               <span className="flex">No HP</span>
-              <p>Informasi Data</p>
+              <p>08987654321</p>
             </div>
             <div
               className={`w-full justify-between flex flex-row items-center ${styles.text}`}
             >
               <span className="flex">Alamat Pengiriman</span>
-              <p>Informasi Data</p>
+              <p>PT Sejahtera, Pringsewu</p>
             </div>
           </div>
         </div>
@@ -152,7 +152,7 @@ const invoice = () => {
               <div>Subtotal</div>
               <div>15.385.000</div>
             </div>
-            <div className="flex justify-between border-b border-neutral-600 pb-1">
+            <div className="flex justify-between pb-1">
               <div>Telah dibayar DP 1</div>
               <div>4.615.500</div>
             </div>

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { format } from "date-fns";
 import styles from "./aruskas.module.css";
+import Link from "next/link";
 
 type ArusKasListProps = {
   list: IArusKas[];
@@ -78,20 +79,19 @@ const ArusKasList: React.FC<ArusKasListProps> = (props) => {
                     onClick={() => onDeleteClickHnd(data)}
                   >
                     <FontAwesomeIcon
-                      className="text-md mr-2 text-red-500"
+                      className="text-md mr-2 text-red-500 hover:text-white"
                       icon={faTrash}
                     />
                   </button>
-                  <button
+                  <Link
                     className="cursor-pointer"
-                    value={"Edit"}
-                    //   onClick={() => onEdit(data)}
+                    href={"/admin/laporan/aruskas/editArusKas"}
                   >
                     <FontAwesomeIcon
-                      className="text-md ml-2 text-lime-400"
+                      className="text-md ml-1 text-lime-400 hover:text-white"
                       icon={faEdit}
                     />
-                  </button>
+                  </Link>
                 </td>
               )}
             </tr>

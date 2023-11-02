@@ -1,11 +1,11 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-type BayarTagihanProps = {
+interface BayarTagihanProps {
   onCloseModal?: () => void;
 };
 
-const BayarTagihan: React.FC<BayarTagihanProps> = (props) => {
+const BayarTagihan: React.FC<BayarTagihanProps> = (props, {onCloseModal}) => {
   const subTotal = 6461700;
   const [pilihMetode, setPilihMetode] = useState<string>("lunas");
   const [pilihJenisBayar, setPilihJenisBayar] = useState<string>("cash");
@@ -52,12 +52,6 @@ const BayarTagihan: React.FC<BayarTagihanProps> = (props) => {
     setChange(paid - totalBayar);
   };
 
-  const handleCloseModal = () => {
-    if (props.onCloseModal) {
-      props.onCloseModal();
-    }
-  };
-
   // Perintah format Rupiah
   const formatRupiah = (angka: number) => {
     const rupiah = "Rp " + angka.toLocaleString() + ",00,-";
@@ -71,7 +65,7 @@ const BayarTagihan: React.FC<BayarTagihanProps> = (props) => {
           {/* ikon X pada form pesanan */}
           <button
             className="text-black cursor-pointer text-2xl absolute top-2 right-4"
-            onClick={handleCloseModal}
+            onClick={onCloseModal}
           >
             &times;
           </button>
@@ -215,12 +209,12 @@ const BayarTagihan: React.FC<BayarTagihanProps> = (props) => {
         </div>
 
         <div className="flex justify-end">
-          <button
-            className="bg-blue-600 w-20 h-8 rounded-md text-white font-semibold"
-            onClick={handleCloseModal}
+          <Link
+            href={"../laporanpesanan/rekaplunas"}
+            className="bg-blue-600 w-20 h-8 rounded-md text-white font-semibold items-center justify-center flex"
           >
             Lanjut
-          </button>
+          </Link>
         </div>
       </form>
     </div>

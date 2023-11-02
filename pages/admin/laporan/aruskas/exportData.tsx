@@ -19,24 +19,25 @@ const exportDataPage: React.FC = () => {
         <thead className="items-center text-black">
           <tr className="font-bold">
             <td className="py-2 px-4">No</td>
-            <td className="py-2 px-10">Tanggal</td>
+            <td className="py-2 px-4">Tanggal</td>
             <td className="py-2 px-4">Nama Pelapor</td>
-            <td className="py-2 px-8">Kategori</td>
-            <td className="py-2 px-8">Keterangan</td>
-            <td className="py-2 px-8">Qty</td>
+            <td className="py-2 px-5">Kategori</td>
+            <td className="py-2 px-6">Keterangan</td>
+            <td className="py-2 px-2 text-center">Qty</td>
           </tr>
         </thead>
         <tbody className="bg-white text-left">
           {/* isi data dari test.type.ts */}
-          {dummyArusKasList.map((kas: IArusKas) => {
+          {dummyArusKasList.map((kas: IArusKas, index) => {
+
             return (
               <tr key={kas.id} className="border border-gray-800">
-                <td className="py-1 px-4">{kas.id}</td>
-                <td className="py-1 px-10">{kas.tanggal}</td>
+                <td className="py-1 px-4">{index + 1}</td>
+                <td className="py-1 px-4">{kas.tanggal}</td>
                 <td className="py-1 px-4">{kas.namapelapor}</td>
-                <td className="py-1 px-8">{kas.kategori}</td>
-                <td className="py-1 px-8">{kas.keterangan}</td>
-                <td className="py-1 px-8">{kas.qty}</td>
+                <td className="py-1 px-5">{kas.kategori}</td>
+                <td className="py-1 px-6">{kas.keterangan}</td>
+                <td className="py-1 px-2 text-center">{kas.qty}</td>
               </tr>
             );
           })}

@@ -1,141 +1,179 @@
-import NavSideBar from "@/pages/components/sidenavbar/admin";
+import Kop from "@/pages/components/kop";
 import Head from "next/head";
 import React from "react";
+import styles from "./orderretail.module.css";
 
-const invoicePesanan = () => {
+const invoice = () => {
   return (
-    <div className="w-screen h-screen m-0 flex container">
+    <div className="w-full bg-white m-0">
       <Head>
         <title>Invoice Pesanan</title>
       </Head>
-      <NavSideBar />
 
-      {/* Content */}
-      <div className="absolute h-full w-4/5 right-0 justify-end p-5 bg-neutral-100 text-sm">
-        {/* Kop Invoice */}
-        <div className="bg-blue-500 w-full h-fit p-3 text-white">
-          <h1 className="title font-bold text-center mb-2 text-2xl">
-            CV Karya Mandiri Sejahtera
-          </h1>
-          <p className="text-center font-semibold">
-            Perusahaan Paving block yang menerima pesanan paving bata, cacing,
-            grass block, hebel, <br />
-            uskup, dan lainnya. Menerima jasa pasang dan pengiriman. <br />
-            Jalan Sukarame | Info Pemesanan : WA. 0812-3123-4678
-          </p>
+      <Kop />
+
+      <div className="px-10 py-4 ">
+        <h1 className={`text-center ${styles.h1ExportPage}`}>
+          INVOICE PESANAN
+        </h1>
+
+        <div
+          className={`${styles.section} border-b border-black pr-10 mb-2 w-1/3`}
+        >
+          Informasi Pesanan
+        </div>
+        <div className="flex flex-row w-full gap-8">
+          {/* section kiri: informasi nota */}
+          <div className="w-1/3">
+            <div
+              className={`w-full justify-between flex flex-row items-center ${styles.text}`}
+            >
+              <span className="flex">No Nota</span>
+              <p>KMS/06/23/2</p>
+            </div>
+            <div
+              className={`w-full justify-between flex flex-row items-center ${styles.text}`}
+            >
+              <span className="flex">Tanggal</span>
+              <p>1/6/2023</p>
+            </div>
+            <div
+              className={`w-full justify-between flex flex-row items-center ${styles.text}`}
+            >
+              <span className="flex">CS Desk</span>
+              <p>Miahana</p>
+            </div>
+            <div
+              className={`w-full justify-between flex flex-row items-center ${styles.text}`}
+            >
+              <span className="flex">Tanggal Dibayar</span>
+              <p>10/06/23</p>
+            </div>
+          </div>
+          {/* kanan section: Informasi Pemesan */}
+          <div className="w-1/3">
+            <div
+              className={`w-full justify-between flex flex-row items-center ${styles.text}`}
+            >
+              <span className="flex">Nama Customer</span>
+              <p>Astuti Putri</p>
+            </div>
+            <div
+              className={`w-full justify-between flex flex-row items-center ${styles.text}`}
+            >
+              <span className="flex">No HP</span>
+              <p>08987654321</p>
+            </div>
+            <div
+              className={`w-full justify-between flex flex-row items-center ${styles.text}`}
+            >
+              <span className="flex">Alamat Pengiriman</span>
+              <p>PT Sejahtera, Pringsewu</p>
+            </div>
+          </div>
         </div>
 
-        {/* Isi Invoice */}
-        <div className="mt-3">
-          <div className="text-center text-lg font-bold">INVOICE PESANAN</div>
-          {/* Informasi Nota */}
-          <div className="font-bold border-b border-black pr-10 mb-2 w-1/3">
-            Informasi Pesanan
-          </div>
-          <div className="flex flex-row">
-            <div className="w-1/3 flex flex-col mr-2">
-              <div className="pb-1 text-sm justify-between items-center flex flex-row">
-                <span>No Nota</span>
-                <input
-                  type="text"
-                  placeholder=" : No Nota"
-                  className="w-max rounded-md bg-transparent"
-                  disabled
-                />
-              </div>
-              <div className="pb-1 text-sm justify-between items-center flex flex-row">
-                <span>Tanggal</span>
-                <input
-                  type="text"
-                  placeholder=" : Tanggal Nota"
-                  className="w-max rounded-md bg-transparent"
-                  disabled
-                />
-              </div>
-              <div className="pb-1 text-sm justify-between items-center flex flex-row">
-                <span>CS Desk</span>
-                <input
-                  type="text"
-                  placeholder=" : CS Desk"
-                  className="w-max rounded-md bg-transparent"
-                  disabled
-                />
-              </div>
-            </div>
+        <div
+          className={`border-b border-black pr-10 mb-2 w-1/3 ${styles.section} mt-3`}
+        >
+          Detail Pesanan
+        </div>
 
-            {/* Informasi Pemesan*/}
-            <div className="w-1/3 flex flex-col mr-2">
-              <div className="pb-1 text-sm justify-between items-center flex flex-row">
-                <span>Nama Customer</span>
-                <input
-                  type="text"
-                  placeholder=" : Nama Customer"
-                  className="w-max rounded-md bg-transparent"
-                  disabled
-                />
-              </div>
-              <div className="pb-1 text-sm justify-between items-center flex flex-row">
-                <span>No HP</span>
-                <input
-                  type="text"
-                  placeholder=" : NO HP"
-                  className="w-max rounded-md bg-transparent"
-                  disabled
-                />
-              </div>
-              <div className="pb-1 text-sm justify-between items-center flex flex-row">
-                <span>Alamat</span>
-                <input
-                  type="text"
-                  placeholder=" : Alamat Pengiriman"
-                  className="w-max rounded-md bg-transparent"
-                  disabled
-                />
-              </div>
+        {/* Tabel pesanan */}
+        <table className="w-full border border-gray-300 mb-2">
+          <thead
+            className={`bg-gray-200 text-gray-800 border-gray-400 border-b-2 border-t-2 h-9 ${styles.thead}`}
+          >
+            <tr className="py-1">
+              <th className="px-2">No.</th>
+              <th className="px-5 text-left">Kategori</th>
+              <th className="px-6 text-left">Nama Produk</th>
+              <th className="px-4">Jumlah</th>
+              <th className="px-4">Luas</th>
+              <th className="px-8 text-right">Harga Produk</th>
+              <th className="px-6 text-right">Total Biaya</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* data berdasarkan rekap pesanan yang dipilih dari halaman laporan pesanan */}
+            <tr className={`py-1 ${styles.tdtable}`}>
+              <td className="px-4 text-center">1</td>
+              <td className="px-5">Materials</td>
+              <td className="px-6">Paving Cacing 6 cm</td>
+              <td className="px-7 text-center">5000</td>
+              <td className="px-9 text-center">128</td>
+              <td className="px-8 text-right">80.000</td>
+              <td className="px-6 text-right">10.256.000</td>
+            </tr>
+            <tr className={`py-1 ${styles.tdtable}`}>
+              <td className="px-4 text-center">2</td>
+              <td className="px-5">Layanan</td>
+              <td className="px-6">Jasa Pasang</td>
+              <td className="px-7 text-center">128</td>
+              <td className="px-9 text-center">128</td>
+              <td className="px-8 text-right">25.000</td>
+              <td className="px-6 text-right">3.205.000</td>
+            </tr>
+            <tr className={`py-1 ${styles.tdtable}`}>
+              <td className="px-4 text-center">3</td>
+              <td className="px-5">Layanan</td>
+              <td className="px-6">Jasa Pengiriman</td>
+              <td className="px-7 text-center">128</td>
+              <td className="px-9 text-center">128</td>
+              <td className="px-8 text-right">15.000</td>
+              <td className="px-6 text-right">1.923.000</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div className={`flex flex-row justify-between px-2 ${styles.text}`}>
+          <div className="flex flex-col w-1/3 gap-1">
+            <div>
+              <strong>Catatan Transaksi :</strong> Tidak Ada
+            </div>
+            <div>
+              <strong>Metode Pembayaran :</strong> DP 1
+            </div>
+            <div>
+              <strong>Jenis Pembayaran :</strong> Transfer
             </div>
           </div>
-
-          {/* Details Pesanan */}
-          <div>
-            <div className="font-bold border-b border-black pr-10 mb-2 w-1/3">
-              Details Pesanan
+          <div className="flex flex-col w-1/3 gap-1">
+            <div className="flex justify-between">
+              <div>Subtotal</div>
+              <div>15.385.000</div>
             </div>
-
-            {/* Tabel Details Pesanan */}
-
-            {/* Keterangan Lainnya */}
-            <div className="flex flex-row justify-between w-full">
-              <div className="w-1/3">
-                <div className="font-bold border-b border-black pr-10 mb-2">
-                  Catatan Transaksi
-                </div>
-                <div className="font-bold border-b border-black pr-10 mb-2">
-                  Jenis Pembayaran
-                </div>
+            <div className="flex justify-between border-b border-neutral-600 pb-1">
+              <div>Telah dibayar DP 1</div>
+              <div>4.615.500</div>
+            </div>
+            <div className="flex justify-between border-b border-neutral-600 pb-1">
+              <div>
+                <strong>Total</strong>
               </div>
-              <div className="">
-                <div className="flex flex-row">
-                  <span>Subtotal</span>
-                  <div> : Nominal Subtotal</div>
-                </div>
-                <div className="flex flex-row">
-                  <span>Diskon</span>
-                  <div> : Nominal Diskon</div>
-                </div>
-                <div className="flex flex-row">
-                  <span>Total</span>
-                  <div> : Nominal Total</div>
-                </div>
-                <div className="flex flex-row">
-                  <span>DP 1 (30%)</span>
-                  <div> : Nominal DP 1 (30%)</div>
-                </div>
-                <div>
-                  <span>Sisa Tagihan</span>
-                  <div> : Nominal Sisa Tagihan</div>
-                </div>
+              <div>
+                <strong>6.461.700</strong>
               </div>
             </div>
+            <div className="flex justify-between">
+              <div>
+                <strong>Sisa Tagihan</strong>
+              </div>
+              <div>
+                <strong>10.769.500</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* tanda tangan */}
+        <div
+          className={`flex flex-col justify-right items-end p-2 ${styles.text}`}
+        >
+          <div className="text-center flex flex-col">
+            <div className="pt-3 pb-10">Bandar Lampung, 14 Juni 2023</div>
+            <div>Miahana</div>
+            <div>Admin Keuangan</div>
           </div>
         </div>
       </div>
@@ -143,4 +181,4 @@ const invoicePesanan = () => {
   );
 };
 
-export default invoicePesanan;
+export default invoice;

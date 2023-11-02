@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./orderretail.module.css";
+import Link from "next/link";
 
 type FormBayarProps = {
   onCloseModal?: () => void;
@@ -217,12 +218,12 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
         </div>
 
         <div className="justify-end flex mt-3">
-          <button
-            className={`bg-blue-600 w-20 h-8 rounded-md text-white ${styles.button}`}
-            type="submit"
+          <Link
+          href={"../transaksi/orderretail/pembayaranRekap"}
+            className={`bg-blue-600 w-20 h-8 rounded-md text-white ${styles.button} items-center justify-center flex`}
           >
             Lanjut
-          </button>
+          </Link>
         </div>
       </form>
     </div>

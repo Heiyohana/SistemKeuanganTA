@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import NavSideBar from "@/pages/components/sidenavbar/admin";
 import styles from "./jumlahproduksi.module.css";
 import { dummyProdukList } from "@/pages/admin/masterdata/produk/produk.type";
+import MSuccess from "@/pages/components/mSuccess";
 
 export default function orderretail() {
   const [tanggalOtomatis, setTanggalOtomatis] = useState("");
@@ -21,6 +22,15 @@ export default function orderretail() {
   const handleProdukChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newProduk = e.target.value;
     setSelectedProduk(newProduk);
+  };
+
+  // Handle ModalSuccess
+  const [isModalSuccessOpen, setIsModalSuccessOpen] = useState(false);
+  const onModalSuccessClick = () => {
+    setIsModalSuccessOpen(true);
+    setTimeout(() => {
+      setIsModalSuccessOpen(false);
+    }, 500)
   };
 
   return (
@@ -92,12 +102,14 @@ export default function orderretail() {
           {/* Button */}
           <div className="pb-5 w-full justify-end flex">
             <button
+              onClick={onModalSuccessClick}
               className={`bg-blue-600 w-20 h-8 rounded-md text-white ${styles.button}`}
             >
-              Bayar
+              Simpan
             </button>
           </div>
         </div>
+        {isModalSuccessOpen && <MSuccess />}
       </div>
     </div>
   );

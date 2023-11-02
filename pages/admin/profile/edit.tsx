@@ -158,17 +158,16 @@ const EditProfile = () => {
               <div className="flex flex-row justify-center m-4 gap-4">
                 <Link href="/staff/profile">
                   <button
-                    type="submit"
                     className={`bg-white border border-blue-500 rounded-md p-2 w-[80px] ${styles.button}`}
                   >
-                    Back
+                    Kembali
                   </button>
                 </Link>
                 <button
                   onClick={onModalSuccessClick}
                   className={`bg-blue-500 rounded-md p-2 w-[80px] text-white ${styles.button}`}
                 >
-                  Save
+                  Simpan
                 </button>
               </div>
             </form>

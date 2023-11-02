@@ -1,36 +1,12 @@
 import NavSideBar from "@/pages/components/sidenavbar/admin";
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
-import { ILaporanPesanan } from "./laporanPesanan.type";
+import React from "react";
 import Image from "next/image";
 import buktiTF from "@/assets/elements/buktitf.jpg";
-import BayarTagihan from "./bayarTagihan";
 import styles from "./laporanpesanan.module.css";
 
 const RekapPesanan: React.FC = () => {
-  const router = useRouter();
-  const { data } = router.query;
-
-  let selectedData: ILaporanPesanan | null = null;
-  if (data) {
-    selectedData = JSON.parse(data as string);
-  }
-
-  // Handle Form Bayar
-  const [isFormBayarOpen, setIsFormBayarOpen] = useState(false);
-
-  // Membuka Form Bayar
-  const openFormBayarModal = () => {
-    setIsFormBayarOpen(true);
-  };
-
-  // Menutup Form Bayar
-  const onCloseFormBayarModal = () => {
-    setIsFormBayarOpen(false);
-  };
-  
   return (
     <div className="relative flex h-screen">
       <Head>
@@ -51,13 +27,6 @@ const RekapPesanan: React.FC = () => {
 
             {/* button */}
             <div>
-              <button
-                className={`px-4 py-2 mr-2 mb-2 cursor-pointer bg-red-500 text-white rounded-md ${styles.button}`}
-                onClick={openFormBayarModal}
-              >
-                Bayar Tagihan
-              </button>
-
               {/* Button Export Data */}
               <Link
                 href={"../laporanpesanan/invoice"}
@@ -86,7 +55,7 @@ const RekapPesanan: React.FC = () => {
                     <span className="flex">No Nota</span>
                     <input
                       type="text"
-                      value={selectedData ? ": " + selectedData.noNota : ": "}
+                      value={": KMS/06/23/2"}
                       className="bg-white py-1"
                       disabled
                     />
@@ -97,7 +66,7 @@ const RekapPesanan: React.FC = () => {
                     <span className="flex">Tanggal</span>
                     <input
                       type="text"
-                      value={selectedData ? ": " + selectedData.tanggal : ": "}
+                      value={": 1/6/2023"}
                       className="bg-white py-1"
                       disabled
                     />
@@ -108,7 +77,7 @@ const RekapPesanan: React.FC = () => {
                     <span className="flex">CS Desk</span>
                     <input
                       type="text"
-                      value={selectedData ? ": " + selectedData.csDesk : ": "}
+                      value={": Miahana"}
                       className="bg-white py-1"
                       disabled
                     />
@@ -119,7 +88,7 @@ const RekapPesanan: React.FC = () => {
                     <span className="flex">Tanggal Dibayar</span>
                     <input
                       type="text"
-                      value={selectedData ? ": " + selectedData.tglBayar : ": "}
+                      value={": 2/06/2023"}
                       className="bg-white py-1"
                       disabled
                     />
@@ -133,7 +102,7 @@ const RekapPesanan: React.FC = () => {
                     <span className="flex">Nama Customer</span>
                     <input
                       type="text"
-                      value={selectedData ? ": " + selectedData.namaCust : ": "}
+                      value={": Astuti Putri"}
                       className="bg-white py-1"
                       disabled
                     />
@@ -144,7 +113,7 @@ const RekapPesanan: React.FC = () => {
                     <span className="flex">No HP</span>
                     <input
                       type="text"
-                      value={selectedData ? ": " + selectedData.noHpCust : ": "}
+                      value={": 08987654321"}
                       className="bg-white py-1"
                       disabled
                     />
@@ -156,9 +125,7 @@ const RekapPesanan: React.FC = () => {
                     <textarea
                       cols={23}
                       rows={2}
-                      value={
-                        selectedData ? " : " + selectedData.alamatCust : ": "
-                      }
+                      value={": PT Sejahtera, Pringsewu"}
                       className="flex bg-white decoration-0"
                       disabled
                     />
@@ -227,16 +194,10 @@ const RekapPesanan: React.FC = () => {
               <div
                 className={`flex flex-row justify-between px-2 ${styles.text}`}
               >
-                <div className={`flex flex-col w-1/3 gap-1`}>
-                  <div>
-                    <strong>Catatan Transaksi :</strong> Tidak Ada
-                  </div>
-                  <div>
-                    <strong>Metode Pembayaran :</strong> DP 2
-                  </div>
-                  <div>
-                    <strong>Jenis Pembayaran :</strong> Transfer
-                  </div>
+                <div className="flex flex-col w-1/3 gap-1">
+                  <div>Catatan Transaksi : Tidak Ada</div>
+                  <div>Metode Pembayaran : DP 2</div>
+                  <div>Jenis Pembayaran : Transfer</div>
                   <div>
                     <p
                       className={`border-b border-neutral-800 ${styles.section}`}
@@ -244,6 +205,11 @@ const RekapPesanan: React.FC = () => {
                       Bukti Pembayaran
                     </p>
                     <div className="flex flex-row gap-3">
+                      <Image
+                        src={buktiTF}
+                        alt="Bukti Transfer"
+                        className="h-[80px] w-[80px] rounded-md object-cover flex mt-1"
+                      />
                       <Image
                         src={buktiTF}
                         alt="Bukti Transfer"
@@ -263,16 +229,16 @@ const RekapPesanan: React.FC = () => {
                       Status Transaksi
                     </p>
                     <div className={`flex flex-row gap-4 pt-1 ${styles.text}`}>
-                      <div className="py-0.5 px-2 rounded-md justify-center items-center bg-pink-300">
+                      <div className="py-0.5 px-2 rounded-md justify-center items-center bg-gray-200">
                         belum lunas
                       </div>
-                      <div className="py-0.5 px-2 rounded-md justify-center items-center bg-gray-200">
+                      <div className="py-0.5 px-2 rounded-md justify-center items-center bg-lime-200">
                         lunas
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col w-1/3 gap-1">
+                <div className={`flex flex-col w-1/3 gap-1`}>
                   <div className="flex justify-between">
                     <div>Subtotal</div>
                     <div>15.385.000</div>
@@ -285,12 +251,24 @@ const RekapPesanan: React.FC = () => {
                     <div>Telah dibayar DP 2</div>
                     <div>4.307.800</div>
                   </div>
-                  <div className="flex justify-between pb-1">
+                  <div className="flex justify-between border-b border-neutral-600 pb-1">
+                    <div>
+                      <strong>Total</strong>
+                    </div>
+                    <div>
+                      <strong>6.461.700</strong>
+                    </div>
+                  </div>
+                  <div className="flex justify-between border-b border-neutral-600 pb-1">
+                    <div>Pelunasan</div>
+                    <div>6.461.700</div>
+                  </div>
+                  <div className="flex justify-between">
                     <div>
                       <strong>Sisa Tagihan</strong>
                     </div>
                     <div>
-                      <strong>6.461.700</strong>
+                      <strong>-</strong>
                     </div>
                   </div>
                 </div>
@@ -298,9 +276,6 @@ const RekapPesanan: React.FC = () => {
             </div>
           </div>
         </div>
-        {isFormBayarOpen && (
-          <BayarTagihan onCloseModal={onCloseFormBayarModal} />
-        )}
       </div>
     </div>
   );
