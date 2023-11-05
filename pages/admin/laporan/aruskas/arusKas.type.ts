@@ -8,6 +8,7 @@ export interface IArusKas {
     nominal: number;
     bukti: string;
     total: number;
+    file: string;
 }
 
 export const dummyArusKasList: IArusKas[] = [{
@@ -19,7 +20,8 @@ export const dummyArusKasList: IArusKas[] = [{
     qty: 2,
     nominal: 50000,
     total: 100000,
-    bukti: "Bukti",
+    bukti: "View",
+    file: "https://raw.githubusercontent.com/Heiyohana/SistemKeuanganTA/master/assets/elements/buktitf.jpg"
 }, {
     id: new Date().toJSON.toString(),
     tanggal: "2023-06-05",
@@ -29,7 +31,8 @@ export const dummyArusKasList: IArusKas[] = [{
     qty: 2,
     nominal: 50000,
     total: 100000,
-    bukti: "Bukti",
+    bukti: "View",
+    file: "https://raw.githubusercontent.com/Heiyohana/SistemKeuanganTA/master/assets/elements/buktitf.jpg"
 }, {
     id: new Date().toJSON.toString(),
     tanggal: "2023-06-05",
@@ -39,7 +42,8 @@ export const dummyArusKasList: IArusKas[] = [{
     qty: 2,
     nominal: 100000,
     total: 200000,
-    bukti: "Bukti",
+    bukti: "View",
+    file: "https://raw.githubusercontent.com/Heiyohana/SistemKeuanganTA/master/assets/elements/buktitf.jpg"
 }, {
     id: new Date().toJSON.toString(),
     tanggal: "2023-06-06",
@@ -49,7 +53,8 @@ export const dummyArusKasList: IArusKas[] = [{
     qty: 1,
     nominal: 1000000,
     total: 1000000,
-    bukti: "Bukti",
+    bukti: "View",
+    file: "https://raw.githubusercontent.com/Heiyohana/SistemKeuanganTA/master/assets/elements/buktitf.jpg"
 }, {
     id: new Date().toJSON.toString(),
     tanggal: "2023-06-06",
@@ -59,7 +64,8 @@ export const dummyArusKasList: IArusKas[] = [{
     qty: 8,
     nominal: 80000,
     total: 8 * 80000,
-    bukti: "Bukti",
+    bukti: "View",
+    file: "https://raw.githubusercontent.com/Heiyohana/SistemKeuanganTA/master/assets/elements/buktitf.jpg"
 }, {
     id: new Date().toJSON.toString(),
     tanggal: "2023-06-07",
@@ -69,7 +75,8 @@ export const dummyArusKasList: IArusKas[] = [{
     qty: 4,
     nominal: 80000,
     total: 4 * 80000,
-    bukti: "Bukti",
+    bukti: "View",
+    file: "https://raw.githubusercontent.com/Heiyohana/SistemKeuanganTA/master/assets/elements/buktitf.jpg"
 }, {
     id: new Date().toJSON.toString(),
     tanggal: "2023-06-08",
@@ -79,7 +86,8 @@ export const dummyArusKasList: IArusKas[] = [{
     qty: 1,
     nominal: 1500000,
     total: 1500000,
-    bukti: "Bukti",
+    bukti: "View",
+    file: "https://raw.githubusercontent.com/Heiyohana/SistemKeuanganTA/master/assets/elements/buktitf.jpg"
 }, {
     id: new Date().toJSON.toString(),
     tanggal: "2023-06-09",
@@ -89,7 +97,8 @@ export const dummyArusKasList: IArusKas[] = [{
     qty: 2,
     nominal: 75000,
     total: 2 * 75000,
-    bukti: "Bukti",
+    bukti: "View",
+    file: "https://raw.githubusercontent.com/Heiyohana/SistemKeuanganTA/master/assets/elements/buktitf.jpg"
 }, {
     id: new Date().toJSON.toString(),
     tanggal: "2023-06-12",
@@ -99,7 +108,8 @@ export const dummyArusKasList: IArusKas[] = [{
     qty: 8,
     nominal: 200000,
     total: 8 * 200000,
-    bukti: "Bukti",
+    bukti: "View",
+    file: "https://raw.githubusercontent.com/Heiyohana/SistemKeuanganTA/master/assets/elements/buktitf.jpg"
 }, {
     id: new Date().toJSON.toString(),
     tanggal: "2023-06-13",
@@ -109,5 +119,6 @@ export const dummyArusKasList: IArusKas[] = [{
     qty: 1,
     nominal: 50000,
     total: 50000,
-    bukti: "Bukti",
+    bukti: "View",
+    file: "https://raw.githubusercontent.com/Heiyohana/SistemKeuanganTA/master/assets/elements/buktitf.jpg"
 },]

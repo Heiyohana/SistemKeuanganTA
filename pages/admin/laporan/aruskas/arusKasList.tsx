@@ -5,6 +5,7 @@ import { faChevronLeft, faChevronRight, faEdit, faTrash } from "@fortawesome/fre
 import { format } from "date-fns";
 import styles from "./aruskas.module.css";
 import Link from "next/link";
+import ViewBukti from "@/pages/components/viewbukti";
 
 type ArusKasListProps = {
   list: IArusKas[];
@@ -33,6 +34,17 @@ const ArusKasList: React.FC<ArusKasListProps> = (props) => {
 
   const itemsToShow = list.slice(startIndex, endIndex);
 
+  const [selectedViewData, setSelectedViewData] = useState<string | null>(null);
+  const [isViewOpen, setIsViewOpen] = useState(false);
+  const handleClick = (data:IArusKas) => {
+    setSelectedViewData(data.bukti);
+    setIsViewOpen(true);
+  };
+
+  const closeViewModal = () => {
+    setIsViewOpen(false);
+  };
+
   return (
     <div className="w-max m-1 mt-3">
       <table className=" text-left border-2 border-blue-500 ">
@@ -51,51 +63,63 @@ const ArusKasList: React.FC<ArusKasListProps> = (props) => {
           </tr>
         </thead>
         <tbody className="bg-white">
-          {list.map((data, index) => (
-            <tr
-              className={`p-2 hover:bg-blue-200 border-blue-200 border table-auto w-full ${styles.tdtable}`}
-              key={index}
-            >
-              <td className="text-center px-2 py-1 justify-start font-normal">
-                {index + 1}
-              </td>
-              <td className="px-4 py-1 text-center">
-                {format(new Date(data.tanggal), "dd-MM-yyyy")}
-              </td>
-              <td className="px-4 py-1">{data.namapelapor}</td>
-              <td className="px-2 py-1 text-center">{data.kategori}</td>
-              <td className="px-5 py-1">{data.keterangan}</td>
-              <td className="px-2 py-1 text-center">{data.qty}</td>
-              <td className="px-2 py-1 text-center">{data.nominal}</td>
-              <td className="px-2 py-1 text-center">
-                {data.qty * data.nominal}
-              </td>
-              <td className="px-2 py-1">{data.bukti}</td>
-              {showActions && (
+          {list.map((data, index) => {
+            return (
+              <tr
+                className={`p-2 hover:bg-blue-200 border-blue-200 border table-auto w-full ${styles.tdtable}`}
+                key={index}
+              >
+                <td className="text-center px-2 py-1 justify-start font-normal">
+                  {index + 1}
+                </td>
+                <td className="px-4 py-1 text-center">
+                  {format(new Date(data.tanggal), "dd-MM-yyyy")}
+                </td>
+                <td className="px-4 py-1">{data.namapelapor}</td>
+                <td className="px-2 py-1 text-center">{data.kategori}</td>
+                <td className="px-5 py-1 text-center">{data.keterangan}</td>
+                <td className="px-2 py-1 text-center">{data.qty}</td>
+                <td className="px-2 py-1 text-center">{data.nominal}</td>
+                <td className="px-2 py-1 text-center">
+                  {data.qty * data.nominal}
+                </td>
                 <td className="px-2 py-1">
                   <button
-                    className="cursor-pointer"
-                    value={"Delete"}
-                    onClick={() => onDeleteClickHnd(data)}
+                    className="border-b border-blue-600 text-blue-600 hover:text-blue-800 hover:border-blue-800"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleClick(data);
+                    }}
                   >
-                    <FontAwesomeIcon
-                      className="text-md mr-2 text-red-500 hover:text-white"
-                      icon={faTrash}
-                    />
+                    {data.bukti}
                   </button>
-                  <Link
-                    className="cursor-pointer"
-                    href={"/admin/laporan/aruskas/editArusKas"}
-                  >
-                    <FontAwesomeIcon
-                      className="text-md ml-1 text-lime-400 hover:text-white"
-                      icon={faEdit}
-                    />
-                  </Link>
                 </td>
-              )}
-            </tr>
-          ))}
+                {showActions && (
+                  <td className="px-2 py-1">
+                    <button
+                      className="cursor-pointer"
+                      value={"Delete"}
+                      onClick={() => onDeleteClickHnd(data)}
+                    >
+                      <FontAwesomeIcon
+                        className="text-md mr-2 text-red-500 hover:text-white"
+                        icon={faTrash}
+                      />
+                    </button>
+                    <Link
+                      className="cursor-pointer"
+                      href={"/admin/laporan/aruskas/editArusKas"}
+                    >
+                      <FontAwesomeIcon
+                        className="text-md ml-1 text-lime-400 hover:text-white"
+                        icon={faEdit}
+                      />
+                    </Link>
+                  </td>
+                )}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       {/* Layout Pagination */}
@@ -141,6 +165,9 @@ const ArusKasList: React.FC<ArusKasListProps> = (props) => {
           </button>
         </div>
       </div>
+      {isViewOpen && (
+        <ViewBukti file={selectedViewData} onCloseModal={closeViewModal}/>
+      )}
     </div>
   );
 };

@@ -71,7 +71,7 @@ const LaporanPesanan = () => {
   const [ isViewOpen, setIsViewOpen ] = useState(false);
   const [selectedViewData, setSelectedViewData] = useState<string | null>(null);
 
-  const handleRowClick = (rowData: ILaporanPesanan, target: string) => {
+  const handleClick = (rowData: ILaporanPesanan, target: string) => {
     if (target === "row"){
       setSelectedData(rowData);
       router.push({
@@ -203,7 +203,7 @@ const LaporanPesanan = () => {
                     className={`hover:bg-blue-100 p-3 border-blue-200 border table-auto cursor-pointer ${styles.tdtable}`}
                     key={index}
                     // ketika diklik akan link to rekappesanan dan data setiap baris akan ditampilkan di halaman rekap pesanan
-                    onClick={() => handleRowClick(rowData, "row")}
+                    onClick={() => handleClick(rowData, "row")}
                   >
                     <td className="px-2 py-0.5 justify-start">
                       {"00" + (index + 1)}
@@ -219,7 +219,7 @@ const LaporanPesanan = () => {
                         className="border-b border-blue-600 text-blue-600 hover:text-blue-800 hover:border-blue-800"
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleRowClick(rowData, "view");
+                          handleClick(rowData, "view");
                         }}
                       >
                         {rowData.bukti}
