@@ -1,14 +1,14 @@
 import Kop from "@/pages/components/kop";
 import Head from "next/head";
 import React from "react";
-import { IArusKas, dummyArusKasList } from "./arusKas.type";
-import styles from "./aruskas.module.css";
+import { IProduksiHarian, dummyProduksiHarianList } from "./jumlahProduksi.type";
+import styles from "./jumlahproduksiharian.module.css";
 
 const exportDataPage: React.FC = () => {
   return (
     <div className="w-full bg-white m-0">
       <Head>
-        <title>Laporan Arus Kas</title>
+        <title>Laporan Jumlah Produksi Harian</title>
       </Head>
 
       <Kop />
@@ -24,15 +24,14 @@ const exportDataPage: React.FC = () => {
             <tr className={`${styles.thead}`}>
               <td className="py-2 px-2 text-center">No</td>
               <td className="py-2 px-4">Tanggal</td>
-              <td className="py-2 px-4">Nama Pelapor</td>
-              <td className="py-2 px-5">Kategori</td>
+              <td className="py-2 px-4">Material</td>
+              <td className="py-2 px-5">Jml Produksi</td>
               <td className="py-2 px-6">Keterangan</td>
-              <td className="py-2 px-2 text-center">Qty</td>
             </tr>
           </thead>
           <tbody className="bg-white text-left">
             {/* isi data dari test.type.ts */}
-            {dummyArusKasList.map((kas: IArusKas, index) => {
+            {dummyProduksiHarianList.map((kas: IProduksiHarian, index) => {
               return (
                 <tr
                   key={kas.id}
@@ -40,10 +39,9 @@ const exportDataPage: React.FC = () => {
                 >
                   <td className="py-1 px-2 text-center">{index + 1}</td>
                   <td className="py-1 px-4">{kas.tanggal}</td>
-                  <td className="py-1 px-4">{kas.namapelapor}</td>
-                  <td className="py-1 px-5">{kas.kategori}</td>
+                  <td className="py-1 px-4">{kas.materials}</td>
+                  <td className="py-1 px-5">{kas.jmlProduksi}</td>
                   <td className="py-1 px-6">{kas.keterangan}</td>
-                  <td className="py-1 px-2 text-center">{kas.qty}</td>
                 </tr>
               );
             })}

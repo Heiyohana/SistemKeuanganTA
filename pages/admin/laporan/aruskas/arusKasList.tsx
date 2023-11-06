@@ -37,7 +37,7 @@ const ArusKasList: React.FC<ArusKasListProps> = (props) => {
   const [selectedViewData, setSelectedViewData] = useState<string | null>(null);
   const [isViewOpen, setIsViewOpen] = useState(false);
   const handleClick = (data:IArusKas) => {
-    setSelectedViewData(data.bukti);
+    setSelectedViewData(data.file);
     setIsViewOpen(true);
   };
 

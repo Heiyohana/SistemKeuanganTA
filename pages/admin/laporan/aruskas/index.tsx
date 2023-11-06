@@ -3,7 +3,6 @@ import Head from "next/head";
 import React, { useState, useRef } from "react";
 import { IArusKas, dummyArusKasList } from "./arusKas.type";
 import ArusKasList from "./arusKasList";
-import { useReactToPrint } from "react-to-print";
 import Link from "next/link";
 import styles from "./aruskas.module.css";
 
@@ -39,12 +38,6 @@ const Aruskas = () => {
     .slice()
     .sort((a, b) => a.tanggal.localeCompare(b.tanggal));
 
-  // Untuk mengatur export PDF
-  const componentPDF = useRef(null);
-  const generatePDF = useReactToPrint({
-    content: () => componentPDF.current,
-    documentTitle: "Laporan Arus Kas",
-  });
   // Untuk mengatur kolom aksi hilang saat diekspor
   const [showActions, setShowActions] = useState(true);
 

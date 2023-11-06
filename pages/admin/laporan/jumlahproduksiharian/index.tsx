@@ -8,8 +8,8 @@ import {
   dummyProduksiHarianList,
 } from "./jumlahProduksi.type";
 import EditJumlahProduksi from "./editJumlahProduksi";
-import { useReactToPrint } from "react-to-print";
 import styles from "./jumlahproduksiharian.module.css";
+import Link from "next/link";
 
 const jumlahproduksiharian = () => {
   const [produksiList, setProduksiList] = useState(
@@ -53,21 +53,8 @@ const jumlahproduksiharian = () => {
     .slice()
     .sort((a, b) => a.tanggal.localeCompare(b.tanggal));
 
-  // Untuk mengatur export PDF
-  const componentPDF = useRef(null);
-  const generatePDF = useReactToPrint({
-    content: () => componentPDF.current,
-    documentTitle: "Laporan Arus Kas",
-  });
   // Untuk mengatur kolom aksi hilang saat diekspor
   const [showActions, setShowActions] = useState(true);
-  const handleExportPDF = () => {
-    setShowActions(false); // Set showActions ke false saat tombol export PDF diklik
-    generatePDF();
-    setTimeout(() => {
-      setShowActions(true);
-    }, 5000);
-  };
 
   return (
     <div className="relative flex max-h-max">
@@ -115,18 +102,16 @@ const jumlahproduksiharian = () => {
             />
 
             {/* Button Export Data */}
-            <button
-              onClick={handleExportPDF}
-              className="rounded-lg text-white bg-blue-500 px-4 py-2 mb-1
-              cursor-pointer"
+            <Link
+              href="../laporan/jumlahproduksiharian/exportData"
+              className={`rounded-lg text-white bg-blue-500 px-4 py-2 mr-2 mb-2 cursor-pointer ${styles.button}`}
             >
               Export to PDF
-            </button>
+            </Link>
           </div>
         </div>
         {/* DataTabel */}
         <div
-          ref={componentPDF}
           style={{
             width: "90%",
             alignItems: "center",
@@ -146,9 +131,7 @@ const jumlahproduksiharian = () => {
           />
         </div>
 
-        {shownPage === PageEnum.edit && (
-          <EditJumlahProduksi />
-        )}
+        {shownPage === PageEnum.edit && <EditJumlahProduksi />}
       </div>
     </div>
   );

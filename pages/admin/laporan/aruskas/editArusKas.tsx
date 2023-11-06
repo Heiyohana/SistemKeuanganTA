@@ -24,7 +24,7 @@ const trans_aruskas = () => {
     setIsModalSuccessOpen(true);
     setTimeout(() => {
       setIsModalSuccessOpen(false);
-    }, 500);
+    }, 5000);
   };
 
   return (
@@ -105,7 +105,7 @@ const trans_aruskas = () => {
             />
           </div>
 
-          <div className={`container ${styles.teks}`}>
+          <div className="container">
             <span className="sr-only">Choose File</span>
             <input
               type="file"
