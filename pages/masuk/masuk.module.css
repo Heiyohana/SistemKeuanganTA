@@ -1,5 +1,4 @@
 .h1Left {
-    /* "font-bold text-white text-2xl mb-1" */
     font-family: Poppins;
     font-size: 24px;
     font-style: normal;
@@ -22,7 +21,6 @@
     font-weight: 700;
 }
 
-/* "text-sm flex justify-center mb-4" */
 .h3 {
     font-family: Poppins, sans-serif;
     font-size: 14px;
@@ -30,7 +28,6 @@
     font-style: normal;
 }
 
-/* "text-sm font-bold text-gray-600 block" */
 .label {
     font-family: Poppins, sans-serif;
     font-size: 14px;
@@ -38,21 +35,12 @@
     font-style: normal;
 }
 
-/* "w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 rounded-md text-sm text-white" */
 .textButtonSubmit {
     font-family: Poppins, sans-serif;
     font-weight: 500;
     font-size: 14px;
 }
 
-.desclink {
-    display: flex;
-    justify-content: center;
-    font-family: Poppins, sans-serif;
-    font-weight: 300;
-}
-
-/* font-medium text-sm */
 .textForgot {
     font-family: Poppins, sans-serif;
     font-weight: 400 bold;
@@ -69,7 +57,7 @@
 
 .linkDaftar {
     font-family: Poppins, sans-serif;
-    font-weight: 700; /* font-bold */
+    font-weight: 700;
     font-size: 14px;
     font-style: normal;
 }

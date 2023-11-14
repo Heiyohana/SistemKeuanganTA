@@ -13,23 +13,15 @@ interface IDaftar {
   sandi: string;
   konfirmsandi: string;
 }
-
 interface IState {
   user: IDaftar;
   isLoginSuccessful: Boolean;
 }
-
 const Daftar: React.FC = () => {
   const [state, setState] = useState<IState>({
-    user: {
-      email: "",
-      username: "",
-      sandi: "",
-      konfirmsandi: "",
-    },
+    user: { email: "", username: "", sandi: "", konfirmsandi: "",},
     isLoginSuccessful: false,
   });
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setState({
       ...state,
@@ -39,14 +31,10 @@ const Daftar: React.FC = () => {
       },
     });
   };
-
-  // Form Handling
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     // Reset any previous error messages
     setState({ ...state, isLoginSuccessful: false });
-
-    // check field form
     if (!state.user.email && state.user.username && state.user.sandi && state.user.konfirmsandi) {
       alert("Maaf, email tidak boleh kosong");
       return;
@@ -56,10 +44,7 @@ const Daftar: React.FC = () => {
     } else if (state.user.email && state.user.username && !state.user.sandi && state.user.konfirmsandi){
       alert("Maaf, sandi tidak boleh kosong");
       return;
-    }
-
-    // Simulate Login Validation
-    if (
+    }else if (
       // admin
       state.user.email === "hendamiayohana@gmail.com" &&
       state.user.username === "Miahana" &&
@@ -67,10 +52,8 @@ const Daftar: React.FC = () => {
       state.user.konfirmsandi === "12345678"
     ) {
       setState({ ...state, isLoginSuccessful: true });
-      alert("Login Sukses");
-
-      // Navigasi to dashboard page
-      router.push("/admin/dashboard");
+      alert("Akun Anda telah berhasil di buat.");
+      router.push("/masuk");
     } else if (
       // staff
       state.user.email === "heiyohana@gmail.com" &&
@@ -79,10 +62,8 @@ const Daftar: React.FC = () => {
       state.user.konfirmsandi !== "yohana12"
     ) {
       setState({ ...state, isLoginSuccessful: true });
-      alert("Login Sukses");
-
-      // Navigasi to dashboard page
-      router.push("/staff/dashboard");
+      alert("Akun Anda telah berhasil di buat.");
+      router.push("/masuk");
     } else if ( state.user.email && state.user.username && state.user.sandi && state.user.konfirmsandi){
       if (state.user.sandi != state.user.konfirmsandi){
         alert("Maaf, periksa dan cocokkan kembali sandi Anda");

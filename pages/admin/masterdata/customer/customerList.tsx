@@ -66,34 +66,32 @@ const customerList: React.FC<CustomerListProps> = (props) => {
                 className={`hover:bg-blue-100 p-2 border-blue-200 border table-auto ${styles.tdtable}`}
                 key={actualIndex}
               >
-                <td className={` px-2 py-1 text-center`}>
-                  {actualIndex}
-                </td>
+                <td className={` px-2 py-1 text-center`}>{actualIndex}</td>
                 <td className="px-4 py-1">{customer.nama}</td>
                 <td className="px-4 py-1">{customer.nohp}</td>
                 <td className="px-9 py-1">{customer.alamat}</td>
-                  <td className="px-4 py-1 font-medium items-center">
-                    <button
-                      className="cursor-pointer"
-                      value="Delete"
-                      onClick={() => onDeleteClickHnd(customer)}
-                    >
-                      <FontAwesomeIcon
-                        icon={faTrash}
-                        className="text-md mr-2 text-red-500"
-                      />
-                    </button>
-                    <button
-                      className="cursor pointer"
-                      value="Edit"
-                      onClick={() => viewDetails(customer)}
-                    >
-                      <FontAwesomeIcon
-                        icon={faEdit}
-                        className="text-md mr-2 text-lime-500"
-                      />
-                    </button>
-                  </td>
+                <td className="px-4 py-1 font-medium items-center">
+                  <button
+                    className="cursor-pointer"
+                    value="Delete"
+                    onClick={() => onDeleteClickHnd(customer)}
+                  >
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      className="text-md mr-2 text-red-500"
+                    />
+                  </button>
+                  <button
+                    className="cursor pointer"
+                    value="Edit"
+                    onClick={() => viewDetails(customer)}
+                  >
+                    <FontAwesomeIcon
+                      icon={faEdit}
+                      className="text-md mr-2 text-lime-500"
+                    />
+                  </button>
+                </td>
               </tr>
             );
           })}

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { useRef, useState } from "react";
-import NavSideBar from "@/pages/components/sidenavbar/admin";
+import NavSideBar from "@/pages/components/sidenavbar/staff";
 import JphList from "./jumlahProduksiList";
 import {
   IProduksiHarian,

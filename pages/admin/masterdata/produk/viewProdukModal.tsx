@@ -20,50 +20,41 @@ const viewProdukModal = (props: Props) => {
                 <label>Kategori :</label>
                 <input
                   type="text"
-                  // value={data.nama}
+                  value={data.nama}
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   placeholder={data.kategori}
-                  //   onChange={onNamaChangeHnd}
                 />
               </div>
               <div className={`${styles.label} pb-2`}>
                 <label>Nama Produk :</label>
                 <input
                   type="text"
-                  // value={data.nama}
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   placeholder={data.nama}
-                  //   onChange={onNamaChangeHnd}
                 />
               </div>
               <div className={`${styles.label} pb-2`}>
                 <label>Ukuran :</label>
                 <input
                   type="text"
-                  // value={data.nama}
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   placeholder={data.ukuran}
-                  //   onChange={onNamaChangeHnd}
                 />
               </div>
               <div className={`${styles.label} pb-2`}>
                 <label>Jumlah / m2 : </label> <br />
                 <input
                   type="text"
-                  // value={data.nohp}
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   placeholder={`${data.jumlahm2}`}
-                  //   onChange={onNohpChangeHnd}
                 />
               </div>
               <div className={`${styles.label} pb-2`}>
                 <label>Harga / m2: </label> <br />
                 <input
                   type="text"
-                  // value={data.alamat}
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   placeholder={`${data.hargam2}`}
-                  //   onChange={onAlamatChangeHnd}
                 />
               </div>
             </div>

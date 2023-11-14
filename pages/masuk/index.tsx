@@ -45,9 +45,7 @@ const Masuk: React.FC = () => {
     } else if (!state.user.password && state.user.username) {
       alert("Maaf, Password tidak boleh kosong");
       return;
-    } else if (!state.user.username && state.user.password) {
-      alert("Maaf, silakan lengkapi isi dari form masuk ini.");
-    }
+    } 
 
     // Simulate Login Validation
     if (
@@ -70,10 +68,12 @@ const Masuk: React.FC = () => {
 
       // Navigasi to dashboard page
       router.push("../staff/dashboard");
+    } else if (!state.user.username && !state.user.password) {
+      alert("Maaf, silakan lengkapi isi dari form masuk ini.");
     } else if (
       (state.user.username != "Miahana" && state.user.password != "yohana12") ||
       (state.user.username != "Miahana" && state.user.password != "12345678")
-    ) { 
+    ) {
       alert("Maaf, Username atau password yang Anda masukkan salah");
     }
   };

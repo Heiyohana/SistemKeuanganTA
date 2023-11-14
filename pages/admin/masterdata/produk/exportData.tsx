@@ -1,9 +1,9 @@
-import Head from 'next/head';
-import React, { useRef } from 'react';
+import Head from "next/head";
+import React, { useRef } from "react";
 import Kop from "@/pages/components/kop";
-import { dummyProdukList, IProduk } from './produk.type';
+import { dummyProdukList, IProduk } from "./produk.type";
 import styles from "./materproduk.module.css";
-import { useReactToPrint } from 'react-to-print';
+import { useReactToPrint } from "react-to-print";
 
 const exportData: React.FC = () => {
   const componentPDF = useRef(null);
@@ -12,7 +12,7 @@ const exportData: React.FC = () => {
     content: () => componentPDF.current,
     documentTitle: "Laporan Arus Kas",
   });
-  
+
   return (
     <div className="w-full bg-white m-0">
       <Head>
@@ -61,6 +61,6 @@ const exportData: React.FC = () => {
       {/* tandatangan */}
     </div>
   );
-}
+};
 
-export default exportData
+export default exportData;

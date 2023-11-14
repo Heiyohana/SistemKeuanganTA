@@ -12,28 +12,22 @@ const addProdukModal = (props: Props) => {
   const [ukuran, setUkuran] = useState("");
   const [jumlahm2, setJumlahm2] = useState<number | string>(""); // Use union type
   const [hargam2, setHargam2] = useState<number | string>(""); // Use union type
-
   const { onBatalBtnHnd, onSubmitClickHnd } = props;
-
   const onNamaChangeHnd = (e: any) => {
     setNama(e.target.value);
   };
-
   const onKategoriCHangeHnd = (e: any) => {
     setKategori(e.target.value);
   };
   const onUkuranChangeHnd = (e: any) => {
     setUkuran(e.target.value);
   };
-
   const onJumlahm2ChangeHnd = (e: any) => {
     setJumlahm2(e.target.value);
   };
-
   const onHargam2ChangeHnd = (e: any) => {
     setHargam2(e.target.value);
   };
-
   const onSubmitBtnClickHnd = (e: any) => {
     e.preventDefault();
     const data: IProduk = {
@@ -43,7 +37,7 @@ const addProdukModal = (props: Props) => {
       ukuran,
       jumlahm2: typeof jumlahm2 === "number" ? jumlahm2 : parseFloat(jumlahm2),
       hargam2: typeof hargam2 === "number" ? hargam2 : parseFloat(hargam2),
-      luas: 0
+      luas: 0,
     };
     onSubmitClickHnd(data);
     onBatalBtnHnd(); //Setelah submit akan otomatis ke close
@@ -105,9 +99,7 @@ const addProdukModal = (props: Props) => {
             </div>
 
             {/* Button */}
-            <div
-              className={`place-items-end ${styles.button}`}
-            >
+            <div className={`place-items-end ${styles.button}`}>
               <input
                 type="button"
                 value="Batal"

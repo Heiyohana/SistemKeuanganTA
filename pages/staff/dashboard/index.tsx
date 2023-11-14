@@ -18,7 +18,7 @@ export default function Dashboard() {
         {/* Kanan */}
         <div className="flex-grow right-0 justify-end bg-neutral-100 p-5">
           <h1 className={`${styles.h1}`}>Dashboard</h1>
-          <h3 className={`${styles.h3} pb-4`}>Welcome abroad, Miahana!</h3>
+          <h3 className={`${styles.h3} pb-4`}>Welcome abroad, heiyohana!</h3>
           <h2
             className={`${styles.h2} border-b-2 border-blue-400 text-blue-400`}
           >

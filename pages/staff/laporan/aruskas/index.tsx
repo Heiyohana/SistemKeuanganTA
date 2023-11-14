@@ -1,4 +1,4 @@
-import NavSideBar from "@/pages/components/sidenavbar/admin";
+import NavSideBar from "@/pages/components/sidenavbar/staff";
 import Head from "next/head";
 import React, { useState, useRef } from "react";
 import { IArusKas, dummyArusKasList } from "./arusKas.type";

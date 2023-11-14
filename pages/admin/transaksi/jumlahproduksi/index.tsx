@@ -30,7 +30,7 @@ export default function trans_jumlahproduksi() {
     setIsModalSuccessOpen(true);
     setTimeout(() => {
       setIsModalSuccessOpen(false);
-    }, 1000)
+    }, 1000);
   };
 
   return (

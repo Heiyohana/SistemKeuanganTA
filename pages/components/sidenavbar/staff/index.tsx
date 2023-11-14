@@ -1,10 +1,4 @@
-import {
-  faChevronDown,
-  faFileLines,
-  faFolder,
-  faCalculator,
-  faPieChart,
-  faSignOut,
+import {faChevronDown,faFileLines,faFolder,faCalculator,faPieChart,faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -17,86 +11,39 @@ import styles from "./sidenavbar.module.css";
 
 const NavSideBar = () => {
   const Menus = [
-    {
-      title: "Dashboard",
-      icon: faPieChart,
-      path: "/staff/dashboard",
-      spacing: true,
-      section: "MANAGE",
-    },
-    {
-      title: "Transaksi",
-      icon: faCalculator,
-      submenu: true,
-      path: "/staff/transaksi/pemesanan",
+    { title: "Dashboard", icon: faPieChart,path: "/staff/dashboard", spacing: true,section: "MANAGE",},
+    {title: "Transaksi",icon: faCalculator, submenu: true, path: "/staff/transaksi/pemesanan",
       submenuItems: [
         { title: "Pemesanan", path: "/staff/transaksi/pemesanan" },
         { title: "Arus Kas", path: "/staff/transaksi/aruskas" },
-        {
-          title: "Pencatatan Jumlah Produksi",
-          path: "/staff/transaksi/jumlahproduksi",
-        },
-      ],
-    },
-    {
-      title: "Laporan",
-      icon: faFileLines,
-      submenu: true,
-      path: "/staff/laporan/laporanpesanan",
+        {title: "Pencatatan Jumlah Produksi",path: "/staff/transaksi/jumlahproduksi",},
+      ],},
+    {title: "Laporan",icon: faFileLines,submenu: true, path: "/staff/laporan/laporanpesanan",
       submenuItems: [
         { title: "Pesanan", path: "/staff/laporan/laporanpesanan" },
         { title: "Arus Kas", path: "/staff/laporan/aruskas" },
-        {
-          title: "Jumlah Produksi Harian",
-          path: "/staff/laporan/jumlahproduksiharian",
-        },
-      ],
-    },
-    {
-      title: "Profile",
-      icon: faFolder,
-      path: "/staff/profile",
-      spacing: true,
-      section: "ACCOUNT",
-    },
-    {
-      title: "Keluar",
-      icon: faSignOut,
-    },
+        {title: "Jumlah Produksi Harian",path: "/staff/laporan/jumlahproduksiharian",},
+      ],},
+    {title: "Profile",icon: faFolder,path: "/staff/profile",spacing: true,section: "ACCOUNT",},
+    {title: "Keluar",icon: faSignOut,},
   ];
 
-  const [submenuOpenStatus, setSubmenuOpenStatus] = useState(
-    Menus.map(() => false)
-  );
-
+  const [submenuOpenStatus, setSubmenuOpenStatus] = useState(Menus.map(() => false));
   const handleSubmenuToggle = (index: number) => {
-    // Create a copy of submenuOpenStatus array
     const updatedSubmenuOpenStatus = [...submenuOpenStatus];
-    // Toggle the status of the submenu for the clicked menu
     updatedSubmenuOpenStatus[index] = !updatedSubmenuOpenStatus[index];
-    // Update the state with the new array
     setSubmenuOpenStatus(updatedSubmenuOpenStatus);
   };
-
   const router = useRouter();
-
   const [isModalLogoutOpen, setIsModalLogoutOpen] = useState(false);
-  const onModalLogoutClick = () => {
-    setIsModalLogoutOpen(true);
-  };
-  const onCloseModalLogout = () => {
-    setIsModalLogoutOpen(false);
-  };
+  const onModalLogoutClick = () => {setIsModalLogoutOpen(true);};
+  const onCloseModalLogout = () => {setIsModalLogoutOpen(false);};
 
   return (
     <div className="flex h-full w-1/5 left-0">
       <div className="bg-blue900 p-2 pt-5 bg-white w-full">
-        <div className={`${styles.namasistem} text-neutral-900`}>
-          Sistem Manajemen Keuangan
-        </div>
-        <div className={`${styles.namaCV} text-neutral-700 pb-4`}>
-          CV Karya Mandiri Sejahtera
-        </div>
+        <div className={`${styles.namasistem} text-neutral-900`}>Sistem Manajemen Keuangan</div>
+        <div className={`${styles.namaCV} text-neutral-700 pb-4`}>CV Karya Mandiri Sejahtera</div>
 
         {/* sub menu */}
         <div>

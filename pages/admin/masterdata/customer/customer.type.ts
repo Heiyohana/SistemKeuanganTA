@@ -61,6 +61,4 @@ export const dummyCustomerList: ICustomer[] = [{
 export enum PageEnum {
     list,
     add,
-    edit,
-    export
 }

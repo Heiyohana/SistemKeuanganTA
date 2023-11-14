@@ -6,6 +6,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Linechart from "@/pages/components/linechart";
 import Piechart from "@/pages/components/piechart";
 import styles from "./dashboard.module.css";
+import Link from "next/link";
 
 export default function Dashboard() {
   return (
@@ -33,9 +34,9 @@ export default function Dashboard() {
                 <p className={`${styles.nominal}`}>16.000.000</p>
               </div>
               <div className="flex flex-row justify-between items-center px-3 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
-                <a className={`${styles.viewMore}`} href="/laporan/aruskas">
+                <Link href="@/pages/admin/laporan/aruskas" className={`${styles.viewMore}`}>
                   View More
-                </a>
+                </Link>
                 <FontAwesomeIcon
                   className="text-sm items-center pl-5"
                   icon={faArrowRight}

@@ -53,7 +53,7 @@ const trans_aruskas = () => {
               type="date"
               value={tanggalOtomatis}
               onChange={(e) => setTanggalOtomatis(e.target.value)}
-              className="text-neutral-600 bg-neutral-300 rounded-md px-3 py-1 mt-1"
+              className="text-neutral-600 bg-neutral-300 rounded-md px-3 py-2 mt-1"
               disabled // Agar tidak bisa diubah oleh pengguna
             />
           </div>
@@ -61,7 +61,7 @@ const trans_aruskas = () => {
           <div className={`pb-2 w-fit flex flex-col ${styles.label}`}>
             <span>Kategori Keuangan</span>
             <select
-              className="bg-white rounded-md px-2 py-1 mt-1 border border-neutral-400"
+              className="bg-white rounded-md px-2 py-2 mt-1 border border-neutral-400"
               value={kategori}
               onChange={(e) => setKategori(e.target.value)}
             >
@@ -79,7 +79,7 @@ const trans_aruskas = () => {
               type="text"
               value={nama}
               onChange={(e) => setNama(e.target.value)}
-              className="rounded-md px-3 py-1 mt-1 border border-neutral-400"
+              className="rounded-md px-3 py-2 mt-1 border border-neutral-400"
               placeholder="Masukan Nama Pelapor"
             />
           </div>
@@ -90,7 +90,7 @@ const trans_aruskas = () => {
               type="text"
               value={keterangan}
               onChange={(e) => setKeterangan(e.target.value)}
-              className="rounded-md px-3 py-1 mt-1 border border-neutral-400"
+              className="rounded-md px-3 py-2 mt-1 border border-neutral-400"
               placeholder="Masukan Keterangan Arus Kas"
             />
           </div>
@@ -101,7 +101,7 @@ const trans_aruskas = () => {
               type="number"
               value={nominal}
               onChange={(e) => setNominal(e.target.value)}
-              className="rounded-md px-3 py-1 mt-1 border border-neutral-400"
+              className="rounded-md px-3 py-2 mt-1 border border-neutral-400"
             />
           </div>
 
@@ -119,7 +119,7 @@ const trans_aruskas = () => {
           <div className="flex justify-end">
             <button
               onClick={onModalSuccessClick}
-              className={`bg-blue-600 h-8 rounded-md text-white px-2 py-1 hover:shadow-md ${styles.button}`}
+              className={`bg-blue-600 h-8 rounded-md text-white px-2 py-2 hover:shadow-md ${styles.button}`}
             >
               Simpan Data
             </button>

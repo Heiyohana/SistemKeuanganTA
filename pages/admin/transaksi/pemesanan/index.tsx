@@ -33,6 +33,9 @@ type Pesanan = {
 };
 
 const orderretail = () => {
+  const [namaCust, setNamaCust] = useState("");
+  const [noHp, setNoHp] = useState("");
+  const [alamat, setAlamat] = useState("");
   // const router = useRouter();
   // Deklarasi data produk
   const [produkList, setProdukList] = useState(dummyProdukList as IProduk[]);
@@ -183,11 +186,38 @@ const orderretail = () => {
 
   // state untuk melacak BookCustomer telah terisi atau belum
   const [isCustDataFilled, setisCustDataFilled] = useState(false);
+  const [isCustomerDataFilled, setIsCustomerDataFilled] = useState(false);
 
   // fungsi untuk menandai bahwa BookCustomer telah terisi
   const markCustomerDatasAsFilled = () => {
-    setisCustDataFilled(true);
+    setIsCustomerDataFilled(true);
   };
+  useEffect(() => {
+    if (namaCust !== "" && noHp !== "" && alamat !== "") {
+      setIsCustomerDataFilled(true);
+    } else {
+      setIsCustomerDataFilled(false);
+    }
+  }, [namaCust, noHp, alamat]);
+
+
+  // Mengisi Data Customer melalui inputan
+  const handleInputChange = (label: string, value: string) => {
+    switch (label) {
+      case "Nama Customer":
+        setNamaCust(value);
+        break;
+      case "No Handphone":
+        setNoHp(value);
+        break;
+      case "Alamat Pengiriman":
+        setAlamat(value);
+        break;
+      default:
+        break;
+    }
+  };
+
 
   return (
     // halaman transaksi untuk order / pemesanan
@@ -317,7 +347,18 @@ const orderretail = () => {
                                     <span className="flex mr-4">{label}</span>
                                     <input
                                       type="text"
-                                      value=""
+                                      value={
+                                        label === "Nama Customer"
+                                          ? namaCust
+                                          : label === "No Handphone"
+                                          ? noHp
+                                          : label === "Alamat Pengiriman"
+                                          ? alamat
+                                          : ""
+                                      }
+                                      onChange={(e) =>
+                                        handleInputChange(label, e.target.value)
+                                      }
                                       className="w-max bg-white border border-neutral-200 rounded-md p-2 py-1 mt-1"
                                     />
                                   </div>
@@ -440,13 +481,6 @@ const orderretail = () => {
             </div>
           </div>
         </div>
-        {isAddFormOpen && (
-          <FormPesanan
-            list={produkList}
-            onCloseModal={onCloseFormPesanan}
-            tambahPesanan={tambahPesanan}
-          />
-        )}
         {isBookCustOpen && (
           <BookCustomer
             list={customerList}
@@ -454,12 +488,16 @@ const orderretail = () => {
             markCustomerDataAsFilled={markCustomerDatasAsFilled}
           />
         )}
-
-        {isFormBayarOpen && isCustDataFilled && (
-          <FormBayar
-            // onCloseModal={onCloseFormBayarModal}
-            subTotal={totalBiayaKeseluruhan}
+        {isAddFormOpen && isCustomerDataFilled && (
+          <FormPesanan
+            list={produkList}
+            onCloseModal={onCloseFormPesanan}
+            tambahPesanan={tambahPesanan}
           />
+        )}
+
+        {isFormBayarOpen && isCustomerDataFilled && (
+          <FormBayar subTotal={totalBiayaKeseluruhan} />
         )}
         {isWarningOpen && <Modalwarnbook onCloseModal={onWarnClosebyOke} />}
       </div>

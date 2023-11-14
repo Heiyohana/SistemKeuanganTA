@@ -122,6 +122,14 @@ const LaporanPesanan = () => {
                 className="p-2 w-[200px] bg-white mr-3 rounded-lg"
               />
 
+              {/* Filter Tanggal Order */}
+              <input
+                type="date"
+                value={searchText}
+                onChange={handleSearchTextChange}
+                className="p-2 w-[200px] bg-white mr-3 rounded-lg"
+              />
+
               {/* Button Export Data */}
               <Link
                 href="../laporan/laporanpesanan/exportData"
@@ -258,7 +266,9 @@ const LaporanPesanan = () => {
             </table>
           </div>
           {/* Layout Pagination */}
-          <div className={`items-center mt-3 flex justify-between ${styles.text}`}>
+          <div
+            className={`items-center mt-3 flex justify-between ${styles.text}`}
+          >
             <a className="text-neutral-400">
               Menampilkan halaman ke {currentPage} dari {totalPages}
             </a>
@@ -302,7 +312,9 @@ const LaporanPesanan = () => {
           </div>
         </div>
       </div>
-      {isViewOpen && <ViewBukti file={selectedViewData} onCloseModal={closeViewModal}/>}
+      {isViewOpen && (
+        <ViewBukti file={selectedViewData} onCloseModal={closeViewModal} />
+      )}
     </div>
   );
 };
