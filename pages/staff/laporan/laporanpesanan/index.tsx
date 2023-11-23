@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import NavSideBar from "@/pages/components/sidenavbar/admin";
+import NavSideBar from "@/pages/components/sidenavbar/staff";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
