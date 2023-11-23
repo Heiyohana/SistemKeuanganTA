@@ -33,6 +33,9 @@ type Pesanan = {
 };
 
 const orderretail = () => {
+  const [namaCust, setNamaCust] = useState("");
+  const [noHp, setNoHp] = useState("");
+  const [alamat, setAlamat] = useState("");
   // const router = useRouter();
   // Deklarasi data produk
   const [produkList, setProdukList] = useState(dummyProdukList as IProduk[]);
@@ -164,6 +167,11 @@ const orderretail = () => {
     // Reset state selectedCustomer menjadi null
     setSelectedCustomer(null);
 
+    // mereset input ketikan
+    setNamaCust("");
+    setNoHp("");
+    setAlamat("");
+
     // Reset state pesanan menjadi array kosong
     setPesanan([]);
   };
@@ -183,10 +191,35 @@ const orderretail = () => {
 
   // state untuk melacak BookCustomer telah terisi atau belum
   const [isCustDataFilled, setisCustDataFilled] = useState(false);
+  const [isCustomerDataFilled, setIsCustomerDataFilled] = useState(false);
 
   // fungsi untuk menandai bahwa BookCustomer telah terisi
   const markCustomerDatasAsFilled = () => {
     setisCustDataFilled(true);
+  };
+  useEffect(() => {
+    if (namaCust !== "" && noHp !== "" && alamat !== "") {
+      setisCustDataFilled(false);
+    } else {
+      setisCustDataFilled(true);
+    }
+  }, [namaCust, noHp, alamat]);
+
+  // Mengisi Data Customer melalui inputan
+  const handleInputChange = (label: string, value: string) => {
+    switch (label) {
+      case "Nama Customer":
+        setNamaCust(value);
+        break;
+      case "No Handphone":
+        setNoHp(value);
+        break;
+      case "Alamat Pengiriman":
+        setAlamat(value);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -254,7 +287,7 @@ const orderretail = () => {
                         <span className="flex">CS Desk</span>
                         <input
                           type="text"
-                          value="heiyohana"
+                          value="Miayohana"
                           className="text-neutral-600 w-max bg-neutral-300 rounded-md p-2 py-1 mt-1"
                           disabled
                         />
@@ -288,12 +321,15 @@ const orderretail = () => {
                                       type="text"
                                       value={
                                         label === "Nama Customer"
-                                          ? selectedCustomer.nama
+                                          ? selectedCustomer.nama || namaCust
                                           : label === "No Handphone"
-                                          ? selectedCustomer.nohp
+                                          ? selectedCustomer.nohp || noHp
                                           : label === "Alamat Pengiriman"
-                                          ? selectedCustomer.alamat
+                                          ? selectedCustomer.alamat || alamat
                                           : ""
+                                      }
+                                      onChange={(e) =>
+                                        handleInputChange(label, e.target.value)
                                       }
                                       className="w-max bg-white border border-neutral-200 rounded-md p-2 py-1 mt-1"
                                     />
@@ -440,6 +476,7 @@ const orderretail = () => {
             </div>
           </div>
         </div>
+
         {isAddFormOpen && (
           <FormPesanan
             list={produkList}
@@ -457,7 +494,7 @@ const orderretail = () => {
 
         {isFormBayarOpen && isCustDataFilled && (
           <FormBayar
-            // onCloseModal={onCloseFormBayarModal}
+            onCloseModal={onCloseFormBayarModal}
             subTotal={totalBiayaKeseluruhan}
           />
         )}

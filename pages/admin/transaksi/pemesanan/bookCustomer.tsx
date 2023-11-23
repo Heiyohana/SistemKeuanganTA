@@ -20,7 +20,7 @@ const bookCustomer = (props: Props) => {
     const nameMatches = customer.nama
       .toLowerCase()
       .includes(searchName.toLowerCase());
-    const noHpMatches = customer.nohp.toLowerCase().includes(searchNoHp.toLowerCase());
+    const noHpMatches = customer.nohp.includes(searchNoHp);
     return nameMatches && noHpMatches;
   });
 
@@ -36,7 +36,7 @@ const bookCustomer = (props: Props) => {
           <h1 className={`${styles.h1}`}>Cari Data Customer</h1>
           <h3 className={`${styles.h3}`}>Masukan Data yang dicari</h3>
         </div>
-        <div className="w-[60 px]">
+        <div className="w-[350px]">
           {/* Input untuk pencarian data berdasarkan Nama Customer */}
           <div
             className={`w-full pb-2 justify-between flex flex-row items-center ${styles.label}`}
@@ -65,7 +65,7 @@ const bookCustomer = (props: Props) => {
         <div className="h-[250px] overflow-y-scroll border border-blue-500">
           <table className="w-full rounded-md container flex flex-col">
             <thead className="w-full bg-blue-500 text-white shadow-md sticky top-0">
-              <tr className={`p-2 ${styles.thead}`}>
+              <tr className={`p-2 ${styles.thModal}`}>
                 <th className="px-6 py-2">ID</th>
                 <th className="px-4 py-2">Nama Customer</th>
                 <th className="px-4 py-2">No Handphone</th>

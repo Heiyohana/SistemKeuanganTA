@@ -36,25 +36,25 @@ export const dummyCustomerList: ICustomer[] = [{
     id: "MC0010", nama: "Raden Saleh", nohp: "086721316723", alamat: "PT Cahya Naluri, Tanjung Bintan",
     },
     {
-        id: "MC0010", nama: "Marella Putri", nohp: "08671238231", alamat: "PT IndoApril, Tangerang",
+        id: "MC0011", nama: "Marella Putri", nohp: "08671238231", alamat: "PT IndoApril, Tangerang",
     },
     {
-        id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
+        id: "MC0012", nama: "Helen Ginting", nohp: "081310508530", alamat: "Perumahan Jati Agung",
     },
     {
-        id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
+        id: "MC0013", nama: "Andrean Syarif", nohp: "08123132312", alamat: "Perumahan Villa Citra",
     },
     {
-        id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
+        id: "MC0014", nama: "Tsasa Punjabi", nohp: "096576757187", alamat: "Perumahan Teluk Jati",
     },
     {
-        id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
+        id: "MC0015", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
     },
     {
-        id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
+        id: "MC0016", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
     },
     {
-        id: "MC0010", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
+        id: "MC0017", nama: "Kuntoro Joyo", nohp: "0965643287", alamat: "Kantor Cabang Pertamina, Metro",
     }
 ]
 

@@ -167,6 +167,11 @@ const orderretail = () => {
     // Reset state selectedCustomer menjadi null
     setSelectedCustomer(null);
 
+    // mereset input ketikan
+    setNamaCust("");
+    setNoHp("");
+    setAlamat("");
+
     // Reset state pesanan menjadi array kosong
     setPesanan([]);
   };
@@ -190,13 +195,13 @@ const orderretail = () => {
 
   // fungsi untuk menandai bahwa BookCustomer telah terisi
   const markCustomerDatasAsFilled = () => {
-    setIsCustomerDataFilled(true);
+    setisCustDataFilled(true);
   };
   useEffect(() => {
     if (namaCust !== "" && noHp !== "" && alamat !== "") {
-      setIsCustomerDataFilled(true);
+      setisCustDataFilled(true);
     } else {
-      setIsCustomerDataFilled(false);
+      setisCustDataFilled(false);
     }
   }, [namaCust, noHp, alamat]);
 
@@ -318,12 +323,15 @@ const orderretail = () => {
                                       type="text"
                                       value={
                                         label === "Nama Customer"
-                                          ? selectedCustomer.nama
+                                          ? selectedCustomer.nama 
                                           : label === "No Handphone"
-                                          ? selectedCustomer.nohp
+                                          ? selectedCustomer.nohp 
                                           : label === "Alamat Pengiriman"
                                           ? selectedCustomer.alamat
                                           : ""
+                                      }
+                                      onChange={(e) =>
+                                        handleInputChange(label, e.target.value)
                                       }
                                       className="w-max bg-white border border-neutral-200 rounded-md p-2 py-1 mt-1"
                                     />
@@ -481,6 +489,14 @@ const orderretail = () => {
             </div>
           </div>
         </div>
+
+        {isAddFormOpen && (
+          <FormPesanan
+            list={produkList}
+            onCloseModal={onCloseFormPesanan}
+            tambahPesanan={tambahPesanan}
+          />
+        )}
         {isBookCustOpen && (
           <BookCustomer
             list={customerList}
@@ -488,17 +504,13 @@ const orderretail = () => {
             markCustomerDataAsFilled={markCustomerDatasAsFilled}
           />
         )}
-        {isAddFormOpen && isCustomerDataFilled && (
-          <FormPesanan
-            list={produkList}
-            onCloseModal={onCloseFormPesanan}
-            tambahPesanan={tambahPesanan}
-          />
-        )}
 
-        {isFormBayarOpen && isCustomerDataFilled && (
-          <FormBayar subTotal={totalBiayaKeseluruhan} />
-        )}
+        {isFormBayarOpen && isCustDataFilled &&(
+            <FormBayar
+              onCloseModal={onCloseFormBayarModal}
+              subTotal={totalBiayaKeseluruhan}
+            />
+          )}
         {isWarningOpen && <Modalwarnbook onCloseModal={onWarnClosebyOke} />}
       </div>
     </div>
