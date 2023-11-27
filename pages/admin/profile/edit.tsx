@@ -156,7 +156,7 @@ const EditProfile = () => {
               </div>
 
               <div className="flex flex-row justify-center m-4 gap-4">
-                <Link href="/staff/profile">
+                <Link href="/admin/profile">
                   <button
                     className={`bg-white border border-blue-500 rounded-md p-2 w-[80px] ${styles.button}`}
                   >
