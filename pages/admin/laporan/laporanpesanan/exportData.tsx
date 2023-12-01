@@ -1,14 +1,25 @@
 import Kop from "@/pages/components/kop";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { ILaporanPesanan, dummyLaporanPesanan } from "./laporanPesanan.type";
 import styles from "./laporanpesanan.module.css";
+import { useReactToPrint } from "react-to-print";
 
 const exportDataPage: React.FC = () => {
+  const componentPDF = useRef(null);
+  const generatePDF = useReactToPrint({
+    content: () => componentPDF.current,
+    documentTitle: "Laporan Pesanan",
+  })
+
+  useEffect(() => {
+    generatePDF();
+  });
+
   return (
-    <div className="w-full bg-white m-0">
+    <div className="w-full bg-white m-0" ref={componentPDF}>
       <Head>
-        <title>Laporan Arus Kas</title>
+        <title>Laporan Pesanan</title>
       </Head>
 
       <Kop />
@@ -17,7 +28,7 @@ const exportDataPage: React.FC = () => {
         Data Laporan Pesanan
       </h1>
 
-      <div className="px-10 pt-2">
+      <div className="px-10 pt-2 pb-5">
         {/* Tabel data arus kas */}
         <table className="w-full text-left border-2 border-gray-800 mt-2">
           <thead className="items-center text-black">
@@ -45,22 +56,14 @@ const exportDataPage: React.FC = () => {
                   <td className="px-1 py-0.5 justify-start">
                     {"00" + (index + 1)}
                   </td>
-                  <td className="px-1 text-center">
-                    {data.tanggal}
-                  </td>
+                  <td className="px-1 text-center">{data.tanggal}</td>
                   <td className="px-2">{data.namaCust}</td>
                   <td className="px-2">{data.noHpCust}</td>
                   <td className="px-2 text-right">{data.total}</td>
                   <td className="px-2">{data.tglBayar}</td>
-                  <td className="px-2 text-center">
-                    {data.tipeBayar}
-                  </td>
-                  <td className="px-2 text-center">
-                    {data.csDesk}
-                  </td>
-                  <td className="px-2 text-center">
-                    {data.sisaTagihan}
-                  </td>
+                  <td className="px-2 text-center">{data.tipeBayar}</td>
+                  <td className="px-2 text-center">{data.csDesk}</td>
+                  <td className="px-2 text-center">{data.sisaTagihan}</td>
                   <td className="px-2 text-center">
                     <p className="py-0.5 px-2 rounded-md justify-center items-center">
                       {data.status}

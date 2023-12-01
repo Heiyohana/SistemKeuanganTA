@@ -8,7 +8,7 @@ const exportDataPage: React.FC = () => {
   return (
     <div className="w-full bg-white m-0">
       <Head>
-        <title>Laporan Arus Kas</title>
+        <title>Laporan Pesanan</title>
       </Head>
 
       <Kop />

@@ -34,7 +34,10 @@ export default function Dashboard() {
                 <p className={`${styles.nominal}`}>16.000.000</p>
               </div>
               <div className="flex flex-row justify-between items-center px-3 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
-                <Link href="@/pages/admin/laporan/aruskas" className={`${styles.viewMore}`}>
+                <Link
+                  href="@/pages/admin/laporan/aruskas"
+                  className={`${styles.viewMore}`}
+                >
                   View More
                 </Link>
                 <FontAwesomeIcon
@@ -125,9 +128,9 @@ export default function Dashboard() {
             </div>
             <div className="w-1/3 flex flex-col ml-3">
               <Piechart />
-              <div className="mt-2 rounded-lg bg-white shadow-sm h-1/2 p-3">
+              {/* <div className="mt-2 rounded-lg bg-white shadow-sm h-1/2 p-3">
                 <h2 className={`${styles.h2}`}>Jumlah Produk Saat Ini</h2>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -71,7 +71,7 @@ const Aruskas = () => {
               <select
                 value={searchType}
                 onChange={handleSearchTypeChange}
-                className={`p-2 w-1/4 bg-white rounded-lg mr-3 cursor-pointer ${styles.label}`}
+                className={`p-2 w-1/4 bg-white rounded-lg mr-3 cursor-pointer ${styles.input}`}
               >
                 <option>Filter</option>
                 <option value="kategori">Kategori</option>
@@ -84,7 +84,7 @@ const Aruskas = () => {
                 value={searchValue}
                 onChange={handleSearchValueChange}
                 placeholder={`Cari berdasarkan ${searchType}`}
-                className={`rounded-lg bg-white p-2 mr-2 mb-2 cursor-pointer w-1/4 ${styles.label}`}
+                className={`rounded-lg bg-white p-2 mr-2 mb-2 cursor-pointer w-1/4 ${styles.input}`}
               />
 
               {/* Filter Tanggal */}
@@ -92,7 +92,7 @@ const Aruskas = () => {
                 type="date"
                 value={searchValue}
                 onChange={handleSearchValueChange}
-                className={`p-2 w-[200px] bg-white mr-3 rounded-lg ${styles.label}`}
+                className={`p-2 w-[200px] bg-white mr-3 rounded-lg ${styles.input}`}
               />
 
               {/* Button Export Data */}

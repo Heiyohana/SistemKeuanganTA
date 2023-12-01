@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { IProduksiHarian, PageEnum } from "./jumlahProduksi.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faChevronRight, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronLeft,
+  faChevronRight,
+  faEdit,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { format } from "date-fns";
 import Link from "next/link";
 import editJumlahProduksi from "./editJumlahProduksi";
@@ -32,7 +37,7 @@ const jphList: React.FC<JumlahProduksiProps> = (props) => {
   const endIndex = Math.min(startIndex + itemsPerPage, list.length); // Pastikan endIndex tidak melebihi panjang list
 
   return (
-    <div className=" flex flex-col mt-2">
+    <div className=" flex flex-col mt-2 w-full">
       <table className="text-left border-2 border-blue-500 ">
         <thead className="bg-blue-500 text-white">
           <tr className={`p-2 ${styles.thead}`}>

@@ -1,11 +1,22 @@
 import Kop from "@/pages/components/kop";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { IArusKas, dummyArusKasList } from "./arusKas.type";
+import { useReactToPrint } from "react-to-print";
 
 const exportDataPage: React.FC = () => {
+  const componentPDF = useRef(null);
+  const generatePDF = useReactToPrint({
+    content: () => componentPDF.current,
+    documentTitle: "Laporan Arus Kas",
+  });
+
+  useEffect(() => {
+    generatePDF();
+  });
+  
   return (
-    <div className="w-full bg-white m-0 p-10">
+    <div className="w-full bg-white m-0 p-10" ref={componentPDF}>
       <Head>
         <title>Laporan Arus Kas</title>
       </Head>
@@ -29,7 +40,6 @@ const exportDataPage: React.FC = () => {
         <tbody className="bg-white text-left">
           {/* isi data dari test.type.ts */}
           {dummyArusKasList.map((kas: IArusKas, index) => {
-
             return (
               <tr key={kas.id} className="border border-gray-800">
                 <td className="py-1 px-4">{index + 1}</td>

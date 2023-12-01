@@ -121,9 +121,16 @@ export default function Dashboard() {
             </div>
             <div className="w-1/3 flex flex-col ml-3">
               <Piechart />
-              <div className="mt-2 rounded-lg bg-white shadow-sm h-1/2 p-3">
+              {/* <div className="mt-2 rounded-lg bg-white shadow-sm h-1/2 p-3">
                 <h2 className={`${styles.h2}`}>Jumlah Produk</h2>
-              </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Nama Produk</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div> */}
             </div>
           </div>
         </div>

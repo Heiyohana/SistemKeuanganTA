@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Kop from "@/pages/components/kop";
 import { dummyProdukList, IProduk } from "./produk.type";
 import styles from "./materproduk.module.css";
@@ -7,14 +7,17 @@ import { useReactToPrint } from "react-to-print";
 
 const exportData: React.FC = () => {
   const componentPDF = useRef(null);
-
   const generatePDF = useReactToPrint({
     content: () => componentPDF.current,
-    documentTitle: "Laporan Arus Kas",
+    documentTitle: "Master Data Produk",
+  });
+
+  useEffect(() => {
+    generatePDF();
   });
 
   return (
-    <div className="w-full bg-white m-0">
+    <div className="w-full bg-white m-0" ref={componentPDF}>
       <Head>
         <title>Data Produk</title>
       </Head>

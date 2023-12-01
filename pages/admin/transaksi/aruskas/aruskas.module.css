@@ -16,7 +16,15 @@
 
 .label {
     font-family: Poppins, sans-serif;
-    font-weight: 400;
+    font-weight: 600;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.input {
+    font-family: Poppins, sans-serif;
+    font-weight: 300;
     font-size: 14px;
     font-style: normal;
     line-height: normal;
@@ -24,7 +32,7 @@
 
 .button {
     font-family: Poppins, sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 14px;
     font-style: normal;
     line-height: normal;

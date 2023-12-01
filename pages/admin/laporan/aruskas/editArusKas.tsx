@@ -31,7 +31,7 @@ const trans_aruskas = () => {
     // halaman transaksi untuk order / pemesanan
     <div className="relative flex h-screen">
       <Head>
-        <title>Pencatatan Arus Kas</title>
+        <title>Edit Data Arus Kas</title>
       </Head>
       <NavSideBar />
 
@@ -40,28 +40,28 @@ const trans_aruskas = () => {
         {/* atas */}
         <div className="flex flex-row justify-between">
           <div className="flex flex-col m-1 pb-3">
-            <h1 className={`${styles.h1}`}>Pencatatan Arus Kas</h1>
-            <h3 className={`${styles.h3}`}>Transaksi</h3>
+            <h1 className={`${styles.h1}`}>Edit Data Arus Kas</h1>
+            <h3 className={`${styles.h3}`}>Laporan</h3>
           </div>
         </div>
 
         {/* form pencatatan */}
         <form className="px-4">
-          <div className={`pb-2 w-fit flex flex-col ${styles.label}`}>
-            <span>Tanggal</span>
+          <div className={`pb-2 w-fit flex flex-col`}>
+            <span className={`${styles.label}`}>Tanggal</span>
             <input
               type="date"
               value={tanggalOtomatis}
               onChange={(e) => setTanggalOtomatis(e.target.value)}
-              className="text-neutral-600 bg-neutral-300 rounded-md px-3 py-1 mt-1"
+              className={`text-neutral-600 bg-neutral-300 rounded-md px-3 py-2 mt-1 ${styles.input}`}
               disabled // Agar tidak bisa diubah oleh pengguna
             />
           </div>
 
           <div className={`pb-2 w-fit flex flex-col ${styles.label}`}>
-            <span>Kategori Keuangan</span>
+            <span className={`${styles.label}`}>Kategori Keuangan</span>
             <select
-              className="bg-white rounded-md px-2 py-1 mt-1 border border-neutral-400"
+              className={`bg-white rounded-md px-2 py-2 mt-1 border border-neutral-400 ${styles.input}`}
               value={kategori}
               onChange={(e) => setKategori(e.target.value)}
             >
@@ -74,7 +74,7 @@ const trans_aruskas = () => {
           </div>
 
           <div className={`pb-2 w-full flex flex-col ${styles.label}`}>
-            <span>Nama Pelapor Keuangan</span>
+            <span className={`${styles.label}`}>Nama Pelapor Keuangan</span>
             <input
               type="text"
               value={nama}
@@ -85,23 +85,23 @@ const trans_aruskas = () => {
           </div>
 
           <div className={`pb-2 w-full flex flex-col ${styles.label}`}>
-            <span>Keterangan</span>
+            <span className={`${styles.label}`}>Keterangan</span>
             <input
               type="text"
               value={keterangan}
               onChange={(e) => setKeterangan(e.target.value)}
-              className="rounded-md px-3 py-1 mt-1 border border-neutral-400"
+              className={`rounded-md px-3 py-2 mt-1 border border-neutral-400 ${styles.input}`}
               placeholder="Masukan Keterangan Arus Kas"
             />
           </div>
 
           <div className={`pb-2 w-full flex flex-col ${styles.label}`}>
-            <span>Nominal</span>
+            <span className={`${styles.label}`}>Nominal</span>
             <input
               type="number"
               value={nominal}
               onChange={(e) => setNominal(e.target.value)}
-              className="rounded-md px-3 py-1 mt-1 border border-neutral-400"
+              className={`rounded-md px-3 py-2 mt-1 border border-neutral-400 ${styles.input}`}
             />
           </div>
 

@@ -64,13 +64,13 @@ const viewProdukModal = (props: Props) => {
               <input
                 type="button"
                 value="Close"
-                className="rounded-lg bg-white border-2 border-blue-500 text-blue-500 px-4 mr-3 py-1 cursor-pointer"
+                className="rounded-lg w-20 h-8 bg-white border-2 border-blue-500 text-blue-500 px-4 mr-3 py-1 cursor-pointer"
                 onClick={onClose}
               />
               <input
                 type="submit"
                 value="Edit"
-                className="rounded-lg text-white bg-blue-500 px-4 py-1 cursor-pointer"
+                className="rounded-lg w-20 h-8 text-white bg-blue-500 px-4 py-1 cursor-pointer"
               />
             </div>
           </form>

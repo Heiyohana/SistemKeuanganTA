@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { IProduksiHarian, PageEnum } from "./jumlahProduksi.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faChevronRight, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronLeft,
+  faChevronRight,
+  faEdit,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { format } from "date-fns";
 import Link from "next/link";
 import editJumlahProduksi from "./editJumlahProduksi";

@@ -1,15 +1,48 @@
-import NavSideBar from "@/pages/components/sidenavbar/admin";
+import NavSideBar from "@/pages/components/sidenavbar/staff";
 import React, { useEffect, useState } from "react";
 import styles from "./jumlahproduksiharian.module.css";
 import Link from "next/link";
+import Head from "next/head";
+import MSuccess from "@/pages/components/mSuccess";
+import { dummyProdukList } from "@/pages/admin/masterdata/produk/produk.type";
 
 const editJumlahProduksi = () => {
   const [materials, setMaterials] = useState("Paving Bata");
   const [jumlahProduksi, setJumlahProduksi] = useState("");
   const [keterangan, setKeterangan] = useState("");
 
+  const [tanggalOtomatis, setTanggalOtomatis] = useState("");
+  useEffect(() => {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split("T")[0];
+    setTanggalOtomatis(formattedDate);
+  }, []);
+
+  const [selectedProduk, setSelectedProduk] = useState("");
+
+  const produkOptions = "Materials"
+    ? dummyProdukList.filter((produk) => produk.kategori === "Materials")
+    : dummyProdukList;
+
+  const handleProdukChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newProduk = e.target.value;
+    setSelectedProduk(newProduk);
+  };
+
+  // Handle ModalSuccess
+  const [isModalSuccessOpen, setIsModalSuccessOpen] = useState(false);
+  const onModalSuccessClick = () => {
+    setIsModalSuccessOpen(true);
+    setTimeout(() => {
+      setIsModalSuccessOpen(false);
+    }, 1000);
+  };
+
   return (
     <div className="relative flex h-screen">
+      <Head>
+        <title>Laporan Jumlah Produksi Harian</title>
+      </Head>
       <NavSideBar />
 
       <div className="flex-grow right-0 justify-end p-5 bg-neutral-100 w-max">
@@ -23,55 +56,67 @@ const editJumlahProduksi = () => {
 
         {/* form pencatatan */}
         <div className="px-4">
-          <div className="pb-5 w-1/3">
-            <span className={`${styles.label}`}>Materials</span> <br />
+          <div className={`pb-3 w-full flex flex-col`}>
+            <span className={`${styles.label}`}>Tanggal</span>
+            <input
+              type="date"
+              value={tanggalOtomatis}
+              onChange={(e) => setTanggalOtomatis(e.target.value)}
+              className={`text-neutral-600 bg-neutral-300 rounded-md px-3 py-2 mt-1 ${styles.input}`}
+              disabled // Agar tidak bisa diubah oleh pengguna
+            />
+          </div>
+          <div className="flex flex-col mb-2">
+            <span className={`${styles.label}`}>Materials</span>
             <select
-              value={materials}
-              onChange={(e) => setMaterials(e.target.value)}
-              className="bg-white rounded-md px-2 py-1 mt-1 w-2/3 border border-neutral-400"
+              name="produk"
+              id="produk"
+              value={selectedProduk}
+              onChange={handleProdukChange}
+              className={`bg-white rounded-md px-2 py-2 mt-1 w-full border border-neutral-400 ${styles.input}`}
+              required
             >
-              <option>Paving Bata</option>
-              <option>Paving Bata</option>
-              <option>Paving Bata</option>
-              <option>Paving Bata</option>
-              <option>Paving Bata</option>
-              <option>Paving Bata</option>
+              <option value="">Pilih Produk</option>
+              {produkOptions.map((produk) => (
+                <option value={produk.id} key={produk.id}>
+                  {produk.nama}
+                </option>
+              ))}
             </select>
           </div>
 
-          <div className="pb-5 w-full">
-            <span className={`${styles.label}`}>Jumlah Produksi</span> <br />
+          <div className={`pb-3 ${styles.label}`}>
+            Jumlah Produksi <br />
             <input
-              value={jumlahProduksi}
-              onChange={(e) => setJumlahProduksi(e.target.value)}
-              className="rounded-md px-3 py-1 mt-1 w-2/3 border border-neutral-400"
+              className={`bg-white rounded-md px-2 py-2 mt-1 w-full border border-neutral-400 ${styles.input}`}
               placeholder="Masukan jumlah produksi harian"
+              onChange={(e) => setJumlahProduksi(e.target.value)}
             />
           </div>
 
-          <div className="pb-5">
-            <span className={`${styles.label}`}>Keterangan</span> <br />
+          <div className={`pb-3 ${styles.label}`}>
+            Keterangan <br />
             <textarea
-              value={keterangan}
-              onChange={(e) => setKeterangan(e.target.value)}
-              className="rounded-md px-3 pt-1 pb-12 mt-1 w-2/3 border border-neutral-400"
+              className={`bg-white rounded-md px-2 pb-12 mt-1 w-full border border-neutral-400 ${styles.input}`}
               placeholder="Masukan Keterangan bila diperlukan"
+              onChange={(e) => setKeterangan(e.target.value)}
             />
           </div>
 
           {/* Button */}
-          <div className="pb-5 w-2/3 justify-right">
-            <Link
-              href={"/admin/laporan/jumlahproduksiharian"}
-              className="bg-white w-[20] h-[8] mr-4 rounded-md text-blue-500 border border-blue-500 font-medium"
+          <div className="pb-5 w-full justify-end flex">
+            <button className="bg-white w-20 h-8 mr-4 rounded-md text-blue-500 border border-blue-500 font-medium">
+              <Link href={"/staff/laporan/jumlahproduksiharian"}>Kembali</Link>
+            </button>
+            <button
+              onClick={onModalSuccessClick}
+              className={`bg-blue-600 w-20 h-8 rounded-md text-white ${styles.button}`}
             >
-              Kembali
-            </Link>
-            <button className="bg-blue-600 w-20 h-8 rounded-md text-white font-semibold">
               Simpan
             </button>
           </div>
         </div>
+        {isModalSuccessOpen && <MSuccess />}
       </div>
     </div>
   );

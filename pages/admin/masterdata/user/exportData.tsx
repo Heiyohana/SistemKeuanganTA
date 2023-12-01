@@ -1,12 +1,23 @@
 import Kop from "@/pages/components/kop";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { IUser, dummyUserList } from "./user.type";
 import styles from "./masteruser.module.css";
+import { useReactToPrint } from "react-to-print";
 
 const exportDataPage: React.FC = () => {
+  const componentPDF = useRef(null);
+  const generatePDF = useReactToPrint({
+    content: () => componentPDF.current,
+    documentTitle: "Master Data Produk",
+  });
+
+  useEffect(() => {
+    generatePDF();
+  });
+  
   return (
-    <div className="w-full bg-white m-0">
+    <div className="w-full bg-white m-0" ref={componentPDF}>
       <Head>
         <title>Master Data Akun User</title>
       </Head>

@@ -1,9 +1,10 @@
 import Kop from '@/pages/components/kop';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { ILaporanPesanan } from './laporanPesanan.type';
 import styles from "./laporanpesanan.module.css";
+import { useReactToPrint } from "react-to-print";
 
 const invoice = () => {
     const router = useRouter();
@@ -13,8 +14,18 @@ const invoice = () => {
     if (data) {
       selectedData = JSON.parse(data as string);
     }
+
+    const componentPDF = useRef(null);
+    const generatePDF = useReactToPrint({
+      content: () => componentPDF.current,
+      documentTitle: "Invoice",
+    });
+
+    useEffect(() => {
+      generatePDF();
+    });
   return (
-    <div className="w-full bg-white m-0">
+    <div className="w-full bg-white m-0" ref={componentPDF}>
       <Head>
         <title>Invoice Pesanan</title>
       </Head>

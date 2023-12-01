@@ -197,12 +197,14 @@ const FormPesanan: React.FC<ProdukListProps> = (props) => {
         </div>
 
         {/* Button */}
-        <button
-          className={`bg-blue-600 w-20 h-8 rounded-md text-white mt-3 ${styles.button}`}
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
+        <div className="flex justify-center items-center">
+          <button
+            className={`bg-blue-600 w-20 h-8 rounded-md text-white mt-3 ${styles.button}`}
+            onClick={handleSubmit}
+          >
+            Tambah
+          </button>
+        </div>
       </form>
     </div>
   );

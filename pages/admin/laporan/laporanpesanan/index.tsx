@@ -122,14 +122,6 @@ const LaporanPesanan = () => {
                 className="p-2 w-[200px] bg-white mr-3 rounded-lg"
               />
 
-              {/* Filter Tanggal Order */}
-              <input
-                type="date"
-                value={searchText}
-                onChange={handleSearchTextChange}
-                className="p-2 w-[200px] bg-white mr-3 rounded-lg"
-              />
-
               {/* Button Export Data */}
               <Link
                 href="../laporan/laporanpesanan/exportData"

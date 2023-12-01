@@ -73,7 +73,7 @@ const jumlahproduksiharian = () => {
             <h3 className={`${styles.h3}`}>Laporan</h3>
           </div>
           {/* Button */}
-          <div className={`${styles.button}`}>
+          <div className={`${styles.button} w-full`}>
             <select
               value={searchType}
               onChange={handleSearchTypeChange}
@@ -109,14 +109,6 @@ const jumlahproduksiharian = () => {
               Export to PDF
             </Link>
           </div>
-        </div>
-        {/* DataTabel */}
-        <div
-          style={{
-            width: "90%",
-            alignItems: "center",
-          }}
-        >
           <JphList
             list={sortedProduksiList.filter(
               (jmlproduksi) =>

@@ -101,7 +101,6 @@ const customerList: React.FC<CustomerListProps> = (props) => {
       {showViewModal && detailsToShow && (
         <ViewCustomerModal
           onBatalBtnHnd={onCloseModal}
-          onUpdateClickHnd={viewDetails}
           data={detailsToShow}
         />
       )}

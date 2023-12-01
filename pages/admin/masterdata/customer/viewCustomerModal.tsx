@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { ICustomer } from "./customer.type";
 import styles from "./mastercustomer.module.css";
+import MSuccess from "@/pages/components/mSuccess";
 
 type Props = {
   data: ICustomer;
   onBatalBtnHnd: () => void;
-  onUpdateClickHnd: (data: ICustomer) => void;
 };
 
 const viewCustomerModal = (props: Props) => {
-  const { data, onBatalBtnHnd, onUpdateClickHnd } = props;
+  const { data, onBatalBtnHnd } = props;
 
   const [nama, setNama] = useState(data.nama);
   const [nohp, setnoHp] = useState(data.nohp);
@@ -26,19 +26,14 @@ const viewCustomerModal = (props: Props) => {
     setAlamat(e.target.value);
   };
 
-  const onSubmitBtnClickHnd = (e: any) => {
-    e.preventDefault();
-    const updateData: ICustomer = {
-      id: data.id,
-      nama: data.nama,
-      nohp: data.nohp,
-      alamat: data.alamat,
-    };
-    onUpdateClickHnd(updateData);
-    onBatalBtnHnd();
-  };
-
-  const [showViewModal, setShowViewModal] = useState(false);
+  // // Handle ModalSuccess
+  // const [isModalSuccessOpen, setIsModalSuccessOpen] = useState(false);
+  // const onModalSuccessClick = () => {
+  //   setIsModalSuccessOpen(true);
+  //   setTimeout(() => {
+  //     setIsModalSuccessOpen(false);
+  //   }, 5000);
+  // };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
@@ -84,19 +79,20 @@ const viewCustomerModal = (props: Props) => {
               <input
                 type="button"
                 value="Close"
-                className="rounded-lg bg-white border-2 border-blue-500 text-blue-500 px-4 mr-3 py-1 cursor-pointer"
+                className="rounded-lg w-20 h-8 bg-white border-2 border-blue-500 text-blue-500 px-4 mr-3 py-1 cursor-pointer"
                 onClick={onBatalBtnHnd}
               />
               <input
                 type="submit"
                 value="Edit"
-                className="rounded-lg text-white bg-blue-500 px-4 py-1 cursor-pointer"
-                onClick={() => onSubmitBtnClickHnd(data)}
+                className="rounded-lg w-20 h-8 text-white bg-blue-500 px-4 py-1 cursor-pointer"
+                // onClick={onModalSuccessClick}
               />
             </div>
           </form>
         </div>
       </div>
+      {/* {isModalSuccessOpen && <MSuccess />} */}
     </div>
   );
 };
