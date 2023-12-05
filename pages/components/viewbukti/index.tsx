@@ -25,7 +25,7 @@ const index: React.FC<ViewBuktiProps> = ( { file, onCloseModal } ) => {
         </button>
         {/* Image */}
         {/* Menampilkan gambar sesuai dengan file yang ada dalam laporanpesanan.type */}
-        <img src={`${file}`} alt="Bukti" width={200} height="auto" />
+        <img src={`${file}`} alt="Bukti" width={350} height="auto" />
       </div>
     </div>
   );

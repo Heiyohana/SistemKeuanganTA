@@ -33,7 +33,10 @@ export default function Dashboard() {
                 <p className={`${styles.nominal}`}>16.000.000</p>
               </div>
               <div className="flex flex-row justify-between items-center px-3 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
-                <a className={`${styles.viewMore}`} href="">
+                <a
+                  className={`${styles.viewMore}`}
+                  href="/staff/laporan/laporanpesanan"
+                >
                   View More
                 </a>
                 <FontAwesomeIcon
@@ -45,12 +48,15 @@ export default function Dashboard() {
 
             {/* Card Pemasukan */}
             <div className="w-1/6 group shadow-lg shadow-gray-300 rounded-lg">
-              <div className="p-2 bg-white rounded-t-lg">
+              <div className="p-2 group bg-white rounded-t-lg">
                 <p className={`${styles.nameCard}`}>Pemasukan</p>
                 <p className={`${styles.nominal}`}>16.000.000</p>
               </div>
-              <div className="flex flex-row justify-between items-center px-2 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
-                <a className={`${styles.viewMore}`} href="">
+              <div className="group flex flex-row justify-between items-center px-2 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
+                <a
+                  className={`${styles.viewMore}`}
+                  href="/staff/laporan/aruskas"
+                >
                   View More
                 </a>
                 <FontAwesomeIcon
@@ -84,7 +90,10 @@ export default function Dashboard() {
                 <p className={`${styles.nominal}`}>16.000.000</p>
               </div>
               <div className="flex flex-row justify-between items-center px-2 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
-                <a className={`${styles.viewMore}`} href="">
+                <a
+                  className={`${styles.viewMore}`}
+                  href="/staff/laporan/aruskas"
+                >
                   View More
                 </a>
                 <FontAwesomeIcon

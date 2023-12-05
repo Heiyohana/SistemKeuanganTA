@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ViewCustomerModal from "./viewCustomerModal";
 import styles from "./mastercustomer.module.css";
+import Deletewarn from "@/pages/components/deletewarn";
 
 type CustomerListProps = {
   list: ICustomer[];
@@ -148,6 +149,7 @@ const customerList: React.FC<CustomerListProps> = (props) => {
           </button>
         </div>
       </div>
+
     </div>
   );
 };

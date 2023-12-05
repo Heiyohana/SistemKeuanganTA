@@ -169,8 +169,8 @@ const FormPesanan: React.FC<ProdukListProps> = (props) => {
         </div>
 
         {/* Jumlah */}
-        <div className={`flex flex-col mb-2 ${styles.label}`}>
-          <span>Jumlah</span>
+        <div className={`flex flex-col mb-2`}>
+          <span className={`${styles.label}`}>Jumlah</span>
           <span className={`${styles.note}`}>
             Materials input luas paving, layanan input jumlah jasa
           </span>
@@ -179,7 +179,7 @@ const FormPesanan: React.FC<ProdukListProps> = (props) => {
             placeholder="Jumlah"
             value={inputJumlah}
             onChange={handleJumlahChange}
-            className="rounded-md px-3 py-1 mt-1 border border-neutral-400"
+            className={`rounded-md px-3 py-1 mt-1 border border-neutral-400 ${styles.label}`}
             required
           />
         </div>

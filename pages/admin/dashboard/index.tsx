@@ -35,7 +35,7 @@ export default function Dashboard() {
               </div>
               <div className="flex flex-row justify-between items-center px-3 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
                 <Link
-                  href="@/pages/admin/laporan/aruskas"
+                  href="/admin/laporan/aruskas"
                   className={`${styles.viewMore}`}
                 >
                   View More
@@ -54,7 +54,10 @@ export default function Dashboard() {
                 <p className={`${styles.nominal}`}>16.000.000</p>
               </div>
               <div className="flex flex-row justify-between items-center px-2 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
-                <a className={`${styles.viewMore}`} href="/laporan/aruskas">
+                <a
+                  className={`${styles.viewMore}`}
+                  href="/admin/laporan/aruskas"
+                >
                   View More
                 </a>
                 <FontAwesomeIcon
@@ -73,7 +76,7 @@ export default function Dashboard() {
               <div className="flex flex-row justify-between items-center px-2 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
                 <a
                   className={`${styles.viewMore}`}
-                  href="/laporan/laporanpesanan"
+                  href="/admin/laporan/laporanpesanan"
                 >
                   View More
                 </a>
@@ -91,7 +94,10 @@ export default function Dashboard() {
                 <p className={`${styles.nominal}`}>16.000.000</p>
               </div>
               <div className="flex flex-row justify-between items-center px-2 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
-                <a className={`${styles.viewMore}`} href="/laporan/aruskas">
+                <a
+                  className={`${styles.viewMore}`}
+                  href="admin/laporan/aruskas"
+                >
                   View More
                 </a>
                 <FontAwesomeIcon
@@ -108,7 +114,10 @@ export default function Dashboard() {
                 <p className={`${styles.nominal}`}>16.000.000</p>
               </div>
               <div className="flex flex-row justify-between items-center px-2 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
-                <a className={`${styles.viewMore}`} href="/masterdata/customer">
+                <a
+                  className={`${styles.viewMore}`}
+                  href="/admin/masterdata/customer"
+                >
                   View More
                 </a>
                 <FontAwesomeIcon

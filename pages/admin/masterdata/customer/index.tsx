@@ -6,6 +6,7 @@ import CustomerList from "./customerList";
 import AddCustModal from "./addCustModal";
 import Link from "next/link";
 import styles from "./mastercustomer.module.css";
+import Deletewarn from "@/pages/components/deletewarn";
 
 const index = () => {
   const [customerList, setCustomerList] = useState(
@@ -109,6 +110,7 @@ const index = () => {
           )}
         </div>
       </div>
+      {/* <Deletewarn /> */}
     </div>
   );
 };

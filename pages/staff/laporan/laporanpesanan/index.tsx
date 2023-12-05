@@ -36,10 +36,12 @@ const LaporanPesanan = () => {
       const tglOrder = item.tanggal.toLowerCase();
       const nama = item.namaCust.toLowerCase();
       const noHp = item.noHpCust.toLowerCase();
+      const status = item.status.toLowerCase();
       return (
         tglOrder.includes(search) ||
         nama.includes(search) ||
-        noHp.includes(search)
+        noHp.includes(search) ||
+        status.includes(search)
       );
     });
   };
@@ -89,7 +91,7 @@ const LaporanPesanan = () => {
   }
 
   return (
-    <div className="relative flex h-full">
+    <div className="relative flex h-screen">
       <Head>
         <title>Laporan Pesanan</title>
       </Head>

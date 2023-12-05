@@ -57,7 +57,7 @@ const jumlahproduksiharian = () => {
   const [showActions, setShowActions] = useState(true);
 
   return (
-    <div className="relative flex max-h-max">
+    <div className="relative flex h-screen">
       <Head>
         <title>Laporan Jumlah Produksi Harian</title>
       </Head>

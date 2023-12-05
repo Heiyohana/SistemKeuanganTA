@@ -161,14 +161,6 @@ const Masuk: React.FC = () => {
                 <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye}/>
               </button>
             </div>
-            <div>
-              <a
-                href=""
-                className={`${styles.textForgot} text-blue-500 hover:text-blue-800 flex justify-end`}
-              >
-                Forgot Password?
-              </a>
-            </div>
             {/* Button Submit */}
             <div>
               <button
