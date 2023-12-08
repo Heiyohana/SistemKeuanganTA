@@ -205,7 +205,6 @@ const orderretail = () => {
     }
   }, [namaCust, noHp, alamat]);
 
-
   // Mengisi Data Customer melalui inputan
   const handleInputChange = (label: string, value: string) => {
     switch (label) {
@@ -223,6 +222,11 @@ const orderretail = () => {
     }
   };
 
+  // Perintah format Rupiah
+  const formatRupiah = (angka: number) => {
+    const rupiah = "Rp " + angka.toLocaleString() + ",00,-";
+    return rupiah;
+  };
 
   return (
     // halaman transaksi untuk order / pemesanan
@@ -323,9 +327,9 @@ const orderretail = () => {
                                       type="text"
                                       value={
                                         label === "Nama Customer"
-                                          ? selectedCustomer.nama 
+                                          ? selectedCustomer.nama
                                           : label === "No Handphone"
-                                          ? selectedCustomer.nohp 
+                                          ? selectedCustomer.nohp
                                           : label === "Alamat Pengiriman"
                                           ? selectedCustomer.alamat
                                           : ""
@@ -439,8 +443,12 @@ const orderretail = () => {
                       <td className="px-4 py-1">{item.nama}</td>
                       <td className="px-4 py-1">{item.jumlahm2}</td>
                       <td className="px-4 py-1">{item.luas}</td>
-                      <td className="px-4 py-1">{item.hargam2}</td>
-                      <td className="px-4 py-1">{item.totalBiaya}</td>
+                      <td className="px-4 py-1">
+                        {item.hargam2.toLocaleString()}
+                      </td>
+                      <td className="px-4 py-1">
+                        {item.totalBiaya.toLocaleString()}
+                      </td>
                       <td className="px-4 py-1 items-center">
                         <button
                           className="cursor-pointer"
@@ -470,7 +478,7 @@ const orderretail = () => {
           <div className="w-full flex flex-row items-top justify-between mt-3">
             {/* ini dibuat jadi input text box */}
             <input
-              className={`items-top bg-white border-blue-300 border w-2/5 rounded-lg text-left p-2 pb-20 ${styles.catatan}`}
+              className={`items-top bg-white border-blue-300 border w-2/5 rounded-lg text-left p-2 pb-20 ${styles.text}`}
               placeholder="Catatan"
             />
             <div>
@@ -505,12 +513,12 @@ const orderretail = () => {
           />
         )}
 
-        {isFormBayarOpen && isCustDataFilled &&(
-            <FormBayar
-              onCloseModal={onCloseFormBayarModal}
-              subTotal={totalBiayaKeseluruhan}
-            />
-          )}
+        {isFormBayarOpen && isCustDataFilled && (
+          <FormBayar
+            onCloseModal={onCloseFormBayarModal}
+            subTotal={totalBiayaKeseluruhan}
+          />
+        )}
         {isWarningOpen && <Modalwarnbook onCloseModal={onWarnClosebyOke} />}
       </div>
     </div>

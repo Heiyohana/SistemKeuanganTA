@@ -92,7 +92,7 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
             <label className={`mb-1 ${styles.label}`}>
               Pilih Metode Pembayaran Anda!
               <div className="flex flex-row">
-                <div className="flex flex-row mr-3">
+                <label className="group flex flex-row mr-3">
                   <input
                     type="radio"
                     value="dp1"
@@ -101,8 +101,8 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
                     onChange={handleMetodeChange}
                   />
                   DP 1 (30%)
-                </div>
-                <div className="flex flex-row mr-3 mb-1">
+                </label>
+                <label className="group flex flex-row mr-3 mb-1">
                   <input
                     type="radio"
                     value="dp2"
@@ -111,8 +111,8 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
                     onChange={handleMetodeChange}
                   />
                   DP 2 (40%)
-                </div>
-                <div className="flex flex-row mr-3 mb-1">
+                </label>
+                <label className="group flex flex-row mr-3 mb-1">
                   <input
                     type="radio"
                     value="dp3"
@@ -121,8 +121,8 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
                     onChange={handleMetodeChange}
                   />
                   DP 3 (30%)
-                </div>
-                <div className="flex flex-row mb-1">
+                </label>
+                <label className="group flex flex-row mb-1">
                   <input
                     type="radio"
                     value="lunas"
@@ -131,14 +131,14 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
                     onChange={handleMetodeChange}
                   />
                   Lunas
-                </div>
+                </label>
               </div>
             </label>
 
             <label className={`${styles.label}`}>
               Pilih Jenis Pembayaran Anda!
               <div className="flex flex-row mb-1">
-                <div className="flex flex-row mr-3">
+                <label className="group flex flex-row mr-3">
                   <input
                     type="radio"
                     value="cash"
@@ -147,8 +147,8 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
                     onChange={handleTipeBayarChange}
                   />
                   Cash
-                </div>
-                <div className="flex flex-row">
+                </label>
+                <label className="group flex flex-row">
                   <input
                     type="radio"
                     value="transfer"
@@ -157,7 +157,7 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
                     onChange={handleTipeBayarChange}
                   />
                   Transfer
-                </div>
+                </label>
               </div>
             </label>
 
@@ -207,19 +207,24 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
               />
             </div>
 
-            <span className="sr-only">Choose File</span>
-            <div className="container mt-2">
-              <input
-                type="file"
-                className={`text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-800 hover:file:bg-blue-300 pb-3 ${styles.label}`}
-              />
-            </div>
+            {/* Choose File */}
+            {pilihJenisBayar === "transfer" && (
+              <div>
+                <span className="sr-only">Choose File</span>
+                <div className="container mt-2">
+                  <input
+                    type="file"
+                    className={`text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-800 hover:file:bg-blue-300 ${styles.label}`}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
         <div className="justify-end flex mt-3">
           <Link
-          href={"../transaksi/pemesanan/pembayaranRekap"}
+            href={"../transaksi/pemesanan/pembayaranRekap"}
             className={`bg-blue-600 w-20 h-8 rounded-md text-white ${styles.button} items-center justify-center flex`}
           >
             Lanjut

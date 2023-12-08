@@ -78,7 +78,7 @@ const jphList: React.FC<JumlahProduksiProps> = (props) => {
                   </button>
                   <Link
                     href={
-                      "/admin/laporan/jumlahproduksiharian/editJumlahProduksi"
+                      "/staff/laporan/jumlahproduksiharian/editJumlahProduksi"
                     }
                     className="cursor-pointer"
                   >

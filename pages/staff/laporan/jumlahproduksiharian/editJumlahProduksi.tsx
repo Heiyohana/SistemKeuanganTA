@@ -50,7 +50,7 @@ const editJumlahProduksi = () => {
         <div className="flex flex-row justify-between">
           <div className="flex flex-col m-1 pb-3">
             <h1 className={`${styles.h1}`}>Pencatatan Jumlah Produksi</h1>
-            <h3 className={`${styles.h3}`}>Transaksi</h3>
+            <h3 className={`${styles.h3}`}>Edit Data Laporan</h3>
           </div>
         </div>
 

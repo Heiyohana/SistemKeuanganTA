@@ -457,7 +457,7 @@ const orderretail = () => {
           <div className="w-full flex flex-row items-top justify-between mt-3">
             {/* ini dibuat jadi input text box */}
             <input
-              className={`items-top bg-white border-blue-300 border w-2/5 rounded-lg text-left p-2 pb-20 ${styles.catatan}`}
+              className={`items-top bg-white border-blue-300 border w-2/5 rounded-lg text-left p-2 pb-20 ${styles.text}`}
               placeholder="Catatan"
             />
             <div>

@@ -70,10 +70,7 @@ const Masuk: React.FC = () => {
       router.push("../staff/dashboard");
     } else if (!state.user.username && !state.user.password) {
       alert("Maaf, silakan lengkapi isi dari form masuk ini.");
-    } else if (
-      (state.user.username != "Miahana" && state.user.password != "yohana12") ||
-      (state.user.username != "Miahana" && state.user.password != "12345678")
-    ) {
+    } else {
       alert("Maaf, Username atau password yang Anda masukkan salah");
     }
   };

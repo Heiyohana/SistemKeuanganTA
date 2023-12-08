@@ -25,7 +25,7 @@ const exportDataPage: React.FC = () => {
       <Kop />
 
       <h1 className={`text-center mt-3 ${styles.h1ExportPage}`}>
-        Data Arus Kas
+        Data Jumlah Produksi Harian
       </h1>
 
       {/* Tabel data arus kas */}
