@@ -11,12 +11,12 @@ import FormPesanan from "./formPesanan";
 import {
   ICustomer,
   dummyCustomerList,
-} from "@/pages/admin/masterdata/customer/customer.type";
+} from "@/pages/staff/masterdata/customer/customer.type";
 import BookCustomer from "./bookCustomer";
 import {
   IProduk,
   dummyProdukList,
-} from "@/pages/admin/masterdata/produk/produk.type";
+} from "@/pages/staff/masterdata/produk/produk.type";
 import FormBayar from "./formBayar";
 import Modalwarnbook from "./modalwarnbook";
 import styles from "./pemesanan.module.css";
@@ -199,9 +199,9 @@ const orderretail = () => {
   };
   useEffect(() => {
     if (namaCust !== "" && noHp !== "" && alamat !== "") {
-      setisCustDataFilled(false);
-    } else {
       setisCustDataFilled(true);
+    } else {
+      setisCustDataFilled(false);
     }
   }, [namaCust, noHp, alamat]);
 
@@ -220,6 +220,12 @@ const orderretail = () => {
       default:
         break;
     }
+  };
+
+  // Perintah format Rupiah
+  const formatRupiah = (angka: number) => {
+    const rupiah = "Rp " + angka.toLocaleString() + ",00,-";
+    return rupiah;
   };
 
   return (
@@ -321,11 +327,11 @@ const orderretail = () => {
                                       type="text"
                                       value={
                                         label === "Nama Customer"
-                                          ? selectedCustomer.nama || namaCust
+                                          ? selectedCustomer.nama
                                           : label === "No Handphone"
-                                          ? selectedCustomer.nohp || noHp
+                                          ? selectedCustomer.nohp
                                           : label === "Alamat Pengiriman"
-                                          ? selectedCustomer.alamat || alamat
+                                          ? selectedCustomer.alamat
                                           : ""
                                       }
                                       onChange={(e) =>
@@ -353,7 +359,18 @@ const orderretail = () => {
                                     <span className="flex mr-4">{label}</span>
                                     <input
                                       type="text"
-                                      value=""
+                                      value={
+                                        label === "Nama Customer"
+                                          ? namaCust
+                                          : label === "No Handphone"
+                                          ? noHp
+                                          : label === "Alamat Pengiriman"
+                                          ? alamat
+                                          : ""
+                                      }
+                                      onChange={(e) =>
+                                        handleInputChange(label, e.target.value)
+                                      }
                                       className="w-max bg-white border border-neutral-200 rounded-md p-2 py-1 mt-1"
                                     />
                                   </div>
@@ -426,8 +443,12 @@ const orderretail = () => {
                       <td className="px-4 py-1">{item.nama}</td>
                       <td className="px-4 py-1">{item.jumlahm2}</td>
                       <td className="px-4 py-1">{item.luas}</td>
-                      <td className="px-4 py-1">{item.hargam2}</td>
-                      <td className="px-4 py-1">{item.totalBiaya}</td>
+                      <td className="px-4 py-1">
+                        {item.hargam2.toLocaleString()}
+                      </td>
+                      <td className="px-4 py-1">
+                        {item.totalBiaya.toLocaleString()}
+                      </td>
                       <td className="px-4 py-1 items-center">
                         <button
                           className="cursor-pointer"
