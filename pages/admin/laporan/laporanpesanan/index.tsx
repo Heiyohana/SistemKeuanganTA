@@ -217,15 +217,19 @@ const LaporanPesanan = () => {
                     <td className="px-2">{rowData.tglBayar}</td>
                     <td className="px-2 text-center">{rowData.tipeBayar}</td>
                     <td className="px-2 text-center">
-                      <button
-                        className="border-b border-blue-600 text-blue-600 hover:text-blue-800 hover:border-blue-800"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleClick(rowData, "view");
-                        }}
-                      >
-                        {rowData.bukti}
-                      </button>
+                      {rowData.tipeBayar === "Cash" ? (
+                        <span>{rowData.bukti}</span>
+                      ) : (
+                        <button
+                          className="border-b border-blue-600 text-blue-600 hover:text-blue-800 hover:border-blue-800"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleClick(rowData, "view");
+                          }}
+                        >
+                          {rowData.bukti}
+                        </button>
+                      )}
                     </td>
                     <td className="px-2 text-center">{rowData.sisaTagihan}</td>
                     <td className="px-2 text-center">

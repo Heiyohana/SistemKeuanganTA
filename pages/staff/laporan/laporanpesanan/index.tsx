@@ -69,18 +69,18 @@ const LaporanPesanan = () => {
   const [selectedData, setSelectedData] = useState<ILaporanPesanan | null>(
     null
   );
-  
-  const [ isViewOpen, setIsViewOpen ] = useState(false);
+
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedViewData, setSelectedViewData] = useState<string | null>(null);
 
-  const handleRowClick = (rowData: ILaporanPesanan, target: string) => {
-    if (target === "row"){
+  const handleClick = (rowData: ILaporanPesanan, target: string) => {
+    if (target === "row") {
       setSelectedData(rowData);
       router.push({
         pathname: "../laporan/laporanpesanan/rekapPesanan",
-        query: { data: JSON.stringify(rowData)},
+        query: { data: JSON.stringify(rowData) },
       });
-    } else if (target === "view"){
+    } else if (target === "view") {
       setSelectedViewData(rowData.file);
       setIsViewOpen(true);
     }
@@ -88,7 +88,7 @@ const LaporanPesanan = () => {
 
   const closeViewModal = () => {
     setIsViewOpen(false);
-  }
+  };
 
   return (
     <div className="relative flex h-screen">
@@ -205,7 +205,7 @@ const LaporanPesanan = () => {
                     className={`hover:bg-blue-100 p-3 border-blue-200 border table-auto cursor-pointer ${styles.tdtable}`}
                     key={index}
                     // ketika diklik akan link to rekappesanan dan data setiap baris akan ditampilkan di halaman rekap pesanan
-                    onClick={() => handleRowClick(rowData, "row")}
+                    onClick={() => handleClick(rowData, "row")}
                   >
                     <td className="px-2 py-0.5 justify-start">
                       {"00" + (index + 1)}
@@ -217,15 +217,19 @@ const LaporanPesanan = () => {
                     <td className="px-2">{rowData.tglBayar}</td>
                     <td className="px-2 text-center">{rowData.tipeBayar}</td>
                     <td className="px-2 text-center">
-                      <button
-                        className="border-b border-blue-600 text-blue-600 hover:text-blue-800 hover:border-blue-800"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleRowClick(rowData, "view");
-                        }}
-                      >
-                        {rowData.bukti}
-                      </button>
+                      {rowData.tipeBayar === "Cash" ? (
+                        <span>{rowData.bukti}</span>
+                      ) : (
+                        <button
+                          className="border-b border-blue-600 text-blue-600 hover:text-blue-800 hover:border-blue-800"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleClick(rowData, "view");
+                          }}
+                        >
+                          {rowData.bukti}
+                        </button>
+                      )}
                     </td>
                     <td className="px-2 text-center">{rowData.sisaTagihan}</td>
                     <td className="px-2 text-center">
@@ -260,7 +264,9 @@ const LaporanPesanan = () => {
             </table>
           </div>
           {/* Layout Pagination */}
-          <div className={`items-center mt-3 flex justify-between ${styles.text}`}>
+          <div
+            className={`items-center mt-3 flex justify-between ${styles.text}`}
+          >
             <a className="text-neutral-400">
               Menampilkan halaman ke {currentPage} dari {totalPages}
             </a>
@@ -304,7 +310,9 @@ const LaporanPesanan = () => {
           </div>
         </div>
       </div>
-      {isViewOpen && <ViewBukti file={selectedViewData} onCloseModal={closeViewModal}/>}
+      {isViewOpen && (
+        <ViewBukti file={selectedViewData} onCloseModal={closeViewModal} />
+      )}
     </div>
   );
 };

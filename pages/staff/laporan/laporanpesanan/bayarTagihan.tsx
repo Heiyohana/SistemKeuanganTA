@@ -1,11 +1,12 @@
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import styles from "./laporanpesanan.module.css";
+import Link from "next/link";
 
-interface BayarTagihanProps {
+type FormBayarProps = {
   onCloseModal?: () => void;
 };
 
-const BayarTagihan: React.FC<BayarTagihanProps> = (props, {onCloseModal}) => {
+const FormBayar: React.FC<FormBayarProps> = (props) => {
   const subTotal = 6461700;
   const [pilihMetode, setPilihMetode] = useState<string>("lunas");
   const [pilihJenisBayar, setPilihJenisBayar] = useState<string>("cash");
@@ -52,6 +53,12 @@ const BayarTagihan: React.FC<BayarTagihanProps> = (props, {onCloseModal}) => {
     setChange(paid - totalBayar);
   };
 
+  const handleCloseModal = () => {
+    if (props.onCloseModal) {
+      props.onCloseModal();
+    }
+  };
+
   // Perintah format Rupiah
   const formatRupiah = (angka: number) => {
     const rupiah = "Rp " + angka.toLocaleString() + ",00,-";
@@ -65,59 +72,58 @@ const BayarTagihan: React.FC<BayarTagihanProps> = (props, {onCloseModal}) => {
           {/* ikon X pada form pesanan */}
           <button
             className="text-black cursor-pointer text-2xl absolute top-2 right-4"
-            onClick={onCloseModal}
+            onClick={handleCloseModal}
           >
             &times;
           </button>
 
           <div>
             <div className="mb-1 flex flex-col">
-              <p className="font-semibold">Sub Total Pesanan Anda: </p>
+              <p className={`${styles.label}`}>Sub Total Pesanan Anda: </p>
               <input
                 type="text"
                 value={formatRupiah(subTotal)}
-                className="font-semibold text-blue-600 text-left w-fit"
+                className={`text-blue-600 text-left w-fit ${styles.total}`}
                 disabled
               />
             </div>
 
-            <label className="mb-1 font-semibold">
+            <label className={`mb-1 ${styles.label}`}>
               Pilih Metode Pembayaran Anda!
               <div className="flex flex-row">
-                <div className="flex flex-row mr-3 mb-1 text-gray-500">
+                <label className="group flex flex-row mr-3 text-gray-500">
                   <input
                     type="radio"
                     value="dp1"
-                    className="mr-2 "
-                    checked={true}
+                    className="mr-2"
+                    checked={pilihMetode === "dp1"}
                     onChange={handleMetodeChange}
                     disabled
                   />
                   DP 1 (30%)
-                </div>
-                <div className="flex flex-row mr-3 mb-1 text-gray-500">
+                </label>
+                <label className="group flex flex-row mr-3 mb-1 text-gray-500">
                   <input
                     type="radio"
                     value="dp2"
-                    className="mr-2 "
-                    checked={true}
+                    className="mr-2"
+                    checked={pilihMetode === "dp2"}
                     onChange={handleMetodeChange}
                     disabled
                   />
                   DP 2 (40%)
-                </div>
-                <div className="flex flex-row mr-3 mb-1 text-gray-500">
+                </label>
+                <label className="group flex flex-row mr-3 mb-1">
                   <input
                     type="radio"
                     value="dp3"
-                    className="mr-2 "
-                    checked={true}
+                    className="mr-2"
+                    checked={pilihMetode === "dp3"}
                     onChange={handleMetodeChange}
-                    disabled
                   />
                   DP 3 (30%)
-                </div>
-                <div className="flex flex-row mb-1">
+                </label>
+                <label className="group flex flex-row mb-1">
                   <input
                     type="radio"
                     value="lunas"
@@ -126,14 +132,14 @@ const BayarTagihan: React.FC<BayarTagihanProps> = (props, {onCloseModal}) => {
                     onChange={handleMetodeChange}
                   />
                   Lunas
-                </div>
+                </label>
               </div>
             </label>
 
-            <label className="font-semibold">
+            <label className={`${styles.label}`}>
               Pilih Jenis Pembayaran Anda!
               <div className="flex flex-row mb-1">
-                <div className="flex flex-row mr-3">
+                <label className="group flex flex-row mr-3">
                   <input
                     type="radio"
                     value="cash"
@@ -142,8 +148,8 @@ const BayarTagihan: React.FC<BayarTagihanProps> = (props, {onCloseModal}) => {
                     onChange={handleTipeBayarChange}
                   />
                   Cash
-                </div>
-                <div className="flex flex-row">
+                </label>
+                <label className="group flex flex-row">
                   <input
                     type="radio"
                     value="transfer"
@@ -152,22 +158,26 @@ const BayarTagihan: React.FC<BayarTagihanProps> = (props, {onCloseModal}) => {
                     onChange={handleTipeBayarChange}
                   />
                   Transfer
-                </div>
+                </label>
               </div>
             </label>
 
-            <div className="mb-1 flex flex-row justify-between items-center">
+            <div
+              className={`mb-1 flex flex-row justify-between items-center ${styles.label}`}
+            >
               <span>Diskon (nominal)</span>
               <input
                 type="number"
                 value={diskon}
-                className="border border-gray-300 p-2 rounded-md"
+                className="border border-gray-300 p-2"
                 onChange={handleDiskonChange}
               />
             </div>
 
-            <div className="flex flex-row justify-between mb-1">
-              <span className="font-bold">Total Biaya</span>
+            <div
+              className={`mb-1 flex flex-row justify-between ${styles.label}`}
+            >
+              <span className={`${styles.total}`}>Total Biaya</span>
               <input
                 type="text"
                 value={formatRupiah(totalBayar)}
@@ -176,7 +186,7 @@ const BayarTagihan: React.FC<BayarTagihanProps> = (props, {onCloseModal}) => {
               />
             </div>
 
-            <div className="mb-1 flex flex-col">
+            <div className={`mb-1 flex flex-col ${styles.label}`}>
               <span>Masukan uang pembayaran:</span>
               <input
                 type="number"
@@ -188,7 +198,7 @@ const BayarTagihan: React.FC<BayarTagihanProps> = (props, {onCloseModal}) => {
             </div>
 
             {/* Kembalian */}
-            <div className="mb-2">
+            <div className={`${styles.label}`}>
               <span>Kembalian:</span>
               <input
                 type="text"
@@ -198,20 +208,25 @@ const BayarTagihan: React.FC<BayarTagihanProps> = (props, {onCloseModal}) => {
               />
             </div>
 
-            <span className="sr-only">Choose File</span>
-            <div className="container mb-1">
-              <input
-                type="file"
-                className="text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-800 hover:file:bg-blue-300 pb-3"
-              />
-            </div>
+            {/* Choose File */}
+            {pilihJenisBayar === "transfer" && (
+              <div>
+                <span className="sr-only">Choose File</span>
+                <div className="container mt-2">
+                  <input
+                    type="file"
+                    className={`text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-800 hover:file:bg-blue-300 ${styles.label}`}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
-        <div className="flex justify-end">
+        <div className="justify-end flex mt-3">
           <Link
             href={"../laporanpesanan/rekaplunas"}
-            className="bg-blue-600 w-20 h-8 rounded-md text-white font-semibold items-center justify-center flex"
+            className={`bg-blue-600 w-20 h-8 rounded-md text-white ${styles.button} items-center justify-center flex`}
           >
             Lanjut
           </Link>
@@ -221,4 +236,4 @@ const BayarTagihan: React.FC<BayarTagihanProps> = (props, {onCloseModal}) => {
   );
 };
 
-export default BayarTagihan;
+export default FormBayar;

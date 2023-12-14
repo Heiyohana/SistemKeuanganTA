@@ -11,12 +11,12 @@ import FormPesanan from "./formPesanan";
 import {
   ICustomer,
   dummyCustomerList,
-} from "@/pages/staff/masterdata/customer/customer.type";
+} from "@/pages/admin/masterdata/customer/customer.type";
 import BookCustomer from "./bookCustomer";
 import {
   IProduk,
   dummyProdukList,
-} from "@/pages/staff/masterdata/produk/produk.type";
+} from "@/pages/admin/masterdata/produk/produk.type";
 import FormBayar from "./formBayar";
 import Modalwarnbook from "./modalwarnbook";
 import styles from "./pemesanan.module.css";
