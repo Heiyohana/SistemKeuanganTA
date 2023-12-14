@@ -6,6 +6,7 @@ import UserList from "./userList";
 import AddUserModal from "./addUserModal";
 import Link from "next/link";
 import styles from "./masteruser.module.css";
+import Deletewarn from "@/pages/components/deletewarn";
 
 const index = () => {
   const [userList, setUserList] = useState(dummyUserList as IUser[]);
@@ -24,14 +25,25 @@ const index = () => {
     setUserList([...userList, data]);
   };
 
-  const deleteUser = (data: IUser) => {
-    //To index from array i,e userlist
-    //Splice that
-    //Update new record
+  const [isDeleteWarningOpen, setIsDeleteWarningOpen] = useState(false);
+  const [indexToDelete, setIndexToDelete] = useState<number | null>(null);
+
+  const handleDeleteItem = (data: IUser) => {
     const indexToDelete = userList.indexOf(data);
+    setIsDeleteWarningOpen(true);
+    setIndexToDelete(indexToDelete);
+  };
+
+  const confirmDeleteCustomer = () => {
     const tempList = [...userList];
-    tempList.splice(indexToDelete, 1);
+    tempList.splice(indexToDelete!, 1);
     setUserList(tempList);
+
+    setIsDeleteWarningOpen(false);
+  };
+
+  const handleCancelDelete = () => {
+    setIsDeleteWarningOpen(false);
   };
 
   // Pencarian Data
@@ -88,7 +100,7 @@ const index = () => {
                       .includes(search.toLowerCase()) ||
                     user.email.toLowerCase().includes(search.toLowerCase())
                 )}
-                onDeleteClickHnd={deleteUser}
+                onDeleteClickHnd={handleDeleteItem}
               />
             )}
           </div>
@@ -100,6 +112,13 @@ const index = () => {
           )}
         </div>
       </div>
+      {/* <Deletewarn /> */}
+      {isDeleteWarningOpen && (
+        <Deletewarn
+          onConfirm={confirmDeleteCustomer}
+          onCancel={handleCancelDelete}
+        />
+      )}
     </div>
   );
 };

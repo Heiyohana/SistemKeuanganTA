@@ -12,18 +12,32 @@ import { ILaporanPesanan, dummyLaporanPesanan } from "./laporanPesanan.type";
 import { useRouter } from "next/router";
 import ViewBukti from "@/pages/components/viewbukti";
 import styles from "./laporanpesanan.module.css";
+import Deletewarn from "@/pages/components/deletewarn";
 
 // const orderretail = () => {
 const LaporanPesanan = () => {
   const [data, setData] = useState<ILaporanPesanan[]>(dummyLaporanPesanan); // Definisikan data sebagai state
   const [currentPage, setCurrentPage] = useState(1);
   const [searchText, setSearchText] = useState("");
+  const [isDeleteWarningOpen, setIsDeleteWarningOpen] = useState(false);
+  const [indexToDelete, setIndexToDelete] = useState<number | null>(null);
 
   const handleDeleteItem = (index: number) => {
-    const newData = [...data];
-    newData.splice(index, 1);
-    setData(newData);
+    setIsDeleteWarningOpen(true);
+    setIndexToDelete(index);
   };
+
+  const handleConfirmDelete = () => {
+    const newData = [...data];
+    newData.splice(indexToDelete!, 1);
+    setData(newData);
+
+    setIsDeleteWarningOpen(false);
+  }
+
+  const handleCancelDelete = () => {
+    setIsDeleteWarningOpen(false);
+  }
 
   // Pencarian
   const handleSearchTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -312,6 +326,13 @@ const LaporanPesanan = () => {
       </div>
       {isViewOpen && (
         <ViewBukti file={selectedViewData} onCloseModal={closeViewModal} />
+      )}
+
+      {isDeleteWarningOpen && (
+        <Deletewarn
+          onConfirm={handleConfirmDelete}
+          onCancel={handleCancelDelete}
+        />
       )}
     </div>
   );

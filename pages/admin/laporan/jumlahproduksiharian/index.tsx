@@ -10,6 +10,7 @@ import {
 import EditJumlahProduksi from "./editJumlahProduksi";
 import styles from "./jumlahproduksiharian.module.css";
 import Link from "next/link";
+import Deletewarn from "@/pages/components/deletewarn";
 
 const jumlahproduksiharian = () => {
   const [produksiList, setProduksiList] = useState(
@@ -19,14 +20,25 @@ const jumlahproduksiharian = () => {
   const [shownPage, setShownPage] = useState(PageEnum.list);
   const [dataToEdit, setDataToEdit] = useState(null as null | IProduksiHarian);
 
-  const deleteProduksi = (data: IProduksiHarian) => {
-    //To index from array i,e produksiList
-    //Splice that
-    //Update new record
+  const [isDeleteWarningOpen, setIsDeleteWarningOpen] = useState(false);
+  const [indexToDelete, setIndexToDelete] = useState<number | null>(null);
+
+  const handleDeleteItem = (data: IProduksiHarian) => {
     const indexToDelete = produksiList.indexOf(data);
+    setIsDeleteWarningOpen(true);
+    setIndexToDelete(indexToDelete);
+  };
+
+  const confirmDeleteData = () => {
     const tempList = [...produksiList];
-    tempList.splice(indexToDelete, 1);
+    tempList.splice(indexToDelete!, 1);
     setProduksiList(tempList);
+
+    setIsDeleteWarningOpen(false);
+  };
+
+  const handleCancelDelete = () => {
+    setIsDeleteWarningOpen(false);
   };
 
   const editJmlProduksi = (data: IProduksiHarian) => {
@@ -118,12 +130,19 @@ const jumlahproduksiharian = () => {
                 jmlproduksi.tanggal.toLowerCase().includes(searchValue)
             )}
             showActions={showActions}
-            onDeleteClickHnd={deleteProduksi}
+            onDeleteClickHnd={handleDeleteItem}
             onEdit={editJmlProduksi}
           />
         </div>
 
         {shownPage === PageEnum.edit && <EditJumlahProduksi />}
+
+        {isDeleteWarningOpen && (
+          <Deletewarn
+            onConfirm={confirmDeleteData}
+            onCancel={handleCancelDelete}
+          />
+        )}
       </div>
     </div>
   );

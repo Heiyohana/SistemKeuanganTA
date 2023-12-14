@@ -6,6 +6,7 @@ import ArusKasList from "./arusKasList";
 import { useReactToPrint } from "react-to-print";
 import Link from "next/link";
 import styles from "./aruskas.module.css";
+import Deletewarn from "@/pages/components/deletewarn";
 
 const Aruskas = () => {
   const [kasList, setKasList] = useState(dummyArusKasList as IArusKas[]);
@@ -23,15 +24,25 @@ const Aruskas = () => {
     setSearchValue(e.target.value);
   };
 
-  // Delete Arus Kas
-  const deleteArusKas = (data: IArusKas) => {
-    //To index from array i,e kasList
-    //Splice that
-    //Update new record
+  const [isDeleteWarningOpen, setIsDeleteWarningOpen] = useState(false);
+  const [indexToDelete, setIndexToDelete] = useState<number | null>(null);
+
+  const handleDeleteItem = (data: IArusKas) => {
     const indexToDelete = kasList.indexOf(data);
+    setIsDeleteWarningOpen(true);
+    setIndexToDelete(indexToDelete);
+  };
+
+  const confirmDeleteData = () => {
     const tempList = [...kasList];
-    tempList.splice(indexToDelete, 1);
+    tempList.splice(indexToDelete!, 1);
     setKasList(tempList);
+
+    setIsDeleteWarningOpen(false);
+  };
+
+  const handleCancelDelete = () => {
+    setIsDeleteWarningOpen(false);
   };
 
   // Mengurutkan data berdasarkan tanggal
@@ -53,7 +64,9 @@ const Aruskas = () => {
       <Head>
         <title>Laporan Arus Kas</title>
       </Head>
-      <div className={`w-screen h-full m-0 flex flex-row relative ${styles.body}`}>
+      <div
+        className={`w-screen h-full m-0 flex flex-row relative ${styles.body}`}
+      >
         <NavSideBar />
 
         {/* Content */}
@@ -117,12 +130,19 @@ const Aruskas = () => {
                     kas.tanggal.toLowerCase().includes(searchValue)
                 )}
                 showActions={showActions}
-                onDeleteClickHnd={deleteArusKas}
+                onDeleteClickHnd={handleDeleteItem}
               />
             </div>
           </div>
         </div>
       </div>
+      {/* <Deletewarn /> */}
+      {isDeleteWarningOpen && (
+        <Deletewarn
+          onConfirm={confirmDeleteData}
+          onCancel={handleCancelDelete}
+        />
+      )}
     </div>
   );
 };

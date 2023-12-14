@@ -26,12 +26,26 @@ const index = () => {
     setCustomerList([data, ...customerList]);
   };
 
-  const deleteCustomer = (data: ICustomer) => {
+  const [isDeleteWarningOpen, setIsDeleteWarningOpen] = useState(false);
+  const [indexToDelete, setIndexToDelete] = useState<number | null>(null);
+  
+  const handleDeleteItem = (data: ICustomer) => {
     const indexToDelete = customerList.indexOf(data);
-    const tempList = [...customerList];
-    tempList.splice(indexToDelete, 1);
-    setCustomerList(tempList);
+    setIsDeleteWarningOpen(true);
+    setIndexToDelete(indexToDelete);
   };
+
+  const confirmDeleteCustomer = () => {
+    const tempList = [...customerList];
+    tempList.splice(indexToDelete!, 1);
+    setCustomerList(tempList);
+
+    setIsDeleteWarningOpen(false);
+  };
+
+  const handleCancelDelete = () => {
+    setIsDeleteWarningOpen(false);
+  }
 
   const [dataToEdit, setDataToEdit] = useState({} as ICustomer);
   const editCustomer = (data: ICustomer) => {
@@ -95,7 +109,7 @@ const index = () => {
                 list={customerList.filter((customer) =>
                   customer.nama.toLowerCase().includes(search.toLowerCase())
                 )}
-                onDeleteClickHnd={deleteCustomer}
+                onDeleteClickHnd={handleDeleteItem}
                 onEdit={editCustomer}
                 showActions={showActions}
               />
@@ -111,6 +125,12 @@ const index = () => {
         </div>
       </div>
       {/* <Deletewarn /> */}
+      {isDeleteWarningOpen && (
+        <Deletewarn
+          onConfirm={confirmDeleteCustomer}
+          onCancel={handleCancelDelete}
+        />
+      )}
     </div>
   );
 };

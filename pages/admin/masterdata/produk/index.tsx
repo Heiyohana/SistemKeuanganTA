@@ -6,6 +6,7 @@ import ProdukList from "./produkList";
 import AddProdukModal from "./addProdukModal";
 import Link from "next/link";
 import styles from "./materproduk.module.css";
+import Deletewarn from "@/pages/components/deletewarn";
 
 const index = () => {
   const [produkList, setProdukList] = useState(dummyProdukList as IProduk[]);
@@ -24,14 +25,25 @@ const index = () => {
     setProdukList([...produkList, data]);
   };
 
-  const deleteProduk = (data: IProduk) => {
-    //To index from array i,e produklist
-    //Splice that
-    //Update new record
+  const [isDeleteWarningOpen, setIsDeleteWarningOpen] = useState(false);
+  const [indexToDelete, setIndexToDelete] = useState<number | null>(null);
+
+  const handleDeleteItem = (data: IProduk) => {
     const indexToDelete = produkList.indexOf(data);
+    setIsDeleteWarningOpen(true);
+    setIndexToDelete(indexToDelete);
+  };
+
+  const confirmDeleteData = () => {
     const tempList = [...produkList];
-    tempList.splice(indexToDelete, 1);
+    tempList.splice(indexToDelete!, 1);
     setProdukList(tempList);
+
+    setIsDeleteWarningOpen(false);
+  };
+
+  const handleCancelDelete = () => {
+    setIsDeleteWarningOpen(false);
   };
 
   // Pencarian Data
@@ -89,7 +101,7 @@ const index = () => {
                   produk.nama.toLowerCase().includes(search.toLowerCase()) ||
                   produk.ukuran.toLowerCase().includes(search)
               )}
-              onDeleteClickHnd={deleteProduk}
+              onDeleteClickHnd={handleDeleteItem}
             />
           )}
 
@@ -101,6 +113,13 @@ const index = () => {
           )}
         </div>
       </div>
+      {/* <Deletewarn /> */}
+      {isDeleteWarningOpen && (
+        <Deletewarn
+          onConfirm={confirmDeleteData}
+          onCancel={handleCancelDelete}
+        />
+      )}
     </div>
   );
 };
