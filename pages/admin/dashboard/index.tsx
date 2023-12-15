@@ -137,9 +137,46 @@ export default function Dashboard() {
             </div>
             <div className="w-1/3 flex flex-col ml-3">
               <Piechart />
-              {/* <div className="mt-2 rounded-lg bg-white shadow-sm h-1/2 p-3">
-                <h2 className={`${styles.h2}`}>Jumlah Produk Saat Ini</h2>
-              </div> */}
+              <div className="mt-2 rounded-lg bg-white shadow-sm h-1/2 p-3">
+                <h2 className={`${styles.h2}`}>Ringkasan Stok Produk</h2>
+                {/* Summary Table */}
+                <table
+                  className={`${styles.p} w-full mt-2 border-collapse border border-white bg-gray-200`}
+                >
+                  <tbody>
+                    <tr>
+                      <td className="pl-2 border-2 border-white">
+                        Paving Bata 8mm
+                      </td>
+                      <td className="border-2 border-white text-center">
+                        4033
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="pl-2 border-2 border-white">
+                        Paving Bata 10mm
+                      </td>
+                      <td className="border-2 border-white text-center">
+                        6320
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="pl-2 border-2 border-white">
+                        Paving Cacing
+                      </td>
+                      <td className="border-2 border-white text-center">
+                        6500
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="pl-2 border-2 border-white">Hebel</td>
+                      <td className="border-2 border-white text-center">
+                        7000
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
