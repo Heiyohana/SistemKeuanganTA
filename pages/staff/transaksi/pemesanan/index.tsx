@@ -191,7 +191,6 @@ const orderretail = () => {
 
   // state untuk melacak BookCustomer telah terisi atau belum
   const [isCustDataFilled, setisCustDataFilled] = useState(false);
-  const [isCustomerDataFilled, setIsCustomerDataFilled] = useState(false);
 
   // fungsi untuk menandai bahwa BookCustomer telah terisi
   const markCustomerDatasAsFilled = () => {
@@ -477,7 +476,7 @@ const orderretail = () => {
           {/* Catatan Transaksi dan Button */}
           <div className="w-full flex flex-row items-top justify-between mt-3">
             {/* ini dibuat jadi input text box */}
-            <input
+            <textarea
               className={`items-top bg-white border-blue-300 border w-2/5 rounded-lg text-left p-2 pb-20 ${styles.text}`}
               placeholder="Catatan"
             />
@@ -503,6 +502,7 @@ const orderretail = () => {
             list={produkList}
             onCloseModal={onCloseFormPesanan}
             tambahPesanan={tambahPesanan}
+            markPesananAsFilled={markCustomerDatasAsFilled}
           />
         )}
         {isBookCustOpen && (

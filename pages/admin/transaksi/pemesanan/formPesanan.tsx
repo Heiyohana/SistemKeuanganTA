@@ -106,11 +106,14 @@ const FormPesanan: React.FC<ProdukListProps> = (props) => {
       totalBiaya: hasilHarga as number, // Tambahkan hasil harga ke pesanan
     };
 
-    // Panggil fungsi tambahPesanan dengan pesananBaru
-    tambahPesanan(pesananBaru);
-
-    // Tutup modal
-    handleCloseModal();
+    if (!pesananBaru.kategori || !pesananBaru.nama || pesananBaru.jumlahm2 <= 0) {
+      console.log("Maaf, data pesanan belum terisi semuanya.");
+      return;
+    } else {
+      tambahPesanan(pesananBaru);
+      // Tutup modal
+      handleCloseModal();
+    }
   };
 
   return (

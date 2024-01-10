@@ -5,7 +5,7 @@ import styles from "./jumlahproduksi.module.css";
 import { dummyProdukList } from "@/pages/admin/masterdata/produk/produk.type";
 import MSuccess from "@/pages/components/mSuccess";
 
-export default function trans_jumlahproduksi() {
+const trans_jumlahproduksi = () => {
   const [tanggalOtomatis, setTanggalOtomatis] = useState("");
   useEffect(() => {
     const currentDate = new Date();
@@ -14,14 +14,27 @@ export default function trans_jumlahproduksi() {
   }, []);
 
   const [selectedProduk, setSelectedProduk] = useState("");
+  const [jumlahProduksi, setJumlahProduksi] = useState("");
+  const [keterangan, setKeterangan] = useState("");
 
+  const isFormValid =
+    selectedProduk !== "" && jumlahProduksi !== "" && keterangan !== "";
   const produkOptions = "Materials"
     ? dummyProdukList.filter((produk) => produk.kategori === "Materials")
     : dummyProdukList;
 
-  const handleProdukChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newProduk = e.target.value;
-    setSelectedProduk(newProduk);
+  const resetForm = () => {
+    setSelectedProduk("");
+    setJumlahProduksi("");
+    setKeterangan("");
+  };
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault;
+    if (isFormValid) {
+      onModalSuccessClick();
+      resetForm();
+    }
   };
 
   // Handle ModalSuccess
@@ -30,12 +43,12 @@ export default function trans_jumlahproduksi() {
     setIsModalSuccessOpen(true);
     setTimeout(() => {
       setIsModalSuccessOpen(false);
-    }, 1000);
+    }, 5000);
   };
 
   return (
     // halaman transaksi untuk order / pemesanan
-    <div className="relative flex h-screen w-screen">
+    <div className="relative flex h-screen">
       <Head>
         <title>Pencatatan Jumlah Produksi</title>
       </Head>
@@ -51,9 +64,9 @@ export default function trans_jumlahproduksi() {
           </div>
         </div>
 
-        {/* form pencatatan */}
-        <form className="px-4">
-          <div className={`pb-3 w-full flex flex-col`}>
+        {/* Form Pencatatan */}
+        <form className="px-4" onSubmit={handleFormSubmit}>
+          <div className={`pb-2 w-full flex flex-col`}>
             <span className={`${styles.label}`}>Tanggal</span>
             <input
               type="date"
@@ -64,13 +77,13 @@ export default function trans_jumlahproduksi() {
             />
           </div>
 
-          <div className="flex flex-col mb-2">
+          <div className="pb-2 w-full flex flex-col">
             <span className={`${styles.label}`}>Materials</span>
             <select
               name="produk"
               id="produk"
               value={selectedProduk}
-              onChange={handleProdukChange}
+              onChange={(e) => setSelectedProduk(e.target.value)}
               className={`bg-white rounded-md px-2 py-2 mt-1 w-full border border-neutral-400 ${styles.input}`}
               required
             >
@@ -83,29 +96,38 @@ export default function trans_jumlahproduksi() {
             </select>
           </div>
 
-          <div className={`pb-3 ${styles.label}`}>
-            Jumlah Produksi <br />
+          <div className="pb-2 w-full flex flex-col">
+            <span className={`${styles.label}`}>Jumlah Produksi</span>
             <input
+              type="number"
               className={`bg-white rounded-md px-2 py-2 mt-1 w-full border border-neutral-400 ${styles.input}`}
               placeholder="Masukan jumlah produksi harian"
+              onChange={(e) => setJumlahProduksi(e.target.value)}
+              required
             />
           </div>
 
           <div className={`pb-3 ${styles.label}`}>
-            Keterangan <br />
+            <span className={`${styles.label}`}>Keterangan</span>
             <textarea
-              className={`bg-white rounded-md px-2 pb-12 mt-1 w-full border border-neutral-400 ${styles.input}`}
-              placeholder="Masukan Keterangan bila diperlukan"
+              className={`bg-white rounded-md px-2 py-2 pb-12 mt-1 w-full border border-neutral-400 ${styles.input}`}
+              placeholder="Masukan Keterangan, jika tidak masukan '-'"
+              onChange={(e) => setKeterangan(e.target.value)}
+              required
             />
           </div>
 
-          {/* Button */}
           <div className="pb-5 w-full justify-end flex">
             <button
-              onClick={onModalSuccessClick}
-              className={`bg-blue-600 w-20 h-8 rounded-md text-white ${styles.button}`}
+              type="submit"
+              className={`h-8 rounded-md px-2 ${styles.button} ${
+                isFormValid
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-400 text-white"
+              }`}
+              disabled={!isFormValid}
             >
-              Simpan
+              Simpan Data
             </button>
           </div>
         </form>
@@ -113,4 +135,6 @@ export default function trans_jumlahproduksi() {
       </div>
     </div>
   );
-}
+};
+
+export default trans_jumlahproduksi;

@@ -25,11 +25,7 @@ const konfirmLogout: React.FC<Props> = (props) => {
             <button onClick={handleCloseModal}>Batal</button>
           </div>
           <div className="group flex bg-blue-500 rounded-md p-2 w-20 h-8 font-semibold text-white items-center justify-center">
-            <Link
-              href="../masuk"
-            >
-              Ya
-            </Link>
+            <Link href="/masuk">Ya</Link>
           </div>
         </div>
       </div>

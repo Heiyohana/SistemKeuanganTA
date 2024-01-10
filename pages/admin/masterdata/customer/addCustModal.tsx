@@ -52,15 +52,17 @@ const addCustModal = (props: Props) => {
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   placeholder=""
                   onChange={onNamaChangeHnd}
+                  required
                 />
               </div>
               <div className={`${styles.label} pb-2`}>
                 <label>No Handphone : </label> <br />
                 <input
-                  type="text"
+                  type="number"
                   value={nohp}
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   onChange={onNohpChangeHnd}
+                  required
                 />
               </div>
               <div className={`${styles.label} pb-2`}>
@@ -70,6 +72,7 @@ const addCustModal = (props: Props) => {
                   value={alamat}
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   onChange={onAlamatChangeHnd}
+                  required
                 />
               </div>
             </div>

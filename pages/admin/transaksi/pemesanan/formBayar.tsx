@@ -15,6 +15,7 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
   const [totalBayar, setTotalBayar] = useState<number>(subTotal);
   const [cashPaid, setCashPaid] = useState<number>(0);
   const [change, setChange] = useState<number>(0);
+  const [isValidCashPaid, setIsValidCashPaid] = useState<boolean>(true);
 
   useEffect(() => {
     calculateTotalBayar();
@@ -51,7 +52,11 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
   const handleCashPaidChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const paid = Number(event.target.value);
     setCashPaid(paid);
-    setChange(paid - totalBayar);
+
+    const remainingamount = paid - totalBayar;
+    setChange(remainingamount);
+
+    setIsValidCashPaid(remainingamount <= 0);
   };
 
   const handleCloseModal = () => {
@@ -190,10 +195,18 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
               <input
                 type="number"
                 value={cashPaid}
-                className="w-full mr-2 border border-gray-300 rounded-md p-2"
+                className={`w-full mr-2 border ${
+                  isValidCashPaid ? "border-gray-300" : "border-red-500"
+                } rounded-md p-2`}
                 placeholder="Masukan Nominal"
                 onChange={handleCashPaidChange}
+                required
               />
+              {!isValidCashPaid && (
+                <p className="text-red-500">
+                  Maaf, nominal uang yang dibayar kurang.
+                </p>
+              )}
             </div>
 
             {/* Kembalian */}
@@ -215,6 +228,7 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
                   <input
                     type="file"
                     className={`text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-800 hover:file:bg-blue-300 ${styles.label}`}
+                    required
                   />
                 </div>
               </div>
@@ -223,12 +237,21 @@ const FormBayar: React.FC<FormBayarProps> = (props) => {
         </div>
 
         <div className="justify-end flex mt-3">
-          <Link
-            href={"../transaksi/pemesanan/pembayaranRekap"}
-            className={`bg-blue-600 w-20 h-8 rounded-md text-white ${styles.button} items-center justify-center flex`}
-          >
-            Lanjut
-          </Link>
+          {isValidCashPaid ? (
+            <Link
+              href="../transaksi/pemesanan/pembayaranRekap"
+              className={`bg-blue-600 w-20 flex items-center justify-center h-8 rounded-md text-white ${styles.button}`}
+            >
+              Lanjut
+            </Link>
+          ) : (
+            <button
+              className={`bg-gray-400 w-20 h-8 rounded-md text-white cursor-not-allowed ${styles.button}`}
+              disabled
+            >
+              Lanjut
+            </button>
+          )}
         </div>
       </form>
     </div>

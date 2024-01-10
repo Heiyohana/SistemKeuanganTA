@@ -57,6 +57,7 @@ const addProdukModal = (props: Props) => {
                 value={kategori}
                 onChange={onKategoriCHangeHnd}
                 className="w-full p-2 border-2 border-gray-300 rounded-md"
+                required
               />
             </div>
             <div className={`${styles.label} pb-2`}>
@@ -67,6 +68,7 @@ const addProdukModal = (props: Props) => {
                 onChange={onNamaChangeHnd}
                 // onChange={(e) => setNama(e.target.value)}
                 className="w-full p-2 border-2 border-gray-300 rounded-md"
+                required
               />
             </div>
 
@@ -77,15 +79,17 @@ const addProdukModal = (props: Props) => {
                 value={ukuran}
                 onChange={onUkuranChangeHnd}
                 className="w-full p-2 border-2 border-gray-300 rounded-md"
+                required
               />
             </div>
             <div className={`${styles.label} pb-2`}>
               <label>Jumlah / m2 :</label>
               <input
-                type="text"
+                type="number"
                 value={jumlahm2}
                 onChange={onJumlahm2ChangeHnd}
                 className="w-full p-2 border-2 border-gray-300 rounded-md"
+                required
               />
             </div>
             <div className={`${styles.label} pb-2`}>
@@ -95,6 +99,7 @@ const addProdukModal = (props: Props) => {
                 value={hargam2}
                 onChange={onHargam2ChangeHnd}
                 className="w-full p-2 border-2 border-gray-300 rounded-md"
+                required
               />
             </div>
 

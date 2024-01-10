@@ -96,7 +96,7 @@ export default function Dashboard() {
               <div className="flex flex-row justify-between items-center px-2 py-1 w-full rounded-b-lg bg-blue-200 group hover:bg-blue-500 hover:text-white">
                 <a
                   className={`${styles.viewMore}`}
-                  href="admin/laporan/aruskas"
+                  href="/admin/laporan/aruskas"
                 >
                   View More
                 </a>
@@ -153,7 +153,7 @@ export default function Dashboard() {
                       </td>
                     </tr>
                     <tr>
-                      <td className="pl-2 border-2 border-white">
+                      <td className="pl-2 border-2 border-white"  >
                         Paving Bata 10mm
                       </td>
                       <td className="border-2 border-white text-center">

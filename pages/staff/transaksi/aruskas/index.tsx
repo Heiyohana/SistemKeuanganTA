@@ -17,6 +17,31 @@ const trans_aruskas = () => {
   const [keterangan, setKeterangan] = useState("");
   const [nominal, setNominal] = useState("");
   const [file, setFile] = useState("");
+  
+  const isFormValid =
+    tanggalOtomatis !== "" &&
+    kategori !== "" &&
+    nama !== "" &&
+    keterangan !== "" &&
+    nominal !== "" &&
+    file !== "";
+
+  const resetForm = () => {
+    setTanggalOtomatis("");
+    setKategori("");
+    setNama("");
+    setKeterangan("");
+    setNominal("");
+    setFile("");
+  };
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault;
+    if (isFormValid){
+      onModalSuccessClick();
+      resetForm();
+    } 
+  };
 
   // Handle ModalSuccess
   const [isModalSuccessOpen, setIsModalSuccessOpen] = useState(false);
@@ -46,7 +71,7 @@ const trans_aruskas = () => {
         </div>
 
         {/* form pencatatan */}
-        <form className="px-4">
+        <form className="px-4" onSubmit={handleFormSubmit}>
           <div className={`pb-2 w-full flex flex-col`}>
             <span className={`${styles.label}`}>Tanggal</span>
             <input
@@ -118,8 +143,9 @@ const trans_aruskas = () => {
           {/* Button */}
           <div className="flex justify-end">
             <button
-              onClick={onModalSuccessClick}
-              className={`bg-blue-600 h-8 rounded-md text-white px-2 py-1 hover:shadow-md ${styles.button}`}
+              // onClick={onModalSuccessClick}
+              className={`h-8 rounded-md px-2 py-1 hover:shadow-md ${styles.button} ${isFormValid ? "bg-blue-600 text-white" : "bg-gray-400 text-white"}`}
+              disabled={!isFormValid}
             >
               Simpan Data
             </button>

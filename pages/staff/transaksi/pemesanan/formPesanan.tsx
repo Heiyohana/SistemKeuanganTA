@@ -6,6 +6,7 @@ type ProdukListProps = {
   list: IProduk[];
   tambahPesanan: (pesananBaru: IProduk) => void;
   onCloseModal?: () => void;
+  markPesananAsFilled: () => void;
 };
 
 type Pesanan = {
@@ -20,7 +21,7 @@ type Pesanan = {
 };
 
 const FormPesanan: React.FC<ProdukListProps> = (props) => {
-  const { list, tambahPesanan } = props;
+  const { list, tambahPesanan, markPesananAsFilled } = props;
   const [selectedKategori, setSelectedKategori] = useState("");
   const [selectedProduk, setSelectedProduk] = useState("");
   const [inputJumlah, setInputJumlah] = useState(0);
@@ -106,11 +107,14 @@ const FormPesanan: React.FC<ProdukListProps> = (props) => {
       totalBiaya: hasilHarga as number, // Tambahkan hasil harga ke pesanan
     };
 
-    // Panggil fungsi tambahPesanan dengan pesananBaru
-    tambahPesanan(pesananBaru);
-
-    // Tutup modal
-    handleCloseModal();
+    if (!pesananBaru.kategori || !pesananBaru.nama || pesananBaru.jumlahm2 <= 0) {
+      console.log("Maaf, data pesanan belum terisi semuanya.");
+      return;
+    } else {
+      tambahPesanan(pesananBaru);
+      // Tutup modal
+      handleCloseModal();
+    }
   };
 
   return (
@@ -172,7 +176,7 @@ const FormPesanan: React.FC<ProdukListProps> = (props) => {
         <div className={`flex flex-col mb-2`}>
           <span className={`${styles.label}`}>Jumlah</span>
           <span className={`${styles.note}`}>
-            Materials input luas paving, layanan input jumlah jasa
+            Materials input jumlah paving, layanan input jumlah jasa
           </span>
           <input
             type="number"

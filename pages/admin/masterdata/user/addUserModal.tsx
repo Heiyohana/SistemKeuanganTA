@@ -55,6 +55,7 @@ const addUserModal = (props: Props) => {
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   placeholder=""
                   onChange={onUsernameChangeHnd}
+                  required
                 />
               </div>
               <div className={`${styles.label} pb-2`}>
@@ -65,6 +66,7 @@ const addUserModal = (props: Props) => {
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   placeholder=""
                   onChange={onEmailChangeHnd}
+                  required
                 />
               </div>
               <div className={`${styles.label} pb-2`}>
@@ -75,6 +77,7 @@ const addUserModal = (props: Props) => {
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   placeholder=""
                   onChange={onRoleChangeHnd}
+                  required
                 />
               </div>
               <div className={`${styles.label} pb-2`}>
@@ -85,6 +88,7 @@ const addUserModal = (props: Props) => {
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   placeholder=""
                   onChange={onSandiChangeHnd}
+                  required
                 />
               </div>
             </div>

@@ -20,7 +20,6 @@ const viewProdukModal = (props: Props) => {
                 <label>Kategori :</label>
                 <input
                   type="text"
-                  value={data.kategori}
                   className="w-full p-2 border-2 border-gray-300 rounded-md"
                   placeholder={data.kategori}
                 />
